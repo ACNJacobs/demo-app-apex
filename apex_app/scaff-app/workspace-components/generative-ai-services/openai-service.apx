@@ -1,6 +1,6 @@
 genAIService openai-service (
     name: OpenAI Service
-    provider: OLLAMA
+    provider: genericOpenaiApiCompatible
     endpointUrl {
         url: http://host.docker.internal:11434
     }
