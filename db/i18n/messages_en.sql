@@ -15,6 +15,9 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.MENU.TRANSFER.TITLE',     'en', 'Transfer request');
   HD_I18N_INSTALL.upsert('SCAFF.MENU.TRANSFER.SUBTITLE',  'en', 'Move material between locations');
 
+  HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.TITLE',    'en', 'Inspection');
+  HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.SUBTITLE', 'en', 'Inspect material or scaffold');
+
   commit;
 end;
 /

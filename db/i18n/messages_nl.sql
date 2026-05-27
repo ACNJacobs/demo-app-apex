@@ -19,6 +19,9 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.MENU.TRANSFER.TITLE',     'nl', 'Transfer aanvraag');
   HD_I18N_INSTALL.upsert('SCAFF.MENU.TRANSFER.SUBTITLE',  'nl', 'Materiaal verplaatsen tussen locaties');
 
+  HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.TITLE',    'nl', 'Inspectie');
+  HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.SUBTITLE', 'nl', 'Materiaal of steiger inspecteren');
+
   commit;
 end;
 /

@@ -43,9 +43,19 @@ select 3
      , 'f?p=&APP_ID.:30:&APP_SESSION.::&DEBUG.:::'
      , 'mobile-card mobile-card--transfer'
   from dual
+union all
+select 4
+     , 40
+     , 'SCAFF.MENU.INSPECTIE.TITLE'
+     , 'SCAFF.MENU.INSPECTIE.SUBTITLE'
+     , 'fa-clipboard-check'
+     , 'altrad-red'
+     , 'f?p=&APP_ID.:40:&APP_SESSION.::&DEBUG.:::'
+     , 'mobile-card mobile-card--inspectie'
+  from dual
 ;
 
-comment on table  V_MOBILE_MENU                  is 'Mobiel startmenu — 3 cards. Titels via apex_lang text messages.';
+comment on table  V_MOBILE_MENU                  is 'Mobiel startmenu — 4 cards. Titels via apex_lang text messages.';
 comment on column V_MOBILE_MENU.CARD_ID          is 'Stabiele ID (1=Materiaal, 2=Retour, 3=Transfer).';
 comment on column V_MOBILE_MENU.DISPLAY_SEQUENCE is 'Sorteervolgorde.';
 comment on column V_MOBILE_MENU.TITLE_KEY        is 'APEX text message key voor de titel.';
