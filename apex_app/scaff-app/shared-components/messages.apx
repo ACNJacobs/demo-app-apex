@@ -1,0 +1,84 @@
+textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
+    message {
+        text: Submit a new material request
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
+    message {
+        text: Nieuwe materiaalaanvraag indienen
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.MATERIAAL.TITLE (
+    message {
+        text: Material request
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.MATERIAAL.TITLE (
+    message {
+        text: Materiaal aanvraag
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.SUBTITLE (
+    message {
+        text: Report material return
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.SUBTITLE (
+    message {
+        text: Materiaal retour melden
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.TITLE (
+    message {
+        text: Return request
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.TITLE (
+    message {
+        text: Retour aanvraag
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
+    message {
+        text: Move material between locations
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
+    message {
+        text: Materiaal verplaatsen tussen locaties
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.TITLE (
+    message {
+        text: Transfer request
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.TITLE (
+    message {
+        text: Transfer aanvraag
+        language: nl
+    }
+)
+

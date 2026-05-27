@@ -1,0 +1,482 @@
+page 3 (
+    name: Tickets Overzicht
+    alias: TICKETS-OVERZICHT
+    title: Tickets Overzicht
+    appearance {
+        pageMode: modalDialog
+        dialogTemplate: @/drawer
+        templateOptions: [
+            #DEFAULT#
+            js-dialog-class-t-Drawer--pullOutEnd
+        ]
+    }
+    dialog {
+        chained: false
+    }
+    navigation {
+        cursorFocus: doNotFocusCursor
+    }
+    security {
+        pageAccessProtection: argumentsMustHaveChecksum
+        formAutoComplete: false
+    }
+
+    region buttons (
+        name: Buttons
+        type: staticContent
+        layout {
+            sequence: 20
+            slot: dialogFooter
+        }
+        appearance {
+            template: @/buttons-container
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region tickets-overzicht (
+        name: Tickets Overzicht
+        type: form
+        source {
+            location: localDatabase
+            tableName: HD_TICKETS
+        }
+        layout {
+            sequence: 10
+            slot: contentBody
+        }
+        appearance {
+            template: @/blank-with-attributes
+            templateOptions: #DEFAULT#
+        }
+        edit {
+            enabled: true
+            allowedOperations: [
+                add
+                update
+                delete
+            ]
+        }
+    )
+
+    pageItem P3_AI_SUMMARY (
+        type: textarea
+        label {
+            label: Ai Summary
+            alignment: right
+        }
+        layout {
+            sequence: 100
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+            width: 60
+            height: 4
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: AI_SUMMARY
+            dataType: clob
+        }
+        sessionState {
+            dataType: clob
+        }
+    )
+
+    pageItem P3_ASSET_ID (
+        type: selectList
+        label {
+            label: Asset Id
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @hd-assets-asset-tag
+        }
+        layout {
+            sequence: 80
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: ASSET_ID
+            dataType: number
+        }
+    )
+
+    pageItem P3_ASSIGNED_TO (
+        type: selectList
+        label {
+            label: Assigned To
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @hd-users-username
+        }
+        layout {
+            sequence: 70
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: ASSIGNED_TO
+            dataType: number
+        }
+    )
+
+    pageItem P3_CREATED_AT (
+        type: datePicker
+        label {
+            label: Created At
+            alignment: right
+        }
+        layout {
+            sequence: 90
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+            width: 32
+        }
+        validation {
+            maxLength: 255
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: CREATED_AT
+            dataType: timestamp
+        }
+    )
+
+    pageItem P3_CREATED_BY (
+        type: selectList
+        label {
+            label: Created By
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @hd-users-username
+        }
+        layout {
+            sequence: 60
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: CREATED_BY
+            dataType: number
+        }
+    )
+
+    pageItem P3_DESCRIPTION (
+        type: textarea
+        label {
+            label: Description
+            alignment: right
+        }
+        layout {
+            sequence: 30
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+            width: 60
+            height: 4
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: DESCRIPTION
+            dataType: clob
+        }
+        sessionState {
+            dataType: clob
+        }
+    )
+
+    pageItem P3_ID (
+        type: hidden
+        layout {
+            sequence: 10
+            region: @tickets-overzicht
+            slot: regionBody
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: ID
+            dataType: number
+            queryOnly: true
+            primaryKey: true
+        }
+        security {
+            sessionStateProtection: checksumRequiredSessionLevel
+        }
+    )
+
+    pageItem P3_PRIORITY (
+        type: textField
+        label {
+            label: Priority
+            alignment: right
+        }
+        layout {
+            sequence: 50
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+            width: 32
+        }
+        validation {
+            maxLength: 20
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: PRIORITY
+            dataType: varchar2
+        }
+    )
+
+    pageItem P3_STATUS (
+        type: textField
+        label {
+            label: Status
+            alignment: right
+        }
+        layout {
+            sequence: 40
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+            width: 32
+        }
+        validation {
+            maxLength: 20
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: STATUS
+            dataType: varchar2
+        }
+    )
+
+    pageItem P3_TITLE (
+        type: textField
+        label {
+            label: Title
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @tickets-overzicht
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required-floating
+            templateOptions: #DEFAULT#
+            width: 32
+        }
+        validation {
+            valueRequired: true
+            maxLength: 200
+        }
+        source {
+            formRegion: @tickets-overzicht
+            column: TITLE
+            dataType: varchar2
+        }
+    )
+
+    button cancel (
+        buttonName: CANCEL
+        label: Cancel
+        layout {
+            sequence: 10
+            region: @buttons
+            slot: close
+        }
+        appearance {
+            buttonTemplate: @/text
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            action: triggerAction
+        }
+
+        triggerAction native-dialog-cancel (
+            action: cancelDialog
+            execution {
+                sequence: 10
+            }
+        )
+
+    )
+
+    button create (
+        buttonName: CREATE
+        label: Create
+        layout {
+            sequence: 40
+            region: @buttons
+            slot: next
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            warnOnUnsavedChanges: doNotCheck
+            databaseAction: insert
+        }
+        serverSideCondition {
+            type: itemIsNull
+            item: P3_ID
+        }
+    )
+
+    button delete (
+        buttonName: DELETE
+        label: Delete
+        layout {
+            sequence: 20
+            region: @buttons
+            slot: delete
+        }
+        appearance {
+            buttonTemplate: @/text
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            executeValidations: false
+            warnOnUnsavedChanges: doNotCheck
+            databaseAction: delete
+            requiresConfirmation: true
+        }
+        confirmation {
+            message: &APP_TEXT$DELETE_MSG!RAW.
+            style: danger
+        }
+        serverSideCondition {
+            type: itemIsNotNull
+            item: P3_ID
+        }
+    )
+
+    button save (
+        buttonName: SAVE
+        label: Apply Changes
+        layout {
+            sequence: 30
+            region: @buttons
+            slot: next
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            warnOnUnsavedChanges: doNotCheck
+            databaseAction: update
+        }
+        serverSideCondition {
+            type: itemIsNotNull
+            item: P3_ID
+        }
+    )
+
+    validation p3-created-at-must-be-timestamp (
+        name: P3_CREATED_AT must be timestamp
+        execution {
+            sequence: 80
+        }
+        validation {
+            type: itemIsAValidTimestamp
+            item: P3_CREATED_AT
+        }
+        error {
+            errorMessage: #LABEL# must be a valid timestamp.
+            associatedItem: @P3_CREATED_AT
+        }
+    )
+
+    process close-dialog (
+        name: Close Dialog
+        type: closeDialog
+        execution {
+            sequence: 50
+        }
+        advanced {
+            executionMappingIdentifier: 7416363694004400
+        }
+        serverSideCondition {
+            type: requestIsContainedInValue
+            value: CREATE,SAVE,DELETE
+        }
+    )
+
+    process initialize-form-tickets-overzicht (
+        name: Initialize form Tickets Overzicht
+        type: formInitialization
+        formRegion: @tickets-overzicht
+        execution {
+            sequence: 10
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 7415518706004399
+        }
+    )
+
+    process process-form-tickets-overzicht (
+        name: Process form Tickets Overzicht
+        type: formAutoRowProcessing
+        formRegion: @tickets-overzicht
+        execution {
+            sequence: 10
+        }
+        advanced {
+            executionMappingIdentifier: 7415919961004400
+        }
+    )
+
+)
+

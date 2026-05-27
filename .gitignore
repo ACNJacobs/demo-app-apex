@@ -1,0 +1,25 @@
+# Oracle APEX install distribution (huge, downloaded separately)
+apex/
+apex-latest.zip
+META-INF/
+
+# Database/ORDS runtime data
+oracle_oradata/
+ords_config/
+
+# Logs / scratch
+*.log
+__run.sql
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+!.vscode/settings.json
+.idea/
+
+# Other tooling caches
+.gemini/
+node_modules/

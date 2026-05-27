@@ -1,0 +1,44 @@
+lov boolean (
+    name: BOOLEAN
+    source {
+        location: staticValues
+    }
+
+    entry false (
+        sequence: 2
+        display: No
+        return: FALSE
+    )
+
+    entry true (
+        sequence: 1
+        display: Yes
+        return: TRUE
+    )
+
+)
+
+lov hd-assets-asset-tag (
+    name: HD_ASSETS.ASSET_TAG
+    source {
+        tableName: HD_ASSETS
+    }
+    columnMapping {
+        return: ID
+        display: ASSET_TAG
+        defaultSort: ASSET_TAG
+    }
+)
+
+lov hd-users-username (
+    name: HD_USERS.USERNAME
+    source {
+        tableName: HD_USERS
+    }
+    columnMapping {
+        return: ID
+        display: USERNAME
+        defaultSort: USERNAME
+    }
+)
+
