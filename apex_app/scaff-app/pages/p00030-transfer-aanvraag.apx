@@ -1,0 +1,34 @@
+page 30 (
+    name: Transfer aanvraag
+    alias: TRANSFER-AANVRAAG
+    title: &SCAFF.MENU.TRANSFER.TITLE.
+    appearance {
+        pageTemplate: @/standard
+        templateOptions: #DEFAULT#
+    }
+    navigation {
+        cursorFocus: doNotFocusCursor
+    }
+    security {
+        pageAccessProtection: argumentsMustHaveChecksum
+        formAutoComplete: false
+    }
+
+    region scaff-placeholder (
+        name: Placeholder
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return PKG_SCAFF_UI.get_placeholder;
+        }
+        layout {
+            sequence: 10
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+)
+

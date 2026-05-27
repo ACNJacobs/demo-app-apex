@@ -1,3 +1,31 @@
+textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
+    message {
+        text: Inspect material or scaffold
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
+    message {
+        text: Materiaal of steiger inspecteren
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.INSPECTIE.TITLE (
+    message {
+        text: Inspection
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.INSPECTIE.TITLE (
+    message {
+        text: Inspectie
+        language: nl
+    }
+)
+
 textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
     message {
         text: Submit a new material request
@@ -78,6 +106,34 @@ textMessage SCAFF.MENU.TRANSFER.TITLE (
 textMessage SCAFF.MENU.TRANSFER.TITLE (
     message {
         text: Transfer aanvraag
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.BACK (
+    message {
+        text: Back to menu
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.BACK (
+    message {
+        text: Terug naar menu
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.INPROGRESS.TEXT (
+    message {
+        text: This page is under construction.
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.INPROGRESS.TEXT (
+    message {
+        text: Deze pagina is in opbouw.
         language: nl
     }
 )

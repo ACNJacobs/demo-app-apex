@@ -9,6 +9,7 @@
 create or replace package PKG_SCAFF_UI
 as
   function get_mobile_menu return clob;
+  function get_placeholder return clob;
 end PKG_SCAFF_UI;
 /
 
@@ -71,6 +72,27 @@ as
 
     return l_out;
   end get_mobile_menu;
+
+  function get_placeholder return clob
+  is
+    l_out      clob;
+    l_text     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.INPROGRESS.TEXT');
+    l_back     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.BACK');
+    l_home_url varchar2(4000) := apex_util.prepare_url('f?p=&APP_ID.:1:&APP_SESSION.');
+  begin
+    dbms_lob.createtemporary(l_out, true);
+    dbms_lob.writeappend(l_out, length('<style id="scaff-mobile-css">'), '<style id="scaff-mobile-css">');
+    dbms_lob.append(l_out, HD_MOBILE_UI_PKG.get_menu_css);
+    dbms_lob.writeappend(l_out, length('</style>'), '</style>');
+
+    return l_out
+        || '<div class="scaff-placeholder">'
+        || '<p class="scaff-placeholder__text">'||apex_escape.html(l_text)||'</p>'
+        || '<a class="scaff-placeholder__back" href="'
+             ||apex_escape.html_attribute(l_home_url)||'">'
+             ||apex_escape.html(l_back)||'</a>'
+        || '</div>';
+  end get_placeholder;
 
 end PKG_SCAFF_UI;
 /

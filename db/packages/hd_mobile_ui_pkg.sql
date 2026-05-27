@@ -100,6 +100,34 @@ a.scaff-card:focus,
   margin: 0;
   line-height: 1.3;
 }
+/* Placeholder pages (in opbouw) */
+.scaff-placeholder {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  text-align: center;
+  background: #FCE6E9;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(178, 0, 21, 0.12);
+}
+.scaff-placeholder__text {
+  font-size: 1.1rem;
+  color: #B30015;
+  margin: 0 0 20px 0;
+}
+.scaff-placeholder__back {
+  display: inline-block;
+  padding: 12px 22px;
+  background: #E2001A;
+  color: #FFFFFF !important;
+  border-radius: 10px;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+.scaff-placeholder__back:hover,
+.scaff-placeholder__back:focus {
+  background: #B30015;
+}
 ~';
     return l_css;
   end get_menu_css;

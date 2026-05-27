@@ -1,0 +1,34 @@
+page 20 (
+    name: Retour aanvraag
+    alias: RETOUR-AANVRAAG
+    title: &SCAFF.MENU.RETOUR.TITLE.
+    appearance {
+        pageTemplate: @/standard
+        templateOptions: #DEFAULT#
+    }
+    navigation {
+        cursorFocus: doNotFocusCursor
+    }
+    security {
+        pageAccessProtection: argumentsMustHaveChecksum
+        formAutoComplete: false
+    }
+
+    region scaff-placeholder (
+        name: Placeholder
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return PKG_SCAFF_UI.get_placeholder;
+        }
+        layout {
+            sequence: 10
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+)
+
