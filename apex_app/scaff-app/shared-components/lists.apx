@@ -77,10 +77,10 @@ list navigation-menu (
         }
     )
 
-    entry tickets-overzicht (
-        label: Tickets Overzicht
+    entry materiaal-aanvraag (
+        label: Materiaal aanvraag
         icon {
-            imageIconCssClasses: fa-table
+            imageIconCssClasses: fa-cubes
         }
         layout {
             sequence: 20
@@ -88,13 +88,97 @@ list navigation-menu (
         isCurrent {
             type: pages
             pages: [
-                2
-                3
+                10
+                11
             ]
         }
         link {
             target: {
-                page: 2
+                page: 10
+            }
+        }
+    )
+
+    entry retour-aanvraag (
+        label: Retour aanvraag
+        icon {
+            imageIconCssClasses: fa-undo
+        }
+        layout {
+            sequence: 30
+        }
+        isCurrent {
+            type: pages
+            pages: [
+                20
+            ]
+        }
+        link {
+            target: {
+                page: 20
+            }
+        }
+    )
+
+    entry transfer-aanvraag (
+        label: Transfer aanvraag
+        icon {
+            imageIconCssClasses: fa-truck
+        }
+        layout {
+            sequence: 40
+        }
+        isCurrent {
+            type: pages
+            pages: [
+                30
+            ]
+        }
+        link {
+            target: {
+                page: 30
+            }
+        }
+    )
+
+    entry inspectie (
+        label: Inspectie
+        icon {
+            imageIconCssClasses: fa-clipboard-check
+        }
+        layout {
+            sequence: 50
+        }
+        isCurrent {
+            type: pages
+            pages: [
+                40
+            ]
+        }
+        link {
+            target: {
+                page: 40
+            }
+        }
+    )
+
+    entry mijn-aanvragen (
+        label: Mijn aanvragen
+        icon {
+            imageIconCssClasses: fa-list-check
+        }
+        layout {
+            sequence: 60
+        }
+        isCurrent {
+            type: pages
+            pages: [
+                50
+            ]
+        }
+        link {
+            target: {
+                page: 50
             }
         }
     )
