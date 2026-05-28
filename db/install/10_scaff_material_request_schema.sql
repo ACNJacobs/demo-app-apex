@@ -70,12 +70,12 @@ create table SCAFF_MATERIAL_REQUEST (
 );
 
 prompt === seed PO ===
-insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31719', 'SCAFF - Everzinc Angleur',            'Rue de Chenée 53/1',             '4031', 'ANGLEUR');
+insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31719', 'SCAFF - Everzinc Angleur',            'Rue de Chen'||unistr('\00E9')||'e 53/1',         '4031', 'ANGLEUR');
 insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31723', 'SCAFF - Umicore Olen WKK',            'Watertorenstraat 33',            '2250', 'OLEN');
-insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31742', 'SCAFF - Mac² Antwerpen',              'Blauwe Weg 7 Haven 261',         '2030', 'ANTWERPEN');
+insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31742', 'SCAFF - Mac'||unistr('\00B2')||' Antwerpen',     'Blauwe Weg 7 Haven 261',         '2030', 'ANTWERPEN');
 insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31762', 'SCAFF - ArcelorMittal Kessales Seraing','Rue Gustave Baivy 1',           '4101', 'Seraing');
 insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31770', 'SCAFF - Antwerp Euroterminal Verrebroek','Blikken 1333 Kaai 1333',       '9130', 'VERREBROEK');
-insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31796', 'SCAFF - Château de Jehay Amay',       'Rue du Parc 1',                  '4540', 'AMAY');
+insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31796', 'SCAFF - Ch'||unistr('\00E2')||'teau de Jehay Amay','Rue du Parc 1',                 '4540', 'AMAY');
 insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31803', 'SCAFF - Recyfuel Engis',              'Rue du Parc Industriel Zoning Industriel d''Ehein', '4480', 'ENGIS');
 insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31818', 'SCAFF - Prayon Engis',                'Rue Joseph Wauters 144',         '4480', 'ENGIS');
 insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/', '31847', 'SCAFF - Solvay Jemeppe',              'Rue Solvay 1',                   '5190', 'JEMEPPE-SUR-SAMBRE');
