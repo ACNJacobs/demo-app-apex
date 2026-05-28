@@ -39,8 +39,8 @@ page 11 (
         }
     )
 
-    region scaff-mr-contact (
-        name: Contactgegevens
+    region scaff-mr-contact-head (
+        name: Contactgegevens banner
         type: dynamicContent
         source {
             plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.CONTACTGEGEVENS'))||'</div>';
@@ -55,14 +55,46 @@ page 11 (
         }
     )
 
-    region scaff-mr-delivery (
-        name: Leveringdetails
+    region scaff-mr-contact (
+        name: Contactgegevens
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return null;
+        }
+        layout {
+            sequence: 11
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-mr-delivery-head (
+        name: Leveringdetails banner
         type: dynamicContent
         source {
             plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.LEVERINGDETAILS'))||'</div>';
         }
         layout {
             sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-mr-delivery (
+        name: Leveringdetails
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return null;
+        }
+        layout {
+            sequence: 21
             slot: body
         }
         appearance {
