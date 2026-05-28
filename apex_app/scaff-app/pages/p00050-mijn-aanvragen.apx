@@ -1,7 +1,7 @@
 page 50 (
     name: Mijn aanvragen
     alias: MIJN-AANVRAGEN
-    title: &SCAFF.MENU.AANVRAGEN.TITLE.
+    title: Mijn aanvragen
     appearance {
         pageTemplate: @/standard
         templateOptions: #DEFAULT#

@@ -293,6 +293,20 @@ textMessage SCAFF.MR.LIST.SEARCH (
     }
 )
 
+textMessage SCAFF.MY.HOLD (
+    message {
+        text: On hold
+        language: en
+    }
+)
+
+textMessage SCAFF.MY.HOLD (
+    message {
+        text: Aangehouden
+        language: nl
+    }
+)
+
 textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
     message {
         text: Contact details

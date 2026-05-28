@@ -110,15 +110,10 @@ as
   function get_my_requests return clob
   is
     l_out      clob;
-    l_back     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.BACK');
-    l_home_url varchar2(4000) := apex_util.prepare_url(
-      'f?p='||apex_application.g_flow_id||':1:'||apex_application.g_instance);
+    l_head     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MENU.AANVRAGEN.TITLE');
     l_empty    varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.AANVRAGEN.EMPTY');
-    l_h_id     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.AANVRAGEN.COL.ID');
-    l_h_title  varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.AANVRAGEN.COL.TITLE');
-    l_h_stat   varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.AANVRAGEN.COL.STATUS');
-    l_h_prio   varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.AANVRAGEN.COL.PRIORITY');
-    l_h_when   varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.AANVRAGEN.COL.CREATED');
+    l_hold     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MY.HOLD');
+    l_user     varchar2(200)  := lower(v('APP_USER'));
     l_count    pls_integer    := 0;
 
     procedure p( p_text in varchar2 ) is
@@ -132,48 +127,55 @@ as
     dbms_lob.append(l_out, HD_MOBILE_UI_PKG.get_menu_css);
     p('</style>');
 
-    p('<div class="scaff-menu">');
-    p('<table class="scaff-requests">');
-    p('<thead><tr>');
-    p('<th>'||apex_escape.html(l_h_id)||'</th>');
-    p('<th>'||apex_escape.html(l_h_title)||'</th>');
-    p('<th>'||apex_escape.html(l_h_stat)||'</th>');
-    p('<th>'||apex_escape.html(l_h_prio)||'</th>');
-    p('<th>'||apex_escape.html(l_h_when)||'</th>');
-    p('</tr></thead><tbody>');
+    p('<div class="scaff-list">');
+    p('<div class="scaff-list__head">'||apex_escape.html(l_head)||'</div>');
+    p('<div class="scaff-list__items">');
 
     for r in (
-      select t.id
-           , t.title
-           , t.status
-           , t.priority
-           , to_char(t.created_at,'YYYY-MM-DD') created
-        from hd_tickets t
-        left join hd_users u on u.id = t.created_by
-       where lower(coalesce(u.username,'x')) = lower(v('APP_USER'))
-          or v('APP_USER') in ('ADMIN','APP_DATA','nobody','APEX_PUBLIC_USER')
-       order by t.created_at desc
+      select mr.request_id
+           , po.po_display
+           , po.customer_name
+           , po.city
+           , to_char(mr.delivery_date,'DD-MON-YYYY','NLS_DATE_LANGUAGE=ENGLISH') as delivery_date
+           , mr.delivery_hour
+           , mr.hold_flag
+           , coalesce(v.label_nl, mr.vervoer_code) as vervoer
+           , to_char(mr.created_at,'YYYY-MM-DD HH24:MI') as created
+        from scaff_material_request mr
+        join scaff_po po on po.po_id = mr.po_id
+        left join scaff_ref_vervoer v on v.code = mr.vervoer_code
+       where lower(mr.created_by) = l_user
+          or l_user in ('admin','app_data','nobody','apex_public_user')
+       order by mr.created_at desc
        fetch first 50 rows only
     ) loop
       l_count := l_count + 1;
-      p('<tr class="scaff-requests__row scaff-requests__row--'||lower(r.status)||'">');
-      p('<td>'||r.id||'</td>');
-      p('<td>'||apex_escape.html(r.title)||'</td>');
-      p('<td><span class="scaff-pill scaff-pill--'||lower(r.status)||'">'||apex_escape.html(r.status)||'</span></td>');
-      p('<td>'||apex_escape.html(r.priority)||'</td>');
-      p('<td>'||r.created||'</td>');
-      p('</tr>');
+      p('<div class="scaff-list__item">');
+      p('<span class="scaff-list__body">');
+      p('<span class="scaff-list__title">'
+        ||apex_escape.html(r.po_display)
+        ||' &middot; '
+        ||apex_escape.html(r.delivery_date||' '||r.delivery_hour)
+        ||case when r.hold_flag = 'Y'
+               then ' <span class="scaff-pill scaff-pill--hold">'
+                    ||apex_escape.html(l_hold)||'</span>'
+          end
+        ||'</span>');
+      p('<span class="scaff-list__sub">'||apex_escape.html(r.customer_name)||'</span>');
+      p('<span class="scaff-list__meta">'
+        ||apex_escape.html(r.vervoer)||' &middot; '
+        ||apex_escape.html(r.city)||' &middot; '
+        ||apex_escape.html(r.created)
+        ||'</span>');
+      p('</span>');
+      p('</div>');
     end loop;
 
-    p('</tbody></table>');
+    p('</div>');
 
     if l_count = 0 then
-      p('<p class="scaff-placeholder__text">'||apex_escape.html(l_empty)||'</p>');
+      p('<div class="scaff-list__empty">'||apex_escape.html(l_empty)||'</div>');
     end if;
-
-    p('<a class="scaff-placeholder__back" href="'
-      ||apex_escape.html_attribute(l_home_url)||'">'
-      ||apex_escape.html(l_back)||'</a>');
 
     p('</div>');
     return l_out;
