@@ -115,6 +115,28 @@ select page_id, page_alias
 | Change card layout | use the `apex-26-mobile-cards` skill |
 | Add translations | use the `apex-26-i18n` skill |
 
+## Export modes — three distinct purposes
+
+Be explicit about which mode you're running. Mixing them corrupts the snapshot:
+
+| Mode | Purpose | Target | Commit? |
+|---|---|---|---|
+| **Official Snapshot** | Persist a known-good state before/after a change | `apex_app/<alias>/` | ✅ yes |
+| **Temporary Inspection** | Read-only peek to answer a question | `/tmp/inspect-<n>/` (NOT under apex_app/) | ❌ never |
+| **App Builder Fallback** | SQLcl/network broken; manual download | one-off `.zip` outside repo | ❌ never |
+
+**Rule**: if you're not committing the result, export OUTSIDE `apex_app/`. The snapshot directory is sacred.
+
+## Pre-flight: git status
+
+Before any `apex export` to the official snapshot directory:
+
+```powershell
+git status apex_app/<alias>/
+```
+
+If there are uncommitted changes → STOP. Either commit them first (clean snapshot) or stash. Don't mix a fresh export with unrelated in-progress edits.
+
 ## Authoritative Sources
 
 - Blog: https://blogs.oracle.com/apex/post/apexlang-in-practice-export-edit-validate-and-import-oracle-apex-applications

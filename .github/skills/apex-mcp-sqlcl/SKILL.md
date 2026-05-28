@@ -100,3 +100,35 @@ select workspace_id from apex_workspaces where workspace = 'APEX_DEV';
 - ❌ NEVER paste `&NAME.` substitution chars into MCP — call gets cancelled.
 - ❌ NEVER chain multiple `/`-terminated blocks in `sqlcl_run` — freeze risk.
 - ❌ NEVER store credentials anywhere else than this workspace's dev recipes (the dev pwd `Welkom_APEX_2026!` is OK in scripts; user APEX pwd `Anisa24v#` only in private notes).
+
+## SQL vs SQLcl command classification
+
+Not everything that runs in a SQLcl session is plain SQL. Pick the right MCP tool:
+
+| Command | Type | Use |
+|---|---|---|
+| `select` / `insert` / `update` / `delete` / `merge` | **SQL** | `sql_run` |
+| `create or replace package …` ending in `/` | **PL/SQL** | `sqlcl_run` (freeze risk) or docker exec |
+| `begin … end;` anonymous block ending in `/` | **PL/SQL** | same |
+| `show errors` | **SQLcl-only** | `sqlcl_run` — fails in `sql_run` |
+| `desc <object>` | **SQLcl-only** | prefer `schema_information` |
+| `apex export`, `apex export -list`, `apex import` | **SQLcl-only** | NEVER via MCP — use `scripts/apex-*.ps1` wrappers |
+| `info`, `ddl`, `oerr`, `codescan`, `tnsping` | **SQLcl-only** | `sqlcl_run` |
+| `set define off`, `set serveroutput on` | **SQLcl session settings** | only meaningful in docker exec session, ignored by MCP |
+
+## Post-PL/SQL-compile checks (always run after package edit)
+
+```sql
+select object_name, object_type, status
+  from user_objects
+ where object_name in ('PKG_X','PKG_Y');
+-- expect STATUS = VALID
+
+select name, type, line, position, text
+  from user_errors
+ where name in ('PKG_X','PKG_Y')
+ order by name, type, sequence;
+-- expect 0 rows
+```
+
+If `sqlcl_run` returned no error but `user_errors` has rows: the compile failed silently. Read errors, fix, recompile, re-check.

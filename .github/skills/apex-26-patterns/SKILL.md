@@ -181,3 +181,51 @@ Never `htp.p('<div>'||v('P1_INPUT')||'</div>')` — XSS.
 ## 12. Region rendering — when in doubt
 
 Use template `@/blank-with-attributes-no-grid` for full-bleed mobile cards. Use `@/standard` for normal desktop regions. Avoid `@/hero` — its `region_image` slot renders a giant left-side icon you usually don't want.
+
+## 13. Post-compile validation (mandatory after every package edit)
+
+```sql
+select object_name, object_type, status
+  from user_objects
+ where object_name in ('PKG_X','PKG_Y')
+ order by object_type, object_name;
+-- expect: STATUS = VALID
+
+-- if any INVALID:
+select name, type, line, position, text
+  from user_errors
+ where name in ('PKG_X','PKG_Y')
+ order by name, type, sequence;
+```
+
+Don't claim "compiled" without seeing `VALID`. Don't move to runtime test without `user_errors` empty for changed objects.
+
+## 14. Direct dictionary writes — when (and why) to avoid
+
+`UPDATE apex_260100.wwv_flow_*` directly is fast but ALMOST ALWAYS wrong:
+- Skips APEX validation → orphan/inconsistent metadata
+- Skips audit columns → "who changed this?" answer = nobody knows
+- Survives until next APEX patch/upgrade rebuilds dictionary → silent breakage
+
+**Allowed exceptions** (require explicit user request each time):
+- ADMIN account_expiry rescue when user is locked out (see gotcha #6)
+- One-off `apex_260100.wwv_flow_fnd_user` tweaks during initial workspace setup
+
+**Never allowed**:
+- Editing page metadata (use APEXlang edit + import instead)
+- Toggling auth schemes (use Builder or APEXlang)
+- Bulk-renaming components
+
+For internal-API-driven refactors (when APEXlang isn't enough), use `apex_application_install` + `wwv_flow_imp_*` packages, anchor on `static_id` + `application_id` + `page_id`, and STOP if any anchor is ambiguous.
+
+## 15. Security review questions (run before every PR)
+
+Before merging any APEX change, answer all 5:
+
+1. **Access boundary** — who can reach this page/action/REST handler BEFORE and AFTER the change? Did the audience widen?
+2. **Data exposure** — does this surface columns/rows that weren't visible before? (e.g. removed an authorization scheme, added a column to a report)
+3. **Secret leak** — are any tokens/keys/passwords stored or logged in plain text? (search the diff for `pwd|secret|token|key`)
+4. **Auth pattern compliance** — does this use the project's standard auth scheme, or did it bypass with `apex_authentication.send_login_username_cookie`?
+5. **Environment scope** — is this safe for DEV only, or does it carry over to PROD? (e.g. hardcoded DEV URL, test user bypass)
+
+If you can't answer any of these, surface to the user before proceeding.
