@@ -1,7 +1,7 @@
 page 10 (
     name: Materiaal aanvraag
     alias: MATERIAAL-AANVRAAG
-    title: &SCAFF.MENU.MATERIAAL.TITLE.
+    title: Materiaal aanvraag
     appearance {
         pageTemplate: @/standard
         templateOptions: #DEFAULT#
@@ -14,14 +14,11 @@ page 10 (
         formAutoComplete: false
     }
 
-    region scaff-placeholder (
-        name: Placeholder
-        type: dynamicContent
-        source {
-            plsqlFunctionBody: return PKG_SCAFF_UI.get_placeholder;
-        }
+    region scaff-mr-filters (
+        name: Filters
+        type: staticContent
         layout {
-            sequence: 10
+            sequence: 5
             slot: body
         }
         appearance {
@@ -30,5 +27,117 @@ page 10 (
         }
     )
 
-)
+    pageItem P10_PREFIX (
+        type: selectList
+        label {
+            label: Prefix
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-po-prefix
+        }
+        layout {
+            sequence: 10
+            region: @scaff-mr-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: PO/
+        }
+    )
 
+    pageItem P10_SEARCH (
+        type: textField
+        label {
+            label: Search
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @scaff-mr-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            valuePlaceholder: Zoek PO, klant of stad...
+        }
+    )
+
+    region scaff-mr-list (
+        name: PO list
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return PKG_SCAFF_UI.get_po_list(p_prefix => :P10_PREFIX, p_search => :P10_SEARCH);
+            pageItemsToSubmit: [
+                P10_PREFIX
+                P10_SEARCH
+            ]
+        }
+        layout {
+            sequence: 30
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    dynamicAction scaff-mr-refresh-prefix (
+        name: Refresh on prefix change
+        execution {
+            sequence: 10
+        }
+        when {
+            event: change
+            selectionType: items
+            items: P10_PREFIX
+        }
+
+        action refresh-prefix (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-mr-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+    )
+
+    dynamicAction scaff-mr-refresh-search (
+        name: Refresh on search keyup
+        execution {
+            sequence: 20
+        }
+        when {
+            event: keyup
+            selectionType: items
+            items: P10_SEARCH
+        }
+
+        action refresh-search (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-mr-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+    )
+
+)

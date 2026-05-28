@@ -1,6 +1,7 @@
 -- =============================================================================
 -- PKG_SCAFF_UI  —  UI render helpers voor SCAFF APP
 -- =============================================================================
+set define off
 -- get_mobile_menu : rendert 3 cards uit V_MOBILE_MENU met scaff-* classes.
 --                   CSS NIET hier injecteren (region template stript <style>).
 --                   In plaats daarvan in Page 1 Pre-Rendering proces:
@@ -11,6 +12,10 @@ as
   function get_mobile_menu return clob;
   function get_placeholder return clob;
   function get_my_requests return clob;
+  function get_po_list (
+    p_prefix in varchar2 default 'PO/',
+    p_search in varchar2 default null
+  ) return clob;
 end PKG_SCAFF_UI;
 /
 
@@ -173,6 +178,75 @@ as
     p('</div>');
     return l_out;
   end get_my_requests;
+
+  function get_po_list (
+    p_prefix in varchar2 default 'PO/',
+    p_search in varchar2 default null
+  ) return clob
+  is
+    l_out      clob;
+    l_count    pls_integer := 0;
+    l_empty    varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.EMPTY');
+    l_head     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.HEAD');
+    l_prefix   varchar2(20)   := nvl(p_prefix, 'PO/');
+    l_search   varchar2(200)  := upper(trim(p_search));
+    l_target   varchar2(4000);
+
+    procedure p( p_text in varchar2 ) is
+    begin
+      dbms_lob.writeappend(l_out, length(p_text), p_text);
+    end;
+  begin
+    dbms_lob.createtemporary(l_out, true);
+
+    p('<style id="scaff-mobile-css">');
+    dbms_lob.append(l_out, HD_MOBILE_UI_PKG.get_menu_css);
+    p('</style>');
+
+    p('<div class="scaff-list">');
+    p('<div class="scaff-list__head">'||apex_escape.html(l_head)||'</div>');
+    p('<div class="scaff-list__items">');
+
+    for r in (
+      select po_id, po_display, customer_name, address_line, postal_code, city
+        from scaff_po
+       where po_prefix = l_prefix
+         and (l_search is null
+              or upper(po_number)     like '%'||l_search||'%'
+              or upper(customer_name) like '%'||l_search||'%'
+              or upper(city)          like '%'||l_search||'%'
+              or upper(address_line)  like '%'||l_search||'%')
+       order by po_number
+       fetch first 50 rows only
+    ) loop
+      l_count := l_count + 1;
+      l_target := apex_util.prepare_url(
+                    'f?p='||apex_application.g_flow_id||':11:'||apex_application.g_instance
+                    ||'::NO::P11_PO_ID:'||r.po_id);
+
+      p('<a class="scaff-list__item'
+        ||case when l_count=1 then ' scaff-list__item--active' end
+        ||'" href="'||apex_escape.html_attribute(l_target)||'">');
+      p('<span class="scaff-list__body">');
+      p('<span class="scaff-list__title">'||apex_escape.html(r.po_display)||'</span>');
+      p('<span class="scaff-list__sub">'||apex_escape.html(r.customer_name)||'</span>');
+      p('<span class="scaff-list__meta">'
+        ||apex_escape.html(r.address_line||' , '||r.postal_code||' '||r.city)
+        ||'</span>');
+      p('</span>');
+      p('<span class="scaff-list__chevron" aria-hidden="true">&rsaquo;</span>');
+      p('</a>');
+    end loop;
+
+    p('</div>');
+
+    if l_count = 0 then
+      p('<div class="scaff-list__empty">'||apex_escape.html(l_empty)||'</div>');
+    end if;
+
+    p('</div>');
+    return l_out;
+  end get_po_list;
 
 end PKG_SCAFF_UI;
 /

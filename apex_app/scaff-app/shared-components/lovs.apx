@@ -42,3 +42,125 @@ lov hd-users-username (
     }
 )
 
+
+lov scaff-ref-vervoer (
+    name: SCAFF_REF_VERVOER
+    source {
+        tableName: SCAFF_REF_VERVOER
+    }
+    columnMapping {
+        return: CODE
+        display: LABEL_NL
+        defaultSort: SORT_SEQ
+    }
+)
+
+lov scaff-ref-lader (
+    name: SCAFF_REF_LADER
+    source {
+        tableName: SCAFF_REF_LADER
+    }
+    columnMapping {
+        return: CODE
+        display: LABEL_NL
+        defaultSort: SORT_SEQ
+    }
+)
+
+lov scaff-po-prefix (
+    name: SCAFF_PO_PREFIX
+    source {
+        location: staticValues
+    }
+
+    entry po (
+        sequence: 1
+        display: PO/
+        return: PO/
+    )
+
+    entry io (
+        sequence: 2
+        display: IO/
+        return: IO/
+    )
+
+    entry pon (
+        sequence: 3
+        display: PO/N
+        return: PO/N
+    )
+)
+
+lov scaff-uur (
+    name: SCAFF_UUR
+    source {
+        location: staticValues
+    }
+
+    entry h06 (
+        sequence: 1
+        display: 06:00
+        return: 06:00
+    )
+
+    entry h07 (
+        sequence: 2
+        display: 07:00
+        return: 07:00
+    )
+
+    entry h08 (
+        sequence: 3
+        display: 08:00
+        return: 08:00
+    )
+
+    entry h09 (
+        sequence: 4
+        display: 09:00
+        return: 09:00
+    )
+
+    entry h10 (
+        sequence: 5
+        display: 10:00
+        return: 10:00
+    )
+
+    entry h11 (
+        sequence: 6
+        display: 11:00
+        return: 11:00
+    )
+
+    entry h12 (
+        sequence: 7
+        display: 12:00
+        return: 12:00
+    )
+
+    entry h13 (
+        sequence: 8
+        display: 13:00
+        return: 13:00
+    )
+
+    entry h14 (
+        sequence: 9
+        display: 14:00
+        return: 14:00
+    )
+
+    entry h15 (
+        sequence: 10
+        display: 15:00
+        return: 15:00
+    )
+
+    entry h16 (
+        sequence: 11
+        display: 16:00
+        return: 16:00
+    )
+)

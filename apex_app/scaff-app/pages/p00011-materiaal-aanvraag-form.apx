@@ -1,0 +1,403 @@
+page 11 (
+    name: Materiaal aanvraag - formulier
+    alias: MATERIAAL-AANVRAAG-FORM
+    title: Materiaal aanvraag
+    appearance {
+        pageTemplate: @/standard
+        templateOptions: #DEFAULT#
+    }
+    navigation {
+        cursorFocus: doNotFocusCursor
+    }
+    security {
+        pageAccessProtection: argumentsMustHaveChecksum
+        formAutoComplete: false
+    }
+
+    region scaff-mr-header (
+        name: PO header
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```
+                return '<style id="scaff-mobile-css">'||HD_MOBILE_UI_PKG.get_menu_css||'</style>'
+                    ||'<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.LIST.HEAD'))||'</div>'
+                    ||'<div class="scaff-section__sub"><strong>'||apex_escape.html(nvl(:P11_PO_DISPLAY,'?'))||'</strong>'||apex_escape.html(:P11_CUSTOMER)||'</div>';
+                ```
+            pageItemsToSubmit: [
+                P11_PO_DISPLAY
+                P11_CUSTOMER
+            ]
+        }
+        layout {
+            sequence: 5
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-mr-contact (
+        name: Contactgegevens
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.CONTACTGEGEVENS'))||'</div>';
+        }
+        layout {
+            sequence: 10
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-mr-delivery (
+        name: Leveringdetails
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.LEVERINGDETAILS'))||'</div>';
+        }
+        layout {
+            sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P11_PO_ID (
+        type: hidden
+        layout {
+            sequence: 5
+            region: @scaff-mr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P11_PO_DISPLAY (
+        type: hidden
+        layout {
+            sequence: 6
+            region: @scaff-mr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P11_CUSTOMER (
+        type: hidden
+        layout {
+            sequence: 7
+            region: @scaff-mr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P11_CONTACT (
+        type: textField
+        label {
+            label: Contactpersoon
+            alignment: right
+        }
+        layout {
+            sequence: 10
+            region: @scaff-mr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            maxLength: 100
+        }
+    )
+
+    pageItem P11_WERFLEIDER (
+        type: textField
+        label {
+            label: Werfleider
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @scaff-mr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            maxLength: 100
+        }
+    )
+
+    pageItem P11_GSM (
+        type: textField
+        label {
+            label: GSM
+            alignment: right
+        }
+        layout {
+            sequence: 30
+            region: @scaff-mr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+            maxLength: 40
+        }
+    )
+
+    pageItem P11_VERVOER (
+        type: selectList
+        label {
+            label: Vervoer
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-ref-vervoer
+        }
+        layout {
+            sequence: 10
+            region: @scaff-mr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+        }
+    )
+
+    pageItem P11_LADER (
+        type: selectList
+        label {
+            label: Lader
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-ref-lader
+        }
+        layout {
+            sequence: 20
+            region: @scaff-mr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+        }
+    )
+
+    pageItem P11_DATUM (
+        type: datePicker
+        label {
+            label: Leverdatum
+            alignment: right
+        }
+        layout {
+            sequence: 30
+            region: @scaff-mr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+        }
+    )
+
+    pageItem P11_UUR (
+        type: selectList
+        label {
+            label: Uur
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-uur
+        }
+        layout {
+            sequence: 40
+            region: @scaff-mr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: 07:00
+        }
+    )
+
+    pageItem P11_AANHOUDEN (
+        type: checkbox
+        label {
+            label: Aanhouden
+            alignment: right
+        }
+        layout {
+            sequence: 50
+            region: @scaff-mr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: N
+        }
+    )
+
+    pageItem P11_OPMERKING (
+        type: textarea
+        label {
+            label: Opmerking
+            alignment: right
+        }
+        layout {
+            sequence: 60
+            region: @scaff-mr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            height: 4
+        }
+        validation {
+            maxLength: 4000
+        }
+    )
+
+    button save-request (
+        buttonName: SAVE
+        label: Opslaan
+        layout {
+            sequence: 70
+            region: @scaff-mr-delivery
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            warnOnUnsavedChanges: doNotCheck
+        }
+    )
+
+    button cancel-request (
+        buttonName: CANCEL
+        label: Annuleren
+        layout {
+            sequence: 80
+            region: @scaff-mr-delivery
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            action: redirectThisApp
+            target: {
+                page: 10
+            }
+            warnOnUnsavedChanges: doNotCheck
+        }
+    )
+
+    process load-po (
+        name: Load PO details
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                begin
+                  select po_display, customer_name
+                    into :P11_PO_DISPLAY, :P11_CUSTOMER
+                    from scaff_po
+                   where po_id = to_number(:P11_PO_ID);
+                exception
+                  when no_data_found then
+                    :P11_PO_DISPLAY := null;
+                    :P11_CUSTOMER   := null;
+                end;
+                ```
+        }
+        execution {
+            sequence: 10
+            point: beforeHeader
+        }
+        serverSideCondition {
+            type: itemIsNotNull
+            item: P11_PO_ID
+        }
+    )
+
+    process save-material-request (
+        name: Save material request
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                insert into scaff_material_request (
+                  po_id, contact_name, site_manager, gsm,
+                  vervoer_code, lader_code,
+                  delivery_date, delivery_hour, hold_flag, remark
+                ) values (
+                  to_number(:P11_PO_ID),
+                  :P11_CONTACT,
+                  :P11_WERFLEIDER,
+                  :P11_GSM,
+                  :P11_VERVOER,
+                  :P11_LADER,
+                  to_date(:P11_DATUM,'DD-MON-YYYY'),
+                  :P11_UUR,
+                  case when :P11_AANHOUDEN in ('Y','1') then 'Y' else 'N' end,
+                  :P11_OPMERKING
+                );
+                apex_application.g_print_success_message := apex_lang.message('SCAFF.MR.FORM.SAVED');
+                ```
+        }
+        execution {
+            sequence: 20
+        }
+    )
+
+)

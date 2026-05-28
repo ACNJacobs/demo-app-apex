@@ -166,6 +166,120 @@ a.scaff-card:focus,
 .scaff-pill--in_progress { background: #FFB300; color: #2A2A2A; }
 .scaff-pill--waiting   { background: #FCE6E9; color: #B30015; }
 .scaff-pill--closed    { background: #C9E7C9; color: #1B5E20; }
+
+/* ---------- Generic search-list (PO picker, etc.) ---------- */
+.scaff-list {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 12px 24px;
+  background: transparent;
+  list-style: none;
+}
+.scaff-list__head {
+  background: #4D4D4D;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 0;
+  letter-spacing: .3px;
+}
+.scaff-list__filters {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  align-items: stretch;
+}
+.scaff-list__filters .scaff-list__prefix {
+  flex: 0 0 90px;
+}
+.scaff-list__filters .scaff-list__search {
+  flex: 1 1 auto;
+}
+.scaff-list__items {
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+a.scaff-list__item,
+.scaff-list__item {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid #EEEEEE;
+  background: #FFFFFF;
+  color: #2A2A2A !important;
+  text-decoration: none !important;
+  position: relative;
+  border-left: 4px solid transparent;
+  transition: background .15s ease, border-color .15s ease;
+}
+a.scaff-list__item:hover,
+a.scaff-list__item:focus {
+  background: #FAFAFA;
+  border-left-color: #B30015;
+  text-decoration: none !important;
+}
+.scaff-list__item--active {
+  border-left-color: #1A1A66;
+  font-weight: 600;
+}
+.scaff-list__item:last-child { border-bottom: 0; }
+.scaff-list__body { flex: 1 1 auto; min-width: 0; }
+.scaff-list__title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2A2A2A;
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+.scaff-list__sub {
+  display: block;
+  font-size: .9rem;
+  color: #2A2A2A;
+  line-height: 1.2;
+  margin: 0 0 2px 0;
+}
+.scaff-list__meta {
+  display: block;
+  font-size: .8rem;
+  color: #6E6E6E;
+  line-height: 1.2;
+}
+.scaff-list__chevron {
+  flex: 0 0 auto;
+  color: #BDBDBD;
+  font-size: 1.2rem;
+  margin-left: 8px;
+}
+.scaff-list__empty {
+  padding: 24px;
+  text-align: center;
+  color: #6E6E6E;
+  background: #FFFFFF;
+}
+
+/* ---------- Generic section header (form sections) ---------- */
+.scaff-section__head {
+  background: #4D4D4D;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 16px 0 0 0;
+}
+.scaff-section__sub {
+  text-align: center;
+  padding: 8px 12px 4px;
+  color: #2A2A2A;
+  font-size: .95rem;
+}
+.scaff-section__sub strong { display: block; font-weight: 700; }
 ~';
     return l_css;
   end get_menu_css;
