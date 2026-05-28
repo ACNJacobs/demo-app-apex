@@ -4,6 +4,7 @@
 [CmdletBinding()]
 param(
     [int]$AppId = 100,
+    [string]$Alias = "scaff-app",
     [string]$Schema = "APP_DATA",
     [string]$Password = "Welkom_APEX_2026!",
     [string]$DbHost = "apex_db",
@@ -55,9 +56,9 @@ Get-ChildItem -Path $LocalDir -Recurse -Filter *.apx -File | ForEach-Object {
 }
 Write-Host "   LF-normalised: $lfCount file(s) ; provider-patched: $patchCount file(s)" -ForegroundColor DarkGray
 
-# Stale-export guard: detect rogue scaff-app/ created by older runs at repo root.
+# Stale-export guard: detect rogue <alias>/ created by older runs at repo root.
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
-$rogue    = Join-Path $repoRoot "scaff-app"
+$rogue    = Join-Path $repoRoot $Alias
 if (Test-Path $rogue) {
     Write-Host "⚠  Removing stale '$rogue' (leftover from older export)" -ForegroundColor Yellow
     Remove-Item -Recurse -Force $rogue

@@ -3,12 +3,13 @@
 # Usage: pwsh scripts/apex-validate.ps1
 [CmdletBinding()]
 param(
+    [string]$Alias = "scaff-app",
     [string]$Schema = "APP_DATA",
     [string]$Password = "Welkom_APEX_2026!",
     [string]$DbHost = "apex_db",
     [string]$Pdb = "FREEPDB1",
     [string]$OrdsContainer = "apex_ords",
-    [string]$LocalDir = (Join-Path $PSScriptRoot "..\apex_app\scaff-app")
+    [string]$LocalDir = (Join-Path $PSScriptRoot "..\apex_app\$Alias")
 )
 
 $ErrorActionPreference = "Stop"

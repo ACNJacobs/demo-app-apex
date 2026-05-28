@@ -3,12 +3,13 @@
 # Usage: pwsh scripts/apex-import.ps1
 [CmdletBinding()]
 param(
+    [string]$Alias = "scaff-app",
     [string]$Schema = "APP_DATA",
     [string]$Password = "Welkom_APEX_2026!",
     [string]$DbHost = "apex_db",
     [string]$Pdb = "FREEPDB1",
     [string]$OrdsContainer = "apex_ords",
-    [string]$LocalDir = (Join-Path $PSScriptRoot "..\apex_app\scaff-app"),
+    [string]$LocalDir = (Join-Path $PSScriptRoot "..\apex_app\$Alias"),
     [switch]$SkipValidate
 )
 
@@ -22,7 +23,7 @@ if (-not (Test-Path $LocalDir)) {
 
 if (-not $SkipValidate) {
     Write-Host "→ Validating first…" -ForegroundColor Cyan
-    & (Join-Path $PSScriptRoot "apex-validate.ps1")
+    & (Join-Path $PSScriptRoot "apex-validate.ps1") -Alias $Alias
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
