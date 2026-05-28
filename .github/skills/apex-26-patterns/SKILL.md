@@ -189,23 +189,23 @@ When a region has `type: dynamicContent` AND page items are placed in its `regio
 **Fix**: split the visual section into two siblings — a banner-only region (lower `sequence`) plus an empty container region (higher `sequence`) that holds the items.
 
 ```apexlang
-region xyz-contact-head (
+region <prefix>-contact-head (
     type: dynamicContent
-    source { plsqlFunctionBody: return '<div class="xyz-section__head">Contact</div>'; }
+    source { plsqlFunctionBody: return '<div class="<prefix>-section__head">Contact</div>'; }
     layout { sequence: 10  slot: body }
     appearance { template: @/blank-with-attributes-no-grid }
 )
 
-region xyz-contact (
+region <prefix>-contact (
     type: dynamicContent
     source { plsqlFunctionBody: return null; }
     layout { sequence: 11  slot: body }
     appearance { template: @/blank-with-attributes-no-grid }
 )
 
-pageItem P11_CONTACT (
+pageItem PXX_CONTACT (
     type: textField
-    layout { sequence: 10  region: @xyz-contact  slot: regionBody }
+    layout { sequence: 10  region: @<prefix>-contact  slot: regionBody }
     …
 )
 ```
@@ -214,14 +214,14 @@ pageItem P11_CONTACT (
 
 `&KEY.` and `&"KEY".` text-message references are stored verbatim in item/button `label:`, region `title:`, and page `title:` — APEX does NOT process them at render time, so the label shows up empty / literal. `apex_lang.message()` DOES work fine in PL/SQL (`dynamicContent` regions, process success messages, computations).
 
-**Convention for NL+EN apps**: hardcode the primary-language label in the `.apx` file; add the EN translation later via the standard APEX **XLIFF translation flow** (`Application Builder → Shared Components → Globalization → Text Messages → Translate`). Do NOT try to wire labels to `SCAFF.*` / message keys directly.
+**Convention for multi-language apps**: hardcode the primary-language label in the `.apx` file; add the secondary-language translations later via the standard APEX **XLIFF translation flow** (`Application Builder → Shared Components → Globalization → Text Messages → Translate`). Do NOT try to wire labels to `<APP>.*` / message keys directly.
 
 Verify which view actually stores messages: column is `static_id` (NOT `translatable_message`) on `apex_application_translations` in 26.1:
 
 ```sql
 select static_id, language_code, substr(message_text,1,60) txt
   from apex_application_translations
- where application_id = 100 and static_id like 'SCAFF.MR.%'
+ where application_id = <id> and static_id like '<APP>.%'
  order by static_id, language_code;
 ```
 
