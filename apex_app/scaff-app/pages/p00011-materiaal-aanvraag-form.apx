@@ -13,6 +13,21 @@ page 11 (
         pageAccessProtection: argumentsMustHaveChecksum
         formAutoComplete: false
     }
+    javaScript {
+        executeWhenPageLoads:
+            ```javascript
+            (function(){
+              var s = document.querySelector('.t-Body-alert .t-Alert--success, #APEX_SUCCESS_MESSAGE .t-Alert--success');
+              if (!s) { return; }
+              var txt = (s.textContent || '').replace(/\s+/g,'');
+              if (!txt) { return; }
+              setTimeout(function(){
+                try { apex.message.hidePageSuccess(); } catch(e) {}
+                apex.navigation.redirect( apex.util.makeApplicationUrl({ pageId: '10' }) );
+              }, 2500);
+            })();
+            ```
+    }
 
     region scaff-mr-header (
         name: PO header
@@ -259,6 +274,7 @@ page 11 (
         appearance {
             template: @/required
             templateOptions: #DEFAULT#
+            formatMask: ddMonYyyy
         }
         validation {
             valueRequired: true
@@ -425,6 +441,19 @@ page 11 (
                   :P11_OPMERKING
                 );
                 apex_application.g_print_success_message := apex_lang.message('SCAFF.MR.FORM.SAVED');
+                -- clear form so user can submit another / sees blank state
+                for r in (
+                  select 'P11_CONTACT' as nm from dual union all
+                  select 'P11_WERFLEIDER' from dual union all
+                  select 'P11_GSM' from dual union all
+                  select 'P11_VERVOER' from dual union all
+                  select 'P11_LADER' from dual union all
+                  select 'P11_DATUM' from dual union all
+                  select 'P11_AANHOUDEN' from dual union all
+                  select 'P11_OPMERKING' from dual
+                ) loop
+                  apex_util.set_session_state(r.nm, null);
+                end loop;
                 ```
         }
         execution {
