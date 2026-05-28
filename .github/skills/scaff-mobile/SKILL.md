@@ -60,3 +60,42 @@ All rules use `!important` to override APEX Universal Theme defaults.
 - Inline color codes in PL/SQL — colors only live in `HD_MOBILE_UI_PKG.get_css`.
 - Hardcoded card labels — always `apex_lang.message('SCAFF.MENU.<CODE>.TITLE')`.
 - Hero template / `region_image` attribute — caused the "rocket icon" bug.
+- Raw `&APP_ID.` / `&APP_SESSION.` / `&DEBUG.` in CLOB returned from a `dynamicContent` region — APEX does NOT substitute these in PL/SQL output. Always substitute IN PL/SQL before `apex_util.prepare_url`:
+  ```sql
+  l_link := replace(r.card_link, '&'||'APP_ID.',      to_char(apex_application.g_flow_id));
+  l_link := replace(l_link,      '&'||'APP_SESSION.', to_char(apex_application.g_instance));
+  l_link := replace(l_link,      '&'||'DEBUG.',       nvl(v('DEBUG'),'NO'));
+  ```
+  Symptom of forgetting: clicking the card opens `f?p=&APP_ID.:50:::&DEBUG.:::` and APEX shows the "Application not found" blue dialog.
+
+## Data-list Region Variant (page 50 pattern)
+
+For showing a list of rows (e.g. `HD_TICKETS`), DO NOT use APEXlang `classicReport` — it is strict (rejects `sqlQuery`, requires `tableName` + `column` children + `template`). Instead reuse the dynamicContent + PL/SQL CLOB pattern:
+
+```sql
+function get_my_requests return clob is
+  l_out clob;
+  -- substitute tokens for back link
+  l_home_url varchar2(4000) := apex_util.prepare_url(
+    'f?p='||apex_application.g_flow_id||':1:'||apex_application.g_instance);
+begin
+  ...
+  for r in ( select ... from hd_tickets t left join hd_users u on u.id=t.created_by
+              where lower(coalesce(u.username,'x')) = lower(v('APP_USER'))
+                 or v('APP_USER') in ('ADMIN','APP_DATA','nobody','APEX_PUBLIC_USER')
+              order by t.created_at desc fetch first 50 rows only ) loop
+     -- render <tr> with <span class="scaff-pill scaff-pill--<status>">
+  end loop;
+end;
+```
+
+Status pill BEM contract:
+```
+scaff-requests                ← <table> wrapper, red header, white body
+scaff-requests__row           ← <tr>, optional --<status> modifier
+scaff-pill                    ← <span> badge
+scaff-pill--open              ← red bg, white text
+scaff-pill--in_progress       ← amber bg
+scaff-pill--waiting           ← soft pink
+scaff-pill--closed            ← green
+```

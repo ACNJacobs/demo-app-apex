@@ -49,12 +49,25 @@ Wrappers: `scripts/apex-export.ps1`, `scripts/apex-import.ps1`, `scripts/apex-va
 
 ## Known Pitfalls (Learned the Hard Way)
 
-- SQLcl MCP server `databeest` is **broken** — returns empty output for every query. Use `docker exec -i apex_ords sql ...` instead.
 - Region type conversion in dictionary needs `function_body_language='PLSQL'` for dynamic content, otherwise → `ORA-06592`. APEXlang avoids this entirely.
 - "Hero" templates render `region_image` as a giant icon on the left. APEXlang shows you the property explicitly — clear it in the `.apx`.
 - PowerShell here-strings: escape `$` as `` `$ `` to prevent expansion when piping into sqlplus/sql.
 
-## Connection Recipes
+## Database Access — PREFER MCP
+
+The Oracle SQL Developer VS Code extension exposes a working **SQLcl MCP server** (verified 28-MAY-2026). Use it as the default for ad-hoc queries; fall back to `docker exec sqlplus` only for SYS rescue or scripted multi-statement installs.
+
+Saved MCP connections (case-sensitive):
+
+| Name | User | Target |
+|---|---|---|
+| `databeest` | APP_DATA | localhost:2521/freepdb1 |
+| `apex_dev` | APP_DATA | localhost:2521/FREEPDB1 |
+| `apex_sys` | system | localhost:2521/FREEPDB1 |
+
+MCP tools available: `connections_list`, `connect`, `disconnect`, `sql_run`, `sqlcl_run`, `schema_information`, `request_status`, `skills_sync`. All statements are audited to `APP_DATA.DBTOOLS$MCP_LOG`.
+
+### Fallback recipes (only when MCP cannot be used)
 
 ```powershell
 # As APP_DATA (app schema)

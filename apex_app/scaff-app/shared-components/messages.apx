@@ -1,3 +1,31 @@
+textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
+    message {
+        text: View my submitted requests
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
+    message {
+        text: Bekijk mijn ingediende aanvragen
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.AANVRAGEN.TITLE (
+    message {
+        text: My requests
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.AANVRAGEN.TITLE (
+    message {
+        text: Mijn aanvragen
+        language: nl
+    }
+)
+
 textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
     message {
         text: Inspect material or scaffold
@@ -106,6 +134,90 @@ textMessage SCAFF.MENU.TRANSFER.TITLE (
 textMessage SCAFF.MENU.TRANSFER.TITLE (
     message {
         text: Transfer aanvraag
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
+    message {
+        text: Created
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
+    message {
+        text: Aangemaakt
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
+    message {
+        text: #
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
+    message {
+        text: #
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
+    message {
+        text: Priority
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
+    message {
+        text: Prioriteit
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
+    message {
+        text: Status
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
+    message {
+        text: Status
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
+    message {
+        text: Subject
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
+    message {
+        text: Onderwerp
+        language: nl
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
+    message {
+        text: No requests yet.
+        language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
+    message {
+        text: Nog geen aanvragen.
         language: nl
     }
 )

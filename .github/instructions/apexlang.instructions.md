@@ -68,3 +68,15 @@ region <static-id> (
 - Inline credentials, connection strings, hostnames.
 - Hardcoded user-visible Dutch/English strings — use messages.
 - Direct references to `wwv_flow_*` internal tables.
+- `classicReport` with `sqlQuery` property — the APEXlang parser rejects it. `classicReport` REQUIRES `source.tableName` + child `column { … }` blocks + `appearance.template`. For ad-hoc SQL lists, use a `dynamicContent` region calling a PL/SQL function that returns an HTML `<table>` (see `scaff-mobile` skill, "Data-list Region Variant").
+- Raw `&APP_ID.` / `&APP_SESSION.` / `&DEBUG.` tokens inside CLOB returned from a `dynamicContent` region — APEX does NOT substitute these post-render. Substitute in PL/SQL with `apex_application.g_flow_id`, `apex_application.g_instance`, `nvl(v('DEBUG'),'NO')` BEFORE `apex_util.prepare_url`.
+
+## File Encoding
+
+The APEXlang parser ACCEPTS ONLY LF line endings. Files created on Windows via tools default to CRLF and will fail validate with confusing `MISSING_REQUIRED_PROPERTY` errors on properties that are clearly present. After creating or editing any `.apx` file on Windows, normalise:
+
+```powershell
+$p='...\file.apx'; $c=[IO.File]::ReadAllText($p) -replace "`r`n","`n"; [IO.File]::WriteAllText($p,$c)
+```
+
+`scripts/apex-export.ps1` does this automatically after export. Manual creations need it explicitly.

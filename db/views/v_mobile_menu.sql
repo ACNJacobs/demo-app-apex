@@ -53,6 +53,16 @@ select 4
      , 'f?p=&APP_ID.:40:&APP_SESSION.::&DEBUG.:::'
      , 'mobile-card mobile-card--inspectie'
   from dual
+union all
+select 5
+     , 50
+     , 'SCAFF.MENU.AANVRAGEN.TITLE'
+     , 'SCAFF.MENU.AANVRAGEN.SUBTITLE'
+     , 'fa-list-check'
+     , 'altrad-red'
+     , 'f?p=&APP_ID.:50:&APP_SESSION.::&DEBUG.:::'
+     , 'mobile-card mobile-card--aanvragen'
+  from dual
 ;
 
 comment on table  V_MOBILE_MENU                  is 'Mobiel startmenu — 4 cards. Titels via apex_lang text messages.';

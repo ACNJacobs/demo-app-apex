@@ -25,6 +25,13 @@ description: "PL/SQL package + view conventions for SCAFF APP"
 - Use `apex_escape.html(...)` for any user-supplied or label text inserted into HTML.
 - Use `apex_util.prepare_url(...)` for hrefs that include APEX session state.
 - Use `apex_lang.message('SCAFF.…')` for any user-visible text.
+- When a function returns CLOB rendered by a `dynamicContent` region, APEX does NOT post-substitute `&APP_ID.` / `&APP_SESSION.` / `&DEBUG.` tokens. Substitute IN PL/SQL before output:
+  ```sql
+  l_link := replace(l_link, '&'||'APP_ID.',      to_char(apex_application.g_flow_id));
+  l_link := replace(l_link, '&'||'APP_SESSION.', to_char(apex_application.g_instance));
+  l_link := replace(l_link, '&'||'DEBUG.',       nvl(v('DEBUG'),'NO'));
+  ```
+  Or build the URL natively: `apex_util.prepare_url('f?p='||apex_application.g_flow_id||':50:'||apex_application.g_instance)`.
 
 ## Forbidden
 

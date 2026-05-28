@@ -128,6 +128,44 @@ a.scaff-card:focus,
 .scaff-placeholder__back:focus {
   background: #B30015;
 }
+.scaff-requests {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(178, 0, 21, 0.12);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+.scaff-requests thead {
+  background: #E2001A;
+  color: #FFFFFF;
+}
+.scaff-requests th,
+.scaff-requests td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #FCE6E9;
+}
+.scaff-requests tbody tr:hover {
+  background: #FCE6E9;
+}
+.scaff-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: #FCE6E9;
+  color: #B30015;
+}
+.scaff-pill--open      { background: #E2001A; color: #FFFFFF; }
+.scaff-pill--in_progress { background: #FFB300; color: #2A2A2A; }
+.scaff-pill--waiting   { background: #FCE6E9; color: #B30015; }
+.scaff-pill--closed    { background: #C9E7C9; color: #1B5E20; }
 ~';
     return l_css;
   end get_menu_css;

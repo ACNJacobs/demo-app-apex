@@ -23,3 +23,18 @@ Thumbs.db
 # Other tooling caches
 .gemini/
 node_modules/
+
+# Secrets / session artefacts
+cookies.txt
+*.cookie
+*.cookies
+
+# Scratch / generated profiles
+page.html
+.oracle-apex-ai/
+
+# Third-party nested repos (clone separately if needed)
+oracle-apex-ai-skills/
+
+# Legacy APEX export of f100 (replaced by apex_app/scaff-app/)
+f100/
