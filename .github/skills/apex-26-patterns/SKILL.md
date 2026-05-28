@@ -182,6 +182,49 @@ Never `htp.p('<div>'||v('P1_INPUT')||'</div>')` — XSS.
 
 Use template `@/blank-with-attributes-no-grid` for full-bleed mobile cards. Use `@/standard` for normal desktop regions. Avoid `@/hero` — its `region_image` slot renders a giant left-side icon you usually don't want.
 
+### 12a. dynamicContent + items render order (banner appears BELOW fields)
+
+When a region has `type: dynamicContent` AND page items are placed in its `regionBody` slot, the items render FIRST and the PL/SQL CLOB body renders AFTER. So an `<div class="section-head">…</div>` returned by `plsqlFunctionBody` lands under its own fields.
+
+**Fix**: split the visual section into two siblings — a banner-only region (lower `sequence`) plus an empty container region (higher `sequence`) that holds the items.
+
+```apexlang
+region xyz-contact-head (
+    type: dynamicContent
+    source { plsqlFunctionBody: return '<div class="xyz-section__head">Contact</div>'; }
+    layout { sequence: 10  slot: body }
+    appearance { template: @/blank-with-attributes-no-grid }
+)
+
+region xyz-contact (
+    type: dynamicContent
+    source { plsqlFunctionBody: return null; }
+    layout { sequence: 11  slot: body }
+    appearance { template: @/blank-with-attributes-no-grid }
+)
+
+pageItem P11_CONTACT (
+    type: textField
+    layout { sequence: 10  region: @xyz-contact  slot: regionBody }
+    …
+)
+```
+
+## 12b. Text-message substitution does NOT work in `label:` / `title:` attributes
+
+`&KEY.` and `&"KEY".` text-message references are stored verbatim in item/button `label:`, region `title:`, and page `title:` — APEX does NOT process them at render time, so the label shows up empty / literal. `apex_lang.message()` DOES work fine in PL/SQL (`dynamicContent` regions, process success messages, computations).
+
+**Convention for NL+EN apps**: hardcode the primary-language label in the `.apx` file; add the EN translation later via the standard APEX **XLIFF translation flow** (`Application Builder → Shared Components → Globalization → Text Messages → Translate`). Do NOT try to wire labels to `SCAFF.*` / message keys directly.
+
+Verify which view actually stores messages: column is `static_id` (NOT `translatable_message`) on `apex_application_translations` in 26.1:
+
+```sql
+select static_id, language_code, substr(message_text,1,60) txt
+  from apex_application_translations
+ where application_id = 100 and static_id like 'SCAFF.MR.%'
+ order by static_id, language_code;
+```
+
 ## 13. Post-compile validation (mandatory after every package edit)
 
 ```sql

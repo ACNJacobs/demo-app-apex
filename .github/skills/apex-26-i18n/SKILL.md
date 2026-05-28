@@ -62,23 +62,24 @@ When you need to load 50+ messages at once:
 
 ## Referencing
 
-- **PL/SQL**: `htp.p(apex_escape.html(apex_lang.message('<APP>.…')))`
-- **APEXlang property (title, label, button text)**: `&<APP>.MENU.MATERIAAL.TITLE.`
-  > ⚠️ Cosmetic bug: in page-title, APEX stops at first `.` — see `apex-26-patterns` gotcha #4.
-- **JavaScript** (rare): use the `apex.lang.getMessage('<APP>.…')` after registering the messages.
+- **PL/SQL** (always works): `htp.p(apex_escape.html(apex_lang.message('<APP>.…')))` — use this in `dynamicContent` regions, process success messages, computations.
+- **APEXlang `title:` / `label:` properties — DOES NOT WORK**.
+  > ⚠️ Verified 28-MAY-2026: `&KEY.` and `&"KEY".` are stored verbatim in item/button `label:`, region `title:`, page `title:`. APEX 26.1 does not substitute text messages in these attributes at render time → label renders empty / literal. **Hardcode the primary-language label in `.apx`**, then translate via APEX's standard XLIFF flow (`Shared Components → Globalization → Translate Application`). See `apex-26-patterns` gotcha #12b.
+- **Page title only**: `&<APP>.X.Y.` substitution kinda works but stops at first `.` → cosmetic bug, see `apex-26-patterns` gotcha #4.
+- **JavaScript** (rare): use `apex.lang.getMessage('<APP>.…')` after registering messages with `is_js_message='Y'`.
 
 ## Verification
 
 ```sql
-select translatable_message, language_code, message_text
+select static_id, language_code, message_text
   from apex_application_translations
  where application_id = <id>
-   and translatable_message like '<APP>.%'
- order by translatable_message, language_code;
+   and static_id like '<APP>.%'
+ order by static_id, language_code;
 ```
 
-> Correct column is `translatable_message` (NOT `message_name` / `static_id`).
-> Outside an APEX session, `apex_lang.message('<KEY>')` returns the KEY itself — verify via the table above.
+> Correct column in APEX 26.1 is `static_id` (NOT `translatable_message` / `message_name`).
+> Outside an APEX session, `apex_lang.message('<KEY>')` returns the KEY itself — verify via the table above, or wrap a test in `apex_session.create_session(<app>,1,'<user>')` + `apex_util.set_session_lang('nl'|'en')`.
 
 ## Rules
 
