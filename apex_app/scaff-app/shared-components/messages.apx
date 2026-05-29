@@ -838,3 +838,422 @@ textMessage SCAFF.TR.FORM.SAVED.UPDATE (
     }
 )
 
+textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
+    message {
+        text: Voir mes demandes soumises
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.AANVRAGEN.TITLE (
+    message {
+        text: Mes demandes
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
+    message {
+        text: Inspecter le materiel ou l'echafaudage
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.INSPECTIE.TITLE (
+    message {
+        text: Inspection
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
+    message {
+        text: Soumettre une nouvelle demande de materiel
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.MATERIAAL.TITLE (
+    message {
+        text: Demande de materiel
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.SUBTITLE (
+    message {
+        text: Signaler un retour de materiel
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.TITLE (
+    message {
+        text: Demande de retour
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
+    message {
+        text: Deplacer le materiel entre les sites
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.TITLE (
+    message {
+        text: Demande de transfert
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.AANHOUDEN (
+    message {
+        text: Mettre en attente
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.AGAIN (
+    message {
+        text: Nouvelle demande
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.CANCEL (
+    message {
+        text: Annuler
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACT (
+    message {
+        text: Contact
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
+    message {
+        text: Coordonnees
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATE.TOOSOON (
+    message {
+        text: La date de livraison doit etre au moins a 5 jours ouvrables dans le futur.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATE.WEEKEND (
+    message {
+        text: La date de livraison ne peut pas tomber le week-end.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATUM (
+    message {
+        text: Date
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.GSM (
+    message {
+        text: Mobile
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.LADER (
+    message {
+        text: Chargeur
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
+    message {
+        text: Details de livraison
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.MINE (
+    message {
+        text: Voir mes demandes
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.OPMERKING (
+    message {
+        text: Remarque
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVE (
+    message {
+        text: Enregistrer
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVED (
+    message {
+        text: Demande enregistree.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVED.UPDATE (
+    message {
+        text: Demande mise a jour.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.UUR (
+    message {
+        text: Heure
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.VERVOER (
+    message {
+        text: Transport
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.WERFLEIDER (
+    message {
+        text: Chef de chantier
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.WHATNEXT (
+    message {
+        text: Que voulez-vous faire ensuite ?
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE (
+    message {
+        text: Supprimer
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
+    message {
+        text: Supprimer cette demande ?
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.OK (
+    message {
+        text: Demande supprimee.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.EDIT (
+    message {
+        text: Modifier
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.EMPTY (
+    message {
+        text: Aucun PO trouve.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.HEAD (
+    message {
+        text: Selectionner un PO
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD (
+    message {
+        text: Pause
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD.OK (
+    message {
+        text: Demande mise en attente.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME (
+    message {
+        text: Reprendre
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME.OK (
+    message {
+        text: Demande reactivee.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.SEARCH (
+    message {
+        text: Rechercher...
+        language: fr
+    }
+)
+
+textMessage SCAFF.MY.HOLD (
+    message {
+        text: En attente
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
+    message {
+        text: Cree
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
+    message {
+        text: #
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
+    message {
+        text: Priorite
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
+    message {
+        text: Statut
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
+    message {
+        text: Sujet
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
+    message {
+        text: Aucune demande pour le moment.
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.BACK (
+    message {
+        text: Retour au menu
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.INPROGRESS.TEXT (
+    message {
+        text: Cette page est en cours de construction.
+        language: fr
+    }
+)
+
+textMessage SCAFF.RR.FORM.LADER.REQ (
+    message {
+        text: Le chargeur est obligatoire.
+        language: fr
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED (
+    message {
+        text: Demande de retour enregistree.
+        language: fr
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED.UPDATE (
+    message {
+        text: Demande de retour mise a jour.
+        language: fr
+    }
+)
+
+textMessage SCAFF.RR.FORM.VERVOER.REQ (
+    message {
+        text: Le transport est obligatoire.
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
+    message {
+        text: E-mail du partenaire
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL.INVALID (
+    message {
+        text: Veuillez saisir une adresse e-mail valide.
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL.REQ (
+    message {
+        text: L'e-mail du partenaire est obligatoire.
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.HEADER (
+    message {
+        text: TRANSFERT DE MATERIEL
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.SAVED (
+    message {
+        text: Demande de transfert enregistree.
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.SAVED.UPDATE (
+    message {
+        text: Demande de transfert mise a jour.
+        language: fr
+    }
+)
