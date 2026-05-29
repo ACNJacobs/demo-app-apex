@@ -17,11 +17,10 @@ page 11 (
               if (!s) { return; }
               var txt = (s.textContent || '').replace(/\s+/g,'');
               if (!txt) { return; }
-              var actions = document.getElementById('scaff-mr-actions-box');
-              if (actions) {
-                actions.style.display = 'block';
-                try { actions.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e) {}
-              }
+              setTimeout(function(){
+                try { apex.message.hidePageSuccess(); } catch(e) {}
+                apex.navigation.redirect( apex.util.makeApplicationUrl({ pageId: '10' }) );
+              }, 2000);
             })();
             ```
     }
@@ -29,45 +28,6 @@ page 11 (
         pageAccessProtection: argumentsMustHaveChecksum
         formAutoComplete: false
     }
-
-    region scaff-mr-actions (
-        name: Na opslaan acties
-        type: dynamicContent
-        source {
-            plsqlFunctionBody:
-                ```plsql
-                declare
-                  l_url_new   varchar2(4000);
-                  l_url_mine  varchar2(4000);
-                begin
-                  l_url_new  := apex_util.prepare_url(
-                                  'f?p='||apex_application.g_flow_id||':10:'||apex_application.g_instance);
-                  l_url_mine := apex_util.prepare_url(
-                                  'f?p='||apex_application.g_flow_id||':50:'||apex_application.g_instance);
-                  return
-                    '<div id="scaff-mr-actions-box" class="scaff-after-save" style="display:none;'
-                    ||'margin:1rem 0;padding:1rem;border:1px solid #E2001A;border-radius:8px;'
-                    ||'background:#FCE6E9;text-align:center;">'
-                    ||'<div style="margin-bottom:.75rem;font-weight:600;color:#B30015;">'
-                    ||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.WHATNEXT'))||'</div>'
-                    ||'<a href="'||l_url_new||'" class="t-Button t-Button--hot" '
-                    ||'style="margin:.25rem;background:#E2001A;color:#fff;">'
-                    ||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.AGAIN'))||'</a>'
-                    ||'<a href="'||l_url_mine||'" class="t-Button" style="margin:.25rem;">'
-                    ||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.MINE'))||'</a>'
-                    ||'</div>';
-                end;
-                ```
-        }
-        layout {
-            sequence: 25
-            slot: body
-        }
-        appearance {
-            template: @/blank-with-attributes-no-grid
-            templateOptions: #DEFAULT#
-        }
-    )
 
     region scaff-mr-contact (
         name: Contactgegevens
