@@ -1,0 +1,136 @@
+/* Altrad Benelux visual layer - app-wide modern styling */
+:root {
+  --abx-red: #E2001A;
+  --abx-red-dark: #B30015;
+  --abx-red-soft: #FCE6E9;
+  --abx-ink: #1F2937;
+  --abx-ink-soft: #6B7280;
+  --abx-line: #E6EAF2;
+  --abx-surface: #FFFFFF;
+  --abx-surface-alt: #F7F9FC;
+}
+
+body.app-SCAFF-APP {
+  color: var(--abx-ink);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F7F9FC 100%);
+}
+
+body.app-SCAFF-APP .t-Body-content {
+  background: transparent;
+}
+
+body.app-SCAFF-APP .t-Header-branding,
+body.app-SCAFF-APP .t-Body-nav {
+  background: linear-gradient(180deg, #2B2F38 0%, #232832 100%);
+}
+
+body.app-SCAFF-APP .a-TreeView-node--topLevel > .a-TreeView-content {
+  border-radius: 10px;
+  margin: 3px 8px;
+}
+
+body.app-SCAFF-APP .a-TreeView-node--topLevel.is-selected > .a-TreeView-content,
+body.app-SCAFF-APP .a-TreeView-node--topLevel > .a-TreeView-content:hover {
+  background: linear-gradient(90deg, rgba(226, 0, 26, .16) 0%, rgba(226, 0, 26, .08) 100%);
+}
+
+body.app-SCAFF-APP .t-Region,
+body.app-SCAFF-APP .t-IRR-region,
+body.app-SCAFF-APP .t-Report,
+body.app-SCAFF-APP .t-ContentBlock {
+  border: 1px solid var(--abx-line);
+  border-radius: 14px;
+  background: var(--abx-surface);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .06);
+}
+
+body.app-SCAFF-APP .t-Region-header {
+  border-bottom: 1px solid var(--abx-line);
+  background: linear-gradient(90deg, #F9FAFC 0%, #F2F5FA 100%);
+}
+
+body.app-SCAFF-APP .t-Region-title,
+body.app-SCAFF-APP .t-Breadcrumb-label,
+body.app-SCAFF-APP .t-Body-title {
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+body.app-SCAFF-APP .t-Form-fieldContainer {
+  border: 1px solid var(--abx-line);
+  border-radius: 12px;
+  padding: 8px 10px;
+  margin: 8px 0;
+  background: var(--abx-surface);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, .04);
+}
+
+body.app-SCAFF-APP .t-Form-fieldContainer:focus-within {
+  border-color: #C8D1E2;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, .08), 0 8px 20px rgba(15, 23, 42, .08);
+}
+
+body.app-SCAFF-APP .t-Form-label {
+  color: var(--abx-ink-soft);
+  font-weight: 600;
+}
+
+body.app-SCAFF-APP .t-Form-inputContainer input,
+body.app-SCAFF-APP .t-Form-inputContainer select,
+body.app-SCAFF-APP .t-Form-inputContainer textarea,
+body.app-SCAFF-APP .a-DatePicker-input {
+  border-radius: 10px !important;
+  border: 1px solid #D9E1EE !important;
+  background: #FFFFFF !important;
+}
+
+body.app-SCAFF-APP .t-Button {
+  border-radius: 999px;
+}
+
+body.app-SCAFF-APP .t-Button--hot,
+body.app-SCAFF-APP .t-Button--success {
+  background: linear-gradient(90deg, var(--abx-red) 0%, #C6001B 100%) !important;
+  border-color: var(--abx-red) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 24px rgba(226, 0, 26, .25);
+}
+
+body.app-SCAFF-APP .t-Button--hot:hover,
+body.app-SCAFF-APP .t-Button--hot:focus,
+body.app-SCAFF-APP .t-Button--success:hover,
+body.app-SCAFF-APP .t-Button--success:focus {
+  background: linear-gradient(90deg, #C6001B 0%, var(--abx-red-dark) 100%) !important;
+}
+
+body.app-SCAFF-APP .t-Alert--success {
+  border-left: 4px solid #0E9F6E;
+}
+
+body.app-SCAFF-APP .t-Alert--danger,
+body.app-SCAFF-APP .t-Alert--warning {
+  border-left: 4px solid var(--abx-red);
+}
+
+body.app-SCAFF-APP .t-Report-report thead th,
+body.app-SCAFF-APP .t-IRR-region .a-IRR-table th {
+  background: linear-gradient(90deg, var(--abx-red) 0%, #C5001A 100%);
+  color: #FFFFFF;
+}
+
+body.app-SCAFF-APP .t-Report-report tbody tr:hover,
+body.app-SCAFF-APP .a-IRR-table tbody tr:hover {
+  background: #FFF6F8;
+}
+
+/* Keep existing scaff component styles, but align tone with the app shell */
+body.app-SCAFF-APP .scaff-section__head {
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  body.app-SCAFF-APP .t-Body-mainContent {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
