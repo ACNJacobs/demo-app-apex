@@ -42,17 +42,30 @@ lov hd-users-username (
     }
 )
 
-
-lov scaff-ref-vervoer (
-    name: SCAFF_REF_VERVOER
+lov scaff-po-prefix (
+    name: SCAFF_PO_PREFIX
     source {
-        tableName: SCAFF_REF_VERVOER
+        location: staticValues
     }
-    columnMapping {
-        return: CODE
-        display: LABEL_NL
-        defaultSort: SORT_SEQ
-    }
+
+    entry io (
+        sequence: 2
+        display: IO/
+        return: IO/
+    )
+
+    entry po (
+        sequence: 1
+        display: PO/
+        return: PO/
+    )
+
+    entry pon (
+        sequence: 3
+        display: PO/N
+        return: PO/N
+    )
+
 )
 
 lov scaff-ref-lader (
@@ -67,29 +80,16 @@ lov scaff-ref-lader (
     }
 )
 
-lov scaff-po-prefix (
-    name: SCAFF_PO_PREFIX
+lov scaff-ref-vervoer (
+    name: SCAFF_REF_VERVOER
     source {
-        location: staticValues
+        tableName: SCAFF_REF_VERVOER
     }
-
-    entry po (
-        sequence: 1
-        display: PO/
-        return: PO/
-    )
-
-    entry io (
-        sequence: 2
-        display: IO/
-        return: IO/
-    )
-
-    entry pon (
-        sequence: 3
-        display: PO/N
-        return: PO/N
-    )
+    columnMapping {
+        return: CODE
+        display: LABEL_NL
+        defaultSort: SORT_SEQ
+    }
 )
 
 lov scaff-uur (
@@ -163,4 +163,6 @@ lov scaff-uur (
         display: 16:00
         return: 16:00
     )
+
 )
+

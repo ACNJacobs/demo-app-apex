@@ -84,16 +84,13 @@ insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_
 insert into scaff_po (po_prefix, po_number, customer_name, address_line, postal_code, city) values ('PO/N','00012', 'SCAFF - Nieuwe klant Gent',           'Wondelgemkaai 100',              '9000', 'GENT');
 
 prompt === seed Vervoer ===
-insert into scaff_ref_vervoer values ('EIGEN',    'Eigen vervoer',            'Own transport',           10);
-insert into scaff_ref_vervoer values ('VRACHT',   'Vrachtwagen Altrad',       'Altrad truck',            20);
-insert into scaff_ref_vervoer values ('AFHAAL',   'Afhaling door klant',      'Customer pickup',         30);
-insert into scaff_ref_vervoer values ('EXTERN',   'Externe transporteur',     'External carrier',        40);
+insert into scaff_ref_vervoer values ('LOG',  'Door Logistiek',         'By Logistics',        10);
+insert into scaff_ref_vervoer values ('WERF', 'Door werf / aanvrager',  'By site / requester', 20);
 
 prompt === seed Lader ===
-insert into scaff_ref_lader values ('HEFTRUCK', 'Heftruck',           'Forklift',         10);
-insert into scaff_ref_lader values ('KRAAN',    'Mobiele kraan',      'Mobile crane',     20);
-insert into scaff_ref_lader values ('HAND',     'Handmatig',          'By hand',          30);
-insert into scaff_ref_lader values ('GEEN',     'Geen lader nodig',   'No loader needed', 40);
+insert into scaff_ref_lader values ('KOOIAAP', 'Kooiaap',              'Cherry picker',   10);
+insert into scaff_ref_lader values ('KRAAN',   'Kraan',                'Crane',           20);
+insert into scaff_ref_lader values ('LOSMID',  'Losmiddelen aanwezig', 'Loaders on site', 30);
 
 commit;
 

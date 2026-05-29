@@ -208,6 +208,34 @@ textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
     }
 )
 
+textMessage SCAFF.MR.FORM.DATE.TOOSOON (
+    message {
+        text: Delivery date must be at least 5 business days in the future.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATE.TOOSOON (
+    message {
+        text: Leverdatum moet minstens 5 werkdagen in de toekomst liggen.
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATE.WEEKEND (
+    message {
+        text: Delivery date cannot be on a weekend.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATE.WEEKEND (
+    message {
+        text: Leverdatum mag niet op zaterdag of zondag vallen.
+        language: nl
+    }
+)
+
 textMessage SCAFF.MR.FORM.DATUM (
     message {
         text: Date

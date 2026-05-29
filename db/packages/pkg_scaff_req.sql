@@ -13,6 +13,13 @@ as
 
   -- Delete a request. Returns 1 if deleted, 0 if not found / not allowed.
   function delete_request (p_request_id in number) return number;
+
+  -- Returns the date that is p_days_ahead business days (Mon-Fri) after p_from.
+  -- Counts only weekdays; if p_from itself is a weekend it is skipped first.
+  function next_business_day (p_from in date, p_days_ahead in pls_integer) return date;
+
+  -- Y/N : is the given date a weekday (Mon-Fri).
+  function is_business_day (p_d in date) return varchar2;
 end PKG_SCAFF_REQ;
 /
 
@@ -67,6 +74,31 @@ as
     commit;
     return sql%rowcount;
   end delete_request;
+
+  function is_business_day (p_d in date) return varchar2
+  is
+    l_day varchar2(20);
+  begin
+    l_day := upper(trim(to_char(p_d, 'fmDAY', 'NLS_DATE_LANGUAGE=ENGLISH')));
+    if l_day in ('SATURDAY','SUNDAY') then
+      return 'N';
+    end if;
+    return 'Y';
+  end is_business_day;
+
+  function next_business_day (p_from in date, p_days_ahead in pls_integer) return date
+  is
+    l_d     date := trunc(p_from);
+    l_left  pls_integer := greatest(nvl(p_days_ahead,0), 0);
+  begin
+    while l_left > 0 loop
+      l_d := l_d + 1;
+      if is_business_day(l_d) = 'Y' then
+        l_left := l_left - 1;
+      end if;
+    end loop;
+    return l_d;
+  end next_business_day;
 
 end PKG_SCAFF_REQ;
 /

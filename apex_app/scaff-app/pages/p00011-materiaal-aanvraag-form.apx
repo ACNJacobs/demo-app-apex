@@ -13,6 +13,30 @@ page 11 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
+              // Datepicker: minimum = today + 5 business days, no weekends.
+              function addBizDays(d, n) {
+                var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                var left = n;
+                while (left > 0) {
+                  x.setDate(x.getDate() + 1);
+                  var dow = x.getDay();
+                  if (dow !== 0 && dow !== 6) { left--; }
+                }
+                return x;
+              }
+              function iso(d){
+                return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+              }
+              var dp = document.getElementById('P11_DATUM');
+              if (dp) {
+                var minD = addBizDays(new Date(), 5);
+                try { dp.setAttribute('min-value', iso(minD)); } catch(e) {}
+                try { dp.setAttribute('valid-example', iso(minD)); } catch(e) {}
+                // Disable weekends via apex.date.dateValidationFn-like hook on a-date-picker
+                dp.disabledDates = function(d){ var w = d.getDay(); return w === 0 || w === 6; };
+              }
+            
+              // Success banner -> redirect after 2s.
               var s = document.querySelector('.t-Body-alert .t-Alert--success, #APEX_SUCCESS_MESSAGE .t-Alert--success');
               if (!s) { return; }
               var txt = (s.textContent || '').replace(/\s+/g,'');
@@ -401,6 +425,32 @@ page 11 (
         }
     )
 
+    process init-defaults (
+        name: Init defaults
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                if :P11_DATUM is null then
+                  :P11_DATUM := to_char(
+                    PKG_SCAFF_REQ.next_business_day(trunc(sysdate),5),
+                    'fmDDMonYYYY','NLS_DATE_LANGUAGE=ENGLISH');
+                end if;
+                ```
+        }
+        execution {
+            sequence: 7
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 9813030771223725
+        }
+        serverSideCondition {
+            type: itemIsNull
+            item: P11_REQUEST_ID
+        }
+    )
+
     process load-po (
         name: Load PO details
         type: executeCode
@@ -473,53 +523,77 @@ page 11 (
         source {
             plsqlCode:
                 ```plsql
-                if :P11_REQUEST_ID is null then
-                  insert into scaff_material_request (
-                    po_id, contact_name, site_manager, gsm,
-                    vervoer_code, lader_code,
-                    delivery_date, delivery_hour, hold_flag, remark
-                  ) values (
-                    to_number(:P11_PO_ID),
-                    :P11_CONTACT,
-                    :P11_WERFLEIDER,
-                    :P11_GSM,
-                    :P11_VERVOER,
-                    :P11_LADER,
-                    to_date(:P11_DATUM,'DD-MON-YYYY'),
-                    :P11_UUR,
-                    case when :P11_AANHOUDEN in ('Y','1') then 'Y' else 'N' end,
-                    :P11_OPMERKING
-                  );
-                  apex_application.g_print_success_message := apex_lang.message('SCAFF.MR.FORM.SAVED');
-                  for r in (
-                    select 'P11_CONTACT' as nm from dual union all
-                    select 'P11_WERFLEIDER' from dual union all
-                    select 'P11_GSM' from dual union all
-                    select 'P11_VERVOER' from dual union all
-                    select 'P11_LADER' from dual union all
-                    select 'P11_DATUM' from dual union all
-                    select 'P11_AANHOUDEN' from dual union all
-                    select 'P11_OPMERKING' from dual
-                  ) loop
-                    apex_util.set_session_state(r.nm, null);
-                  end loop;
-                else
-                  if PKG_SCAFF_REQ.can_edit(to_number(:P11_REQUEST_ID)) = 'N' then
-                    raise_application_error(-20001, 'Not allowed');
+                declare
+                  l_datum date := to_date(:P11_DATUM,'DD-MON-YYYY');
+                  l_min   date := PKG_SCAFF_REQ.next_business_day(trunc(sysdate),5);
+                  l_err   boolean := false;
+                begin
+                  if PKG_SCAFF_REQ.is_business_day(l_datum) = 'N' then
+                    apex_error.add_error(
+                      p_message          => apex_lang.message('SCAFF.MR.FORM.DATE.WEEKEND'),
+                      p_display_location => apex_error.c_inline_with_field_and_notif,
+                      p_page_item_name   => 'P11_DATUM');
+                    l_err := true;
                   end if;
-                  update scaff_material_request
-                     set contact_name  = :P11_CONTACT,
-                         site_manager  = :P11_WERFLEIDER,
-                         gsm           = :P11_GSM,
-                         vervoer_code  = :P11_VERVOER,
-                         lader_code    = :P11_LADER,
-                         delivery_date = to_date(:P11_DATUM,'DD-MON-YYYY'),
-                         delivery_hour = :P11_UUR,
-                         hold_flag     = case when :P11_AANHOUDEN in ('Y','1') then 'Y' else 'N' end,
-                         remark        = :P11_OPMERKING
-                   where request_id = to_number(:P11_REQUEST_ID);
-                  apex_application.g_print_success_message := apex_lang.message('SCAFF.MR.FORM.SAVED.UPDATE');
-                end if;
+                  if l_datum < l_min then
+                    apex_error.add_error(
+                      p_message          => apex_lang.message('SCAFF.MR.FORM.DATE.TOOSOON'),
+                      p_display_location => apex_error.c_inline_with_field_and_notif,
+                      p_page_item_name   => 'P11_DATUM');
+                    l_err := true;
+                  end if;
+                  if l_err then
+                    return;
+                  end if;
+                
+                  if :P11_REQUEST_ID is null then
+                    insert into scaff_material_request (
+                      po_id, contact_name, site_manager, gsm,
+                      vervoer_code, lader_code,
+                      delivery_date, delivery_hour, hold_flag, remark
+                    ) values (
+                      to_number(:P11_PO_ID),
+                      :P11_CONTACT,
+                      :P11_WERFLEIDER,
+                      :P11_GSM,
+                      :P11_VERVOER,
+                      :P11_LADER,
+                      l_datum,
+                      :P11_UUR,
+                      case when :P11_AANHOUDEN in ('Y','1') then 'Y' else 'N' end,
+                      :P11_OPMERKING
+                    );
+                    apex_application.g_print_success_message := apex_lang.message('SCAFF.MR.FORM.SAVED');
+                    for r in (
+                      select 'P11_CONTACT' as nm from dual union all
+                      select 'P11_WERFLEIDER' from dual union all
+                      select 'P11_GSM' from dual union all
+                      select 'P11_VERVOER' from dual union all
+                      select 'P11_LADER' from dual union all
+                      select 'P11_DATUM' from dual union all
+                      select 'P11_AANHOUDEN' from dual union all
+                      select 'P11_OPMERKING' from dual
+                    ) loop
+                      apex_util.set_session_state(r.nm, null);
+                    end loop;
+                  else
+                    if PKG_SCAFF_REQ.can_edit(to_number(:P11_REQUEST_ID)) = 'N' then
+                      raise_application_error(-20001, 'Not allowed');
+                    end if;
+                    update scaff_material_request
+                       set contact_name  = :P11_CONTACT,
+                           site_manager  = :P11_WERFLEIDER,
+                           gsm           = :P11_GSM,
+                           vervoer_code  = :P11_VERVOER,
+                           lader_code    = :P11_LADER,
+                           delivery_date = l_datum,
+                           delivery_hour = :P11_UUR,
+                           hold_flag     = case when :P11_AANHOUDEN in ('Y','1') then 'Y' else 'N' end,
+                           remark        = :P11_OPMERKING
+                     where request_id = to_number(:P11_REQUEST_ID);
+                    apex_application.g_print_success_message := apex_lang.message('SCAFF.MR.FORM.SAVED.UPDATE');
+                  end if;
+                end;
                 ```
         }
         execution {

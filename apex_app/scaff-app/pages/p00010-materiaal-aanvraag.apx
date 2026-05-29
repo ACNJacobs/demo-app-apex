@@ -27,6 +27,26 @@ page 10 (
         }
     )
 
+    region scaff-mr-list (
+        name: PO list
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return PKG_SCAFF_UI.get_po_list(p_prefix => :P10_PREFIX, p_search => :P10_SEARCH);
+            pageItemsToSubmit: [
+                P10_PREFIX
+                P10_SEARCH
+            ]
+        }
+        layout {
+            sequence: 30
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
     pageItem P10_PREFIX (
         type: selectList
         label {
@@ -72,33 +92,12 @@ page 10 (
         }
     )
 
-    region scaff-mr-list (
-        name: PO list
-        type: dynamicContent
-        source {
-            plsqlFunctionBody: return PKG_SCAFF_UI.get_po_list(p_prefix => :P10_PREFIX, p_search => :P10_SEARCH);
-            pageItemsToSubmit: [
-                P10_PREFIX
-                P10_SEARCH
-            ]
-        }
-        layout {
-            sequence: 30
-            slot: body
-        }
-        appearance {
-            template: @/blank-with-attributes-no-grid
-            templateOptions: #DEFAULT#
-        }
-    )
-
     dynamicAction scaff-mr-refresh-prefix (
         name: Refresh on prefix change
         execution {
             sequence: 10
         }
         when {
-            event: change
             selectionType: items
             items: P10_PREFIX
         }
@@ -114,6 +113,7 @@ page 10 (
                 fireOnInit: false
             }
         )
+
     )
 
     dynamicAction scaff-mr-refresh-search (
@@ -138,6 +138,8 @@ page 10 (
                 fireOnInit: false
             }
         )
+
     )
 
 )
+

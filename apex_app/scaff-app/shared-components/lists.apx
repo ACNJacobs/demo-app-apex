@@ -77,6 +77,25 @@ list navigation-menu (
         }
     )
 
+    entry inspectie (
+        label: Inspectie
+        icon {
+            imageIconCssClasses: fa-clipboard-check
+        }
+        layout {
+            sequence: 50
+        }
+        isCurrent {
+            type: pages
+            pages: 40
+        }
+        link {
+            target: {
+                page: 40
+            }
+        }
+    )
+
     entry materiaal-aanvraag (
         label: Materiaal aanvraag
         icon {
@@ -99,6 +118,25 @@ list navigation-menu (
         }
     )
 
+    entry mijn-aanvragen (
+        label: Mijn aanvragen
+        icon {
+            imageIconCssClasses: fa-list-check
+        }
+        layout {
+            sequence: 60
+        }
+        isCurrent {
+            type: pages
+            pages: 50
+        }
+        link {
+            target: {
+                page: 50
+            }
+        }
+    )
+
     entry retour-aanvraag (
         label: Retour aanvraag
         icon {
@@ -109,9 +147,7 @@ list navigation-menu (
         }
         isCurrent {
             type: pages
-            pages: [
-                20
-            ]
+            pages: 20
         }
         link {
             target: {
@@ -130,55 +166,11 @@ list navigation-menu (
         }
         isCurrent {
             type: pages
-            pages: [
-                30
-            ]
+            pages: 30
         }
         link {
             target: {
                 page: 30
-            }
-        }
-    )
-
-    entry inspectie (
-        label: Inspectie
-        icon {
-            imageIconCssClasses: fa-clipboard-check
-        }
-        layout {
-            sequence: 50
-        }
-        isCurrent {
-            type: pages
-            pages: [
-                40
-            ]
-        }
-        link {
-            target: {
-                page: 40
-            }
-        }
-    )
-
-    entry mijn-aanvragen (
-        label: Mijn aanvragen
-        icon {
-            imageIconCssClasses: fa-list-check
-        }
-        layout {
-            sequence: 60
-        }
-        isCurrent {
-            type: pages
-            pages: [
-                50
-            ]
-        }
-        link {
-            target: {
-                page: 50
             }
         }
     )
