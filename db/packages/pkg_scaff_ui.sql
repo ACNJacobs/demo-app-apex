@@ -113,8 +113,14 @@ as
     l_head     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MENU.AANVRAGEN.TITLE');
     l_empty    varchar2(4000) := apex_lang.message(p_name => 'SCAFF.PAGE.AANVRAGEN.EMPTY');
     l_hold     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MY.HOLD');
+    l_edit     varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.EDIT');
+    l_pause    varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.HOLD');
+    l_resume   varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.RESUME');
+    l_delete   varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.DELETE');
+    l_confirm  varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.DELETE.CONFIRM');
     l_user     varchar2(200)  := lower(v('APP_USER'));
     l_count    pls_integer    := 0;
+    l_edit_url varchar2(4000);
 
     procedure p( p_text in varchar2 ) is
     begin
@@ -127,12 +133,13 @@ as
     dbms_lob.append(l_out, HD_MOBILE_UI_PKG.get_menu_css);
     p('</style>');
 
-    p('<div class="scaff-list">');
+    p('<div class="scaff-list" data-scaff-list="my-requests">');
     p('<div class="scaff-list__head">'||apex_escape.html(l_head)||'</div>');
     p('<div class="scaff-list__items">');
 
     for r in (
       select mr.request_id
+           , mr.po_id
            , po.po_display
            , po.customer_name
            , po.city
@@ -150,7 +157,11 @@ as
        fetch first 50 rows only
     ) loop
       l_count := l_count + 1;
-      p('<div class="scaff-list__item">');
+      l_edit_url := apex_util.prepare_url(
+        'f?p='||apex_application.g_flow_id||':11:'||apex_application.g_instance
+        ||'::NO::P11_REQUEST_ID,P11_PO_ID:'||r.request_id||','||r.po_id);
+
+      p('<div class="scaff-list__item" data-request-id="'||r.request_id||'">');
       p('<span class="scaff-list__body">');
       p('<span class="scaff-list__title">'
         ||apex_escape.html(r.po_display)
@@ -167,6 +178,24 @@ as
         ||apex_escape.html(r.city)||' &middot; '
         ||apex_escape.html(r.created)
         ||'</span>');
+      p('<span class="scaff-list__actions">');
+      p('<a class="scaff-list__btn scaff-list__btn--edit" href="'
+        ||apex_escape.html_attribute(l_edit_url)||'">'
+        ||'<span class="fa fa-pencil" aria-hidden="true"></span> '
+        ||apex_escape.html(l_edit)||'</a>');
+      p('<button type="button" class="scaff-list__btn scaff-list__btn--hold" '
+        ||'data-scaff-action="toggle-hold" data-request-id="'||r.request_id||'">'
+        ||case when r.hold_flag = 'Y'
+               then '<span class="fa fa-play" aria-hidden="true"></span> '||apex_escape.html(l_resume)
+               else '<span class="fa fa-pause" aria-hidden="true"></span> '||apex_escape.html(l_pause)
+          end
+        ||'</button>');
+      p('<button type="button" class="scaff-list__btn scaff-list__btn--delete" '
+        ||'data-scaff-action="delete" data-request-id="'||r.request_id||'" '
+        ||'data-confirm="'||apex_escape.html_attribute(l_confirm)||'">'
+        ||'<span class="fa fa-trash-o" aria-hidden="true"></span> '
+        ||apex_escape.html(l_delete)||'</button>');
+      p('</span>');
       p('</span>');
       p('</div>');
     end loop;

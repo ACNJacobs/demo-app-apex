@@ -280,6 +280,54 @@ a.scaff-list__item:focus {
   font-size: .95rem;
 }
 .scaff-section__sub strong { display: block; font-weight: 700; }
+
+/* ---------- Row action buttons (Edit / Hold / Delete) ---------- */
+.scaff-list__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+.scaff-list__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1.1;
+  border-radius: 4px;
+  border: 1px solid #BDBDBD;
+  background: #FFFFFF;
+  color: #2A2A2A;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.scaff-list__btn:hover,
+.scaff-list__btn:focus { background: #FAFAFA; border-color: #6E6E6E; }
+.scaff-list__btn--edit:hover,
+.scaff-list__btn--edit:focus { border-color: #B30015; color: #B30015; }
+.scaff-list__btn--hold {
+  border-color: #B30015;
+  color: #B30015;
+  background: #FCE6E9;
+}
+.scaff-list__btn--hold:hover,
+.scaff-list__btn--hold:focus { background: #F7CFD5; }
+.scaff-list__btn--delete {
+  border-color: #B30015;
+  color: #FFFFFF;
+  background: #E2001A;
+}
+.scaff-list__btn--delete:hover,
+.scaff-list__btn--delete:focus {
+  background: #B30015;
+  color: #FFFFFF !important;
+}
+.scaff-list__btn[disabled] { opacity: .55; cursor: not-allowed; }
 ~';
     return l_css;
   end get_menu_css;

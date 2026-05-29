@@ -320,6 +320,20 @@ textMessage SCAFF.MR.FORM.SAVED (
     }
 )
 
+textMessage SCAFF.MR.FORM.SAVED.UPDATE (
+    message {
+        text: Request updated.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVED.UPDATE (
+    message {
+        text: Aanvraag gewijzigd.
+        language: nl
+    }
+)
+
 textMessage SCAFF.MR.FORM.UUR (
     message {
         text: Hour
@@ -376,6 +390,62 @@ textMessage SCAFF.MR.FORM.WHATNEXT (
     }
 )
 
+textMessage SCAFF.MR.LIST.DELETE (
+    message {
+        text: Delete
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE (
+    message {
+        text: Verwijder
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
+    message {
+        text: Delete this request?
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
+    message {
+        text: Deze aanvraag verwijderen?
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.OK (
+    message {
+        text: Request deleted.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.OK (
+    message {
+        text: Aanvraag verwijderd.
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.EDIT (
+    message {
+        text: Edit
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.EDIT (
+    message {
+        text: Wijzig
+        language: nl
+    }
+)
+
 textMessage SCAFF.MR.LIST.EMPTY (
     message {
         text: No POs found.
@@ -400,6 +470,62 @@ textMessage SCAFF.MR.LIST.HEAD (
 textMessage SCAFF.MR.LIST.HEAD (
     message {
         text: Selecteer PO
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD (
+    message {
+        text: Pause
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD (
+    message {
+        text: Pauzeer
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD.OK (
+    message {
+        text: Request put on hold.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD.OK (
+    message {
+        text: Aanvraag op hold gezet.
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME (
+    message {
+        text: Resume
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME (
+    message {
+        text: Activeer
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME.OK (
+    message {
+        text: Request reactivated.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME.OK (
+    message {
+        text: Aanvraag weer actief.
         language: nl
     }
 )

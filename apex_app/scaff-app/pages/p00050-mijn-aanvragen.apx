@@ -9,6 +9,39 @@ page 50 (
     navigation {
         cursorFocus: doNotFocusCursor
     }
+    javaScript {
+        executeWhenPageLoads:
+            ```javascript-browser
+            (function(){
+              function refresh(){
+                try { apex.region('mijn-aanvragen').refresh(); }
+                catch(e) { window.location.reload(); }
+              }
+              document.addEventListener('click', function(ev){
+                var btn = ev.target.closest('[data-scaff-action]');
+                if (!btn) { return; }
+                ev.preventDefault();
+                var action = btn.getAttribute('data-scaff-action');
+                var id     = btn.getAttribute('data-request-id');
+                if (!id) { return; }
+                if (action === 'delete') {
+                  var msg = btn.getAttribute('data-confirm') || 'Delete?';
+                  if (!window.confirm(msg)) { return; }
+                }
+                var proc = action === 'delete' ? 'DELETE_REQUEST' : 'TOGGLE_HOLD';
+                btn.disabled = true;
+                apex.server.process(proc, { x01: id }, {
+                  dataType: 'text',
+                  success: function(){ refresh(); },
+                  error: function(){
+                    btn.disabled = false;
+                    apex.message.alert('Actie mislukt / Action failed');
+                  }
+                });
+              });
+            })();
+            ```
+    }
     security {
         pageAccessProtection: argumentsMustHaveChecksum
         formAutoComplete: false
@@ -30,4 +63,51 @@ page 50 (
         }
     )
 
+    process delete-request (
+        name: DELETE_REQUEST
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                declare
+                  l_n number;
+                begin
+                  l_n := PKG_SCAFF_REQ.delete_request(to_number(apex_application.g_x01));
+                  htp.p(to_char(l_n));
+                end;
+                ```
+        }
+        execution {
+            sequence: 20
+            point: ajaxCallback
+        }
+        advanced {
+            executionMappingIdentifier: 9813632911223724
+        }
+    )
+
+    process toggle-hold (
+        name: TOGGLE_HOLD
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                declare
+                  l_flag varchar2(1);
+                begin
+                  l_flag := PKG_SCAFF_REQ.toggle_hold(to_number(apex_application.g_x01));
+                  htp.p(nvl(l_flag,'X'));
+                end;
+                ```
+        }
+        execution {
+            sequence: 10
+            point: ajaxCallback
+        }
+        advanced {
+            executionMappingIdentifier: 9813587104223724
+        }
+    )
+
 )
+
