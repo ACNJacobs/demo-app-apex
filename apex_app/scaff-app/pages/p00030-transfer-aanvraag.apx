@@ -236,7 +236,7 @@ page 30 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         default {
@@ -258,7 +258,7 @@ page 30 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
             valuePlaceholder: Zoeken...
         }
@@ -290,7 +290,7 @@ page 30 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         default {
@@ -312,7 +312,7 @@ page 30 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
             valuePlaceholder: Zoeken...
         }

@@ -200,7 +200,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         default {
@@ -222,7 +222,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         validation {
@@ -252,7 +252,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/required
+            template: @/required-floating
             templateOptions: #DEFAULT#
             formatMask: ddMonYyyy
         }
@@ -274,7 +274,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/required
+            template: @/required-floating
             templateOptions: #DEFAULT#
         }
         validation {
@@ -322,7 +322,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
     )
@@ -340,7 +340,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
             height: 4
         }
@@ -415,7 +415,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         default {
@@ -441,7 +441,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
     )
@@ -459,7 +459,7 @@ page 21 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         validation {

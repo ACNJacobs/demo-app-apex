@@ -9,33 +9,89 @@ page 31 (
     navigation {
         cursorFocus: doNotFocusCursor
     }
+    javaScript {
+        executeWhenPageLoads:
+            ```javascript-browser
+            (function(){
+              function addBizDays(d, n) {
+                var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                var left = n;
+                while (left > 0) {
+                  x.setDate(x.getDate() + 1);
+                  var dow = x.getDay();
+                  if (dow !== 0 && dow !== 6) { left--; }
+                }
+                return x;
+              }
+              function iso(d){
+                return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+              }
+              var dp = document.getElementById('P31_DATUM');
+              if (dp) {
+                var minD = addBizDays(new Date(), 5);
+                try { dp.setAttribute('min-value', iso(minD)); } catch(e) {}
+                try { dp.setAttribute('valid-example', iso(minD)); } catch(e) {}
+                dp.disabledDates = function(d){ var w = d.getDay(); return w === 0 || w === 6; };
+              }
+            
+              function syncTransport(){
+                var v = apex.item('P31_TRANSPORT_DONE').getValue();
+                var done = (v === 'Y' || v === '1' || v === true);
+                ['P31_VERVOER','P31_LADER'].forEach(function(it){
+                  var w = document.querySelector('#'+it+'_CONTAINER, .t-Form-fieldContainer[data-for="'+it+'"]');
+                  if (w) { w.style.display = done ? 'none' : ''; }
+                });
+                if (dp) {
+                  if (done) { try { dp.removeAttribute('min-value'); } catch(e) {} dp.disabledDates = null; }
+                  else {
+                    var minD2 = addBizDays(new Date(), 5);
+                    try { dp.setAttribute('min-value', iso(minD2)); } catch(e) {}
+                    dp.disabledDates = function(d){ var w = d.getDay(); return w === 0 || w === 6; };
+                  }
+                }
+              }
+              try { syncTransport(); } catch(e) {}
+              apex.item('P31_TRANSPORT_DONE').element.on && apex.item('P31_TRANSPORT_DONE').element.on('change', syncTransport);
+              document.getElementById('P31_TRANSPORT_DONE') && document.getElementById('P31_TRANSPORT_DONE').addEventListener('change', syncTransport);
+            
+              var s = document.querySelector('.t-Body-alert .t-Alert--success, #APEX_SUCCESS_MESSAGE .t-Alert--success');
+              if (!s) { return; }
+              var txt = (s.textContent || '').replace(/\s+/g,'');
+              if (!txt) { return; }
+              var reqId = (apex.item('P31_TRANSFER_ID').getValue() || '').toString();
+              var targetPage = reqId ? '50' : '30';
+              setTimeout(function(){
+                try { apex.message.hidePageSuccess(); } catch(e) {}
+                apex.navigation.redirect( apex.util.makeApplicationUrl({ pageId: targetPage }) );
+              }, 2000);
+            })();
+            ```
+    }
     security {
         formAutoComplete: false
     }
 
-    region scaff-tr-form-placeholder (
-        name: Placeholder
+    region scaff-tr-contact (
+        name: Contactgegevens
         type: dynamicContent
         source {
-            plsqlFunctionBody:
-                ```plsql
-                declare
-                  l_from varchar2(200);
-                  l_to   varchar2(200);
-                begin
-                  begin select po_display into l_from from scaff_po where po_id = to_number(:P31_FROM_PO); exception when others then l_from := '?'; end;
-                  begin select po_display into l_to   from scaff_po where po_id = to_number(:P31_TO_PO);   exception when others then l_to   := '?'; end;
-                  return '<div class="scaff-section__sub" style="padding:16px;">'
-                       ||'<p><strong>Van:</strong> '||apex_escape.html(l_from)||'</p>'
-                       ||'<p><strong>Naar:</strong> '||apex_escape.html(l_to)||'</p>'
-                       ||'<p><em>Formulier volgt in de volgende stap.</em></p>'
-                       ||'</div>';
-                end;
-                ```
-            pageItemsToSubmit: [
-                P31_FROM_PO
-                P31_TO_PO
-            ]
+            plsqlFunctionBody: return null;
+        }
+        layout {
+            sequence: 11
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-contact-head (
+        name: Contactgegevens banner
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.CONTACTGEGEVENS'))||'</div>';
         }
         layout {
             sequence: 10
@@ -47,11 +103,265 @@ page 31 (
         }
     )
 
+    region scaff-tr-delivery (
+        name: Leveringdetails
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return null;
+        }
+        layout {
+            sequence: 21
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-delivery-head (
+        name: Leveringdetails banner
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.LEVERINGDETAILS'))||'</div>';
+        }
+        layout {
+            sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-form-header (
+        name: Transfer header
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                return '<style id="scaff-mobile-css">'||HD_MOBILE_UI_PKG.get_menu_css||'</style>'
+                    ||'<div class="scaff-section__sub" style="text-align:center;">'
+                    ||'<div style="font-weight:600;font-size:1.1em;">'
+                    ||apex_escape.html(nvl(:P31_FROM_DISPLAY,'?'))||' &rarr; '
+                    ||apex_escape.html(nvl(:P31_TO_DISPLAY,'?'))||'</div>'
+                    ||'<div style="font-size:.9em;color:#555;margin-top:4px;">'
+                    ||apex_escape.html(nvl(:P31_FROM_CUSTOMER,''))||' &rarr; '
+                    ||apex_escape.html(nvl(:P31_TO_CUSTOMER,''))||'</div>'
+                    ||'</div>';
+                ```
+            pageItemsToSubmit: [
+                P31_FROM_DISPLAY
+                P31_TO_DISPLAY
+                P31_FROM_CUSTOMER
+                P31_TO_CUSTOMER
+            ]
+        }
+        layout {
+            sequence: 5
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P31_AANHOUDEN (
+        type: checkbox
+        label {
+            label: Aanhouden
+            alignment: right
+        }
+        layout {
+            sequence: 50
+            region: @scaff-tr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: N
+        }
+    )
+
+    pageItem P31_CONTACT (
+        type: textField
+        label {
+            label: Contact
+            alignment: right
+        }
+        layout {
+            sequence: 10
+            region: @scaff-tr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            maxLength: 200
+        }
+    )
+
+    pageItem P31_DATUM (
+        type: datePicker
+        label {
+            label: Datum
+            alignment: right
+        }
+        layout {
+            sequence: 30
+            region: @scaff-tr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required-floating
+            templateOptions: #DEFAULT#
+            formatMask: ddMonYyyy
+        }
+        validation {
+            valueRequired: true
+        }
+    )
+
+    pageItem P31_EMAIL_PARTNER (
+        type: textField
+        label {
+            label: Email tegenpartij
+            alignment: right
+        }
+        layout {
+            sequence: 5
+            region: @scaff-tr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required-floating
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+            maxLength: 200
+        }
+    )
+
+    pageItem P31_FROM_CUSTOMER (
+        type: hidden
+        layout {
+            sequence: 6
+            region: @scaff-tr-form-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P31_FROM_DISPLAY (
+        type: hidden
+        layout {
+            sequence: 4
+            region: @scaff-tr-form-header
+            slot: regionBody
+        }
+    )
+
     pageItem P31_FROM_PO (
         type: hidden
         layout {
-            sequence: 1
-            region: @scaff-tr-form-placeholder
+            sequence: 2
+            region: @scaff-tr-form-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P31_GSM (
+        type: textField
+        label {
+            label: GSM
+            alignment: right
+        }
+        layout {
+            sequence: 30
+            region: @scaff-tr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required-floating
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+            maxLength: 50
+        }
+    )
+
+    pageItem P31_LADER (
+        type: selectList
+        label {
+            label: Lader
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-ref-lader
+        }
+        layout {
+            sequence: 25
+            region: @scaff-tr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P31_OPMERKING (
+        type: textarea
+        label {
+            label: Opmerking
+            alignment: right
+        }
+        layout {
+            sequence: 60
+            region: @scaff-tr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+            height: 4
+        }
+        validation {
+            maxLength: 4000
+        }
+    )
+
+    pageItem P31_TO_CUSTOMER (
+        type: hidden
+        layout {
+            sequence: 7
+            region: @scaff-tr-form-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P31_TO_DISPLAY (
+        type: hidden
+        layout {
+            sequence: 5
+            region: @scaff-tr-form-header
             slot: regionBody
         }
     )
@@ -59,9 +369,370 @@ page 31 (
     pageItem P31_TO_PO (
         type: hidden
         layout {
-            sequence: 2
-            region: @scaff-tr-form-placeholder
+            sequence: 3
+            region: @scaff-tr-form-header
             slot: regionBody
+        }
+    )
+
+    pageItem P31_TRANSFER_ID (
+        type: hidden
+        layout {
+            sequence: 1
+            region: @scaff-tr-form-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P31_TRANSPORT_DONE (
+        type: switch
+        label {
+            label: Transport reeds uitgevoerd
+            alignment: right
+        }
+        layout {
+            sequence: 15
+            region: @scaff-tr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: N
+        }
+    )
+
+    pageItem P31_UUR (
+        type: selectList
+        label {
+            label: Uur
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-uur
+        }
+        layout {
+            sequence: 40
+            region: @scaff-tr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: 07:00
+        }
+    )
+
+    pageItem P31_VERVOER (
+        type: selectList
+        label {
+            label: Vervoer
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-ref-vervoer
+        }
+        layout {
+            sequence: 20
+            region: @scaff-tr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P31_WERFLEIDER (
+        type: textField
+        label {
+            label: Werfleider
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @scaff-tr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            maxLength: 200
+        }
+    )
+
+    button cancel-transfer (
+        buttonName: CANCEL
+        label: Annuleren
+        layout {
+            sequence: 80
+            region: @scaff-tr-delivery
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            action: redirectThisApp
+            target: {
+                page: 30
+            }
+            warnOnUnsavedChanges: doNotCheck
+        }
+    )
+
+    button save-transfer (
+        buttonName: SAVE
+        label: Opslaan
+        layout {
+            sequence: 70
+            region: @scaff-tr-delivery
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            warnOnUnsavedChanges: doNotCheck
+        }
+    )
+
+    process init-defaults (
+        name: Init defaults
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                if :P31_DATUM is null then
+                  :P31_DATUM := to_char(
+                    PKG_SCAFF_REQ.next_business_day(trunc(sysdate),5),
+                    'fmDDMonYYYY','NLS_DATE_LANGUAGE=ENGLISH');
+                end if;
+                ```
+        }
+        execution {
+            sequence: 7
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 10006288704160798
+        }
+        serverSideCondition {
+            type: itemIsNull
+            item: P31_TRANSFER_ID
+        }
+    )
+
+    process load-po (
+        name: Load PO details
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                begin
+                  select po_display, customer_name
+                    into :P31_FROM_DISPLAY, :P31_FROM_CUSTOMER
+                    from scaff_po
+                   where po_id = to_number(:P31_FROM_PO);
+                exception when no_data_found then
+                  :P31_FROM_DISPLAY := null; :P31_FROM_CUSTOMER := null;
+                end;
+                begin
+                  select po_display, customer_name
+                    into :P31_TO_DISPLAY, :P31_TO_CUSTOMER
+                    from scaff_po
+                   where po_id = to_number(:P31_TO_PO);
+                exception when no_data_found then
+                  :P31_TO_DISPLAY := null; :P31_TO_CUSTOMER := null;
+                end;
+                ```
+        }
+        execution {
+            sequence: 10
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 10006314563160798
+        }
+        serverSideCondition {
+            type: itemIsNotNull
+            item: P31_FROM_PO
+        }
+    )
+
+    process load-transfer (
+        name: Load existing transfer
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                if PKG_SCAFF_REQ.can_edit_transfer(to_number(:P31_TRANSFER_ID)) = 'N' then
+                  raise_application_error(-20001, 'Not allowed');
+                end if;
+                select from_po_id, to_po_id, email_partner, contact_name, site_manager, gsm,
+                       transport_done, vervoer_code, lader_code,
+                       to_char(delivery_date,'fmDDMonYYYY','NLS_DATE_LANGUAGE=ENGLISH'),
+                       delivery_hour,
+                       case when hold_flag = 'Y' then 'Y' else 'N' end,
+                       remark
+                  into :P31_FROM_PO, :P31_TO_PO, :P31_EMAIL_PARTNER, :P31_CONTACT, :P31_WERFLEIDER, :P31_GSM,
+                       :P31_TRANSPORT_DONE, :P31_VERVOER, :P31_LADER,
+                       :P31_DATUM, :P31_UUR,
+                       :P31_AANHOUDEN, :P31_OPMERKING
+                  from scaff_transfer_request
+                 where transfer_id = to_number(:P31_TRANSFER_ID);
+                ```
+        }
+        execution {
+            sequence: 5
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 10006440526160798
+        }
+        serverSideCondition {
+            type: itemIsNotNull
+            item: P31_TRANSFER_ID
+        }
+    )
+
+    process save-transfer-request (
+        name: Save transfer request
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                declare
+                  l_datum    date := to_date(:P31_DATUM,'DD-MON-YYYY');
+                  l_min      date := PKG_SCAFF_REQ.next_business_day(trunc(sysdate),5);
+                  l_done     varchar2(1) := case when :P31_TRANSPORT_DONE in ('Y','1') then 'Y' else 'N' end;
+                  l_hold     varchar2(1) := case when :P31_AANHOUDEN in ('Y','1') then 'Y' else 'N' end;
+                  l_vervoer  varchar2(20) := case when l_done = 'Y' then null else :P31_VERVOER end;
+                  l_lader    varchar2(20) := case when l_done = 'Y' then null else :P31_LADER end;
+                  l_err      boolean := false;
+                  l_email    varchar2(200) := trim(:P31_EMAIL_PARTNER);
+                begin
+                  if l_email is null then
+                    apex_error.add_error(
+                      p_message          => apex_lang.message('SCAFF.TR.FORM.EMAIL.REQ'),
+                      p_display_location => apex_error.c_inline_with_field_and_notif,
+                      p_page_item_name   => 'P31_EMAIL_PARTNER');
+                    l_err := true;
+                  elsif not regexp_like(l_email, '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$') then
+                    apex_error.add_error(
+                      p_message          => apex_lang.message('SCAFF.TR.FORM.EMAIL.INVALID'),
+                      p_display_location => apex_error.c_inline_with_field_and_notif,
+                      p_page_item_name   => 'P31_EMAIL_PARTNER');
+                    l_err := true;
+                  end if;
+                
+                  if l_done = 'N' then
+                    if PKG_SCAFF_REQ.is_business_day(l_datum) = 'N' then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.MR.FORM.DATE.WEEKEND'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P31_DATUM');
+                      l_err := true;
+                    end if;
+                    if l_datum < l_min then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.MR.FORM.DATE.TOOSOON'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P31_DATUM');
+                      l_err := true;
+                    end if;
+                    if l_vervoer is null then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.RR.FORM.VERVOER.REQ'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P31_VERVOER');
+                      l_err := true;
+                    end if;
+                    if l_lader is null then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.RR.FORM.LADER.REQ'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P31_LADER');
+                      l_err := true;
+                    end if;
+                  end if;
+                  if l_err then
+                    return;
+                  end if;
+                
+                  if :P31_TRANSFER_ID is null then
+                    insert into scaff_transfer_request (
+                      from_po_id, to_po_id, email_partner,
+                      contact_name, site_manager, gsm,
+                      transport_done, vervoer_code, lader_code,
+                      delivery_date, delivery_hour,
+                      hold_flag, remark
+                    ) values (
+                      to_number(:P31_FROM_PO), to_number(:P31_TO_PO), l_email,
+                      :P31_CONTACT, :P31_WERFLEIDER, :P31_GSM,
+                      l_done, l_vervoer, l_lader,
+                      l_datum, :P31_UUR,
+                      l_hold, :P31_OPMERKING
+                    );
+                    apex_application.g_print_success_message := apex_lang.message('SCAFF.TR.FORM.SAVED');
+                    for r in (
+                      select 'P31_EMAIL_PARTNER' as nm from dual union all
+                      select 'P31_CONTACT' from dual union all
+                      select 'P31_WERFLEIDER' from dual union all
+                      select 'P31_GSM' from dual union all
+                      select 'P31_TRANSPORT_DONE' from dual union all
+                      select 'P31_VERVOER' from dual union all
+                      select 'P31_LADER' from dual union all
+                      select 'P31_DATUM' from dual union all
+                      select 'P31_AANHOUDEN' from dual union all
+                      select 'P31_OPMERKING' from dual
+                    ) loop
+                      apex_util.set_session_state(r.nm, null);
+                    end loop;
+                  else
+                    if PKG_SCAFF_REQ.can_edit_transfer(to_number(:P31_TRANSFER_ID)) = 'N' then
+                      raise_application_error(-20001, 'Not allowed');
+                    end if;
+                    update scaff_transfer_request
+                       set email_partner  = l_email,
+                           contact_name   = :P31_CONTACT,
+                           site_manager   = :P31_WERFLEIDER,
+                           gsm            = :P31_GSM,
+                           transport_done = l_done,
+                           vervoer_code   = l_vervoer,
+                           lader_code     = l_lader,
+                           delivery_date  = l_datum,
+                           delivery_hour  = :P31_UUR,
+                           hold_flag      = l_hold,
+                           remark         = :P31_OPMERKING
+                     where transfer_id = to_number(:P31_TRANSFER_ID);
+                    apex_application.g_print_success_message := apex_lang.message('SCAFF.TR.FORM.SAVED.UPDATE');
+                  end if;
+                end;
+                ```
+        }
+        execution {
+            sequence: 20
+        }
+        advanced {
+            executionMappingIdentifier: 10006587612160798
         }
     )
 

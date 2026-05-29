@@ -64,7 +64,7 @@ page 10 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         default {
@@ -86,7 +86,7 @@ page 10 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
             valuePlaceholder: Zoek PO, klant of stad...
         }

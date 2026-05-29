@@ -179,7 +179,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         validation {
@@ -209,7 +209,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/required
+            template: @/required-floating
             templateOptions: #DEFAULT#
             formatMask: ddMonYyyy
         }
@@ -231,7 +231,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/required
+            template: @/required-floating
             templateOptions: #DEFAULT#
         }
         validation {
@@ -257,7 +257,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/required
+            template: @/required-floating
             templateOptions: #DEFAULT#
         }
         validation {
@@ -278,7 +278,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
             height: 4
         }
@@ -331,7 +331,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         default {
@@ -357,7 +357,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/required
+            template: @/required-floating
             templateOptions: #DEFAULT#
         }
         validation {
@@ -378,7 +378,7 @@ page 11 (
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/optional-floating
             templateOptions: #DEFAULT#
         }
         validation {

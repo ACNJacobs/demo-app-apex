@@ -20,6 +20,16 @@ as
 
   -- Y/N : is the given date a weekday (Mon-Fri).
   function is_business_day (p_d in date) return varchar2;
+
+  -- Return-request mutations (mirror material-request).
+  function can_edit_return    (p_return_id in number) return varchar2;
+  function toggle_hold_return (p_return_id in number) return varchar2;
+  function delete_return      (p_return_id in number) return number;
+
+  -- Transfer-request mutations (mirror material-request).
+  function can_edit_transfer    (p_transfer_id in number) return varchar2;
+  function toggle_hold_transfer (p_transfer_id in number) return varchar2;
+  function delete_transfer      (p_transfer_id in number) return number;
 end PKG_SCAFF_REQ;
 /
 
@@ -99,6 +109,92 @@ as
     end loop;
     return l_d;
   end next_business_day;
+
+  function can_edit_return (p_return_id in number) return varchar2
+  is
+    l_owner varchar2(200);
+    l_user  varchar2(200) := lower(v('APP_USER'));
+  begin
+    select lower(created_by) into l_owner
+      from scaff_return_request
+     where return_id = p_return_id;
+    if l_owner = l_user or is_admin then
+      return 'Y';
+    end if;
+    return 'N';
+  exception
+    when no_data_found then
+      return 'N';
+  end can_edit_return;
+
+  function toggle_hold_return (p_return_id in number) return varchar2
+  is
+    l_new varchar2(1);
+  begin
+    if can_edit_return(p_return_id) = 'N' then
+      return null;
+    end if;
+    update scaff_return_request
+       set hold_flag = case when hold_flag = 'Y' then 'N' else 'Y' end
+     where return_id = p_return_id
+    returning hold_flag into l_new;
+    commit;
+    return l_new;
+  end toggle_hold_return;
+
+  function delete_return (p_return_id in number) return number
+  is
+  begin
+    if can_edit_return(p_return_id) = 'N' then
+      return 0;
+    end if;
+    delete from scaff_return_request where return_id = p_return_id;
+    commit;
+    return sql%rowcount;
+  end delete_return;
+
+  function can_edit_transfer (p_transfer_id in number) return varchar2
+  is
+    l_owner varchar2(200);
+    l_user  varchar2(200) := lower(v('APP_USER'));
+  begin
+    select lower(created_by) into l_owner
+      from scaff_transfer_request
+     where transfer_id = p_transfer_id;
+    if l_owner = l_user or is_admin then
+      return 'Y';
+    end if;
+    return 'N';
+  exception
+    when no_data_found then
+      return 'N';
+  end can_edit_transfer;
+
+  function toggle_hold_transfer (p_transfer_id in number) return varchar2
+  is
+    l_new varchar2(1);
+  begin
+    if can_edit_transfer(p_transfer_id) = 'N' then
+      return null;
+    end if;
+    update scaff_transfer_request
+       set hold_flag = case when hold_flag = 'Y' then 'N' else 'Y' end
+     where transfer_id = p_transfer_id
+    returning hold_flag into l_new;
+    commit;
+    return l_new;
+  end toggle_hold_transfer;
+
+  function delete_transfer (p_transfer_id in number) return number
+  is
+  begin
+    if can_edit_transfer(p_transfer_id) = 'N' then
+      return 0;
+    end if;
+    delete from scaff_transfer_request where transfer_id = p_transfer_id;
+    commit;
+    return sql%rowcount;
+  end delete_transfer;
 
 end PKG_SCAFF_REQ;
 /

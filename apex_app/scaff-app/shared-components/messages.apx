@@ -754,3 +754,87 @@ textMessage SCAFF.RR.FORM.VERVOER.REQ (
     }
 )
 
+textMessage SCAFF.TR.FORM.EMAIL.INVALID (
+    message {
+        text: Please enter a valid e-mail address.
+        language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL.INVALID (
+    message {
+        text: Vul een geldig e-mailadres in.
+        language: nl
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL.REQ (
+    message {
+        text: Counterparty e-mail is required.
+        language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL.REQ (
+    message {
+        text: Email tegenpartij is verplicht.
+        language: nl
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
+    message {
+        text: Counterparty e-mail
+        language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
+    message {
+        text: Email tegenpartij
+        language: nl
+    }
+)
+
+textMessage SCAFF.TR.FORM.HEADER (
+    message {
+        text: TRANSFER MATERIAL
+        language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.HEADER (
+    message {
+        text: TRANSFER MATERIAAL
+        language: nl
+    }
+)
+
+textMessage SCAFF.TR.FORM.SAVED (
+    message {
+        text: Transfer request saved.
+        language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.SAVED (
+    message {
+        text: Transfer aanvraag opgeslagen.
+        language: nl
+    }
+)
+
+textMessage SCAFF.TR.FORM.SAVED.UPDATE (
+    message {
+        text: Transfer request updated.
+        language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.SAVED.UPDATE (
+    message {
+        text: Transfer aanvraag gewijzigd.
+        language: nl
+    }
+)
+
