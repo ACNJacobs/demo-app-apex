@@ -185,6 +185,8 @@
 /* App-wide list scrolling: keep filters/header visible and scroll the list body */
 .app-SCAFF-APP .scaff-list {
   min-height: 0;
+  max-height: none !important;
+  overflow: visible !important;
 }
 
 .app-SCAFF-APP .scaff-list__items {
