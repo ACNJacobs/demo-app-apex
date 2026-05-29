@@ -124,7 +124,8 @@ page 30 (
                   ||'.scaff-list__item--pick .scaff-list__meta{font-size:.85em;color:#666}'
                   ||'.scaff-list{border:1px solid #ddd;border-radius:4px;max-height:22vh;overflow-y:auto;-webkit-overflow-scrolling:touch}'
                   ||'.scaff-section__head{background:#4a4a4a;color:#fff;text-align:center;padding:8px 12px;font-weight:600}'
-                  ||'#scaff-tr-next{margin-top:16px;text-align:center}'
+                  ||'#scaff-tr-next{margin-top:16px;text-align:right}'
+                  ||'[data-otel-label="B_NEXT"]{display:block;margin-left:auto;width:fit-content}'
                   ||'</style>'
                   ||'<div class="scaff-section__head">Selecteer ''van'' PO</div>';
                 ```
