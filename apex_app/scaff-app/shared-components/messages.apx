@@ -698,3 +698,59 @@ textMessage SCAFF.PAGE.INPROGRESS.TEXT (
     }
 )
 
+textMessage SCAFF.RR.FORM.LADER.REQ (
+    message {
+        text: Lader is required.
+        language: en
+    }
+)
+
+textMessage SCAFF.RR.FORM.LADER.REQ (
+    message {
+        text: Lader is verplicht.
+        language: nl
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED (
+    message {
+        text: Return request saved.
+        language: en
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED (
+    message {
+        text: Retour aanvraag opgeslagen.
+        language: nl
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED.UPDATE (
+    message {
+        text: Return request updated.
+        language: en
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED.UPDATE (
+    message {
+        text: Retour aanvraag gewijzigd.
+        language: nl
+    }
+)
+
+textMessage SCAFF.RR.FORM.VERVOER.REQ (
+    message {
+        text: Vervoer is required.
+        language: en
+    }
+)
+
+textMessage SCAFF.RR.FORM.VERVOER.REQ (
+    message {
+        text: Vervoer is verplicht.
+        language: nl
+    }
+)
+

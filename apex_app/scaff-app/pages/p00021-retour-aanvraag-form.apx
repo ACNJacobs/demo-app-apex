@@ -1,0 +1,719 @@
+page 21 (
+    name: Retour aanvraag - formulier
+    alias: RETOUR-AANVRAAG-FORM
+    title: Retour aanvraag
+    appearance {
+        pageTemplate: @/standard
+        templateOptions: #DEFAULT#
+    }
+    navigation {
+        cursorFocus: doNotFocusCursor
+    }
+    javaScript {
+        executeWhenPageLoads:
+            ```javascript-browser
+            (function(){
+              // Datepicker: minimum = today + 5 business days, no weekends.
+              function addBizDays(d, n) {
+                var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                var left = n;
+                while (left > 0) {
+                  x.setDate(x.getDate() + 1);
+                  var dow = x.getDay();
+                  if (dow !== 0 && dow !== 6) { left--; }
+                }
+                return x;
+              }
+              function iso(d){
+                return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+              }
+              var dp = document.getElementById('P21_DATUM');
+              if (dp) {
+                var minD = addBizDays(new Date(), 5);
+                try { dp.setAttribute('min-value', iso(minD)); } catch(e) {}
+                try { dp.setAttribute('valid-example', iso(minD)); } catch(e) {}
+                dp.disabledDates = function(d){ var w = d.getDay(); return w === 0 || w === 6; };
+              }
+            
+              // Hide Vervoer/Lader when "Transport reeds uitgevoerd" = Y
+              function syncTransport(){
+                var v = apex.item('P21_TRANSPORT_DONE').getValue();
+                var done = (v === 'Y' || v === '1' || v === true);
+                ['P21_VERVOER','P21_LADER'].forEach(function(it){
+                  var w = document.querySelector('#'+it+'_CONTAINER, .t-Form-fieldContainer[data-for="'+it+'"]');
+                  if (w) { w.style.display = done ? 'none' : ''; }
+                  // also disable on min datum constraint when transport already done
+                });
+                // Min datum: skip 5-BD rule when transport already done
+                if (dp) {
+                  if (done) { try { dp.removeAttribute('min-value'); } catch(e) {} dp.disabledDates = null; }
+                  else {
+                    var minD2 = addBizDays(new Date(), 5);
+                    try { dp.setAttribute('min-value', iso(minD2)); } catch(e) {}
+                    dp.disabledDates = function(d){ var w = d.getDay(); return w === 0 || w === 6; };
+                  }
+                }
+              }
+              try { syncTransport(); } catch(e) {}
+              apex.item('P21_TRANSPORT_DONE').element.on && apex.item('P21_TRANSPORT_DONE').element.on('change', syncTransport);
+              document.getElementById('P21_TRANSPORT_DONE') && document.getElementById('P21_TRANSPORT_DONE').addEventListener('change', syncTransport);
+            
+              // Success banner -> redirect after 2s.
+              var s = document.querySelector('.t-Body-alert .t-Alert--success, #APEX_SUCCESS_MESSAGE .t-Alert--success');
+              if (!s) { return; }
+              var txt = (s.textContent || '').replace(/\s+/g,'');
+              if (!txt) { return; }
+              var reqId = (apex.item('P21_RETURN_ID').getValue() || '').toString();
+              var targetPage = reqId ? '50' : '20';
+              setTimeout(function(){
+                try { apex.message.hidePageSuccess(); } catch(e) {}
+                apex.navigation.redirect( apex.util.makeApplicationUrl({ pageId: targetPage }) );
+              }, 2000);
+            })();
+            ```
+    }
+    security {
+        pageAccessProtection: argumentsMustHaveChecksum
+        formAutoComplete: false
+    }
+
+    region scaff-rr-contact (
+        name: Contactgegevens
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return null;
+        }
+        layout {
+            sequence: 11
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-rr-contact-head (
+        name: Contactgegevens banner
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.CONTACTGEGEVENS'))||'</div>';
+        }
+        layout {
+            sequence: 10
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-rr-delivery (
+        name: Leveringdetails
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return null;
+        }
+        layout {
+            sequence: 21
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-rr-delivery-head (
+        name: Leveringdetails banner
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.LEVERINGDETAILS'))||'</div>';
+        }
+        layout {
+            sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-rr-header (
+        name: PO header
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                return '<style id="scaff-mobile-css">'||HD_MOBILE_UI_PKG.get_menu_css||'</style>'
+                    ||'<div class="scaff-section__sub"><strong>'||apex_escape.html(nvl(:P21_PO_DISPLAY,'?'))||'</strong>'||apex_escape.html(:P21_CUSTOMER)||'</div>';
+                ```
+            pageItemsToSubmit: [
+                P21_PO_DISPLAY
+                P21_CUSTOMER
+            ]
+        }
+        layout {
+            sequence: 5
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P21_AANHOUDEN (
+        type: checkbox
+        label {
+            label: Aanhouden
+            alignment: right
+        }
+        layout {
+            sequence: 50
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: N
+        }
+    )
+
+    pageItem P21_BAKKEN (
+        type: numberField
+        label {
+            label: # Bakken
+            alignment: right
+        }
+        layout {
+            sequence: 10
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: 0
+        }
+    )
+
+    pageItem P21_CONTACT (
+        type: textField
+        label {
+            label: Contact
+            alignment: right
+        }
+        layout {
+            sequence: 10
+            region: @scaff-rr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            maxLength: 100
+        }
+    )
+
+    pageItem P21_CUSTOMER (
+        type: hidden
+        layout {
+            sequence: 7
+            region: @scaff-rr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P21_DATUM (
+        type: datePicker
+        label {
+            label: Datum
+            alignment: right
+        }
+        layout {
+            sequence: 30
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+            formatMask: ddMonYyyy
+        }
+        validation {
+            valueRequired: true
+        }
+    )
+
+    pageItem P21_GSM (
+        type: textField
+        label {
+            label: GSM
+            alignment: right
+        }
+        layout {
+            sequence: 30
+            region: @scaff-rr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+            maxLength: 40
+        }
+    )
+
+    pageItem P21_LAATSTE (
+        type: switch
+        label {
+            label: Laatste retour?
+            alignment: right
+        }
+        layout {
+            sequence: 55
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: N
+        }
+    )
+
+    pageItem P21_LADER (
+        type: selectList
+        label {
+            label: Lader
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-ref-lader
+        }
+        layout {
+            sequence: 25
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P21_OPMERKING (
+        type: textarea
+        label {
+            label: Opmerking
+            alignment: right
+        }
+        layout {
+            sequence: 60
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            height: 4
+        }
+        validation {
+            maxLength: 4000
+        }
+    )
+
+    pageItem P21_PO_DISPLAY (
+        type: hidden
+        layout {
+            sequence: 6
+            region: @scaff-rr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P21_PO_ID (
+        type: hidden
+        layout {
+            sequence: 5
+            region: @scaff-rr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P21_RETURN_ID (
+        type: hidden
+        layout {
+            sequence: 4
+            region: @scaff-rr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P21_TRANSPORT_DONE (
+        type: switch
+        label {
+            label: Transport reeds uitgevoerd
+            alignment: right
+        }
+        layout {
+            sequence: 15
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: N
+        }
+    )
+
+    pageItem P21_UUR (
+        type: selectList
+        label {
+            label: Uur
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-uur
+        }
+        layout {
+            sequence: 40
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: 07:00
+        }
+    )
+
+    pageItem P21_VERVOER (
+        type: selectList
+        label {
+            label: Vervoer
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-ref-vervoer
+        }
+        layout {
+            sequence: 20
+            region: @scaff-rr-delivery
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P21_WERFLEIDER (
+        type: textField
+        label {
+            label: Werfleider
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @scaff-rr-contact
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            maxLength: 100
+        }
+    )
+
+    button cancel-return (
+        buttonName: CANCEL
+        label: Annuleren
+        layout {
+            sequence: 80
+            region: @scaff-rr-delivery
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            action: redirectThisApp
+            target: {
+                page: 20
+            }
+            warnOnUnsavedChanges: doNotCheck
+        }
+    )
+
+    button save-return (
+        buttonName: SAVE
+        label: Opslaan
+        layout {
+            sequence: 70
+            region: @scaff-rr-delivery
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            warnOnUnsavedChanges: doNotCheck
+        }
+    )
+
+    process init-defaults (
+        name: Init defaults
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                if :P21_DATUM is null then
+                  :P21_DATUM := to_char(
+                    PKG_SCAFF_REQ.next_business_day(trunc(sysdate),5),
+                    'fmDDMonYYYY','NLS_DATE_LANGUAGE=ENGLISH');
+                end if;
+                ```
+        }
+        execution {
+            sequence: 7
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 9826087278413179
+        }
+        serverSideCondition {
+            type: itemIsNull
+            item: P21_RETURN_ID
+        }
+    )
+
+    process load-po (
+        name: Load PO details
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                begin
+                  select po_display, customer_name
+                    into :P21_PO_DISPLAY, :P21_CUSTOMER
+                    from scaff_po
+                   where po_id = to_number(:P21_PO_ID);
+                exception
+                  when no_data_found then
+                    :P21_PO_DISPLAY := null;
+                    :P21_CUSTOMER   := null;
+                end;
+                ```
+        }
+        execution {
+            sequence: 10
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 9826142880413179
+        }
+        serverSideCondition {
+            type: itemIsNotNull
+            item: P21_PO_ID
+        }
+    )
+
+    process load-return (
+        name: Load existing return
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                if PKG_SCAFF_REQ.can_edit_return(to_number(:P21_RETURN_ID)) = 'N' then
+                  raise_application_error(-20001, 'Not allowed');
+                end if;
+                select po_id, contact_name, site_manager, gsm,
+                       bakken_count, transport_done,
+                       vervoer_code, lader_code,
+                       to_char(delivery_date,'fmDDMonYYYY','NLS_DATE_LANGUAGE=ENGLISH'),
+                       delivery_hour,
+                       case when hold_flag = 'Y' then 'Y' else 'N' end,
+                       case when is_final = 'Y' then 'Y' else 'N' end,
+                       remark
+                  into :P21_PO_ID, :P21_CONTACT, :P21_WERFLEIDER, :P21_GSM,
+                       :P21_BAKKEN, :P21_TRANSPORT_DONE,
+                       :P21_VERVOER, :P21_LADER,
+                       :P21_DATUM, :P21_UUR,
+                       :P21_AANHOUDEN, :P21_LAATSTE, :P21_OPMERKING
+                  from scaff_return_request
+                 where return_id = to_number(:P21_RETURN_ID);
+                ```
+        }
+        execution {
+            sequence: 5
+            point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 9826211622413179
+        }
+        serverSideCondition {
+            type: itemIsNotNull
+            item: P21_RETURN_ID
+        }
+    )
+
+    process save-return-request (
+        name: Save return request
+        type: executeCode
+        source {
+            plsqlCode:
+                ```plsql
+                declare
+                  l_datum    date := to_date(:P21_DATUM,'DD-MON-YYYY');
+                  l_min      date := PKG_SCAFF_REQ.next_business_day(trunc(sysdate),5);
+                  l_done     varchar2(1) := case when :P21_TRANSPORT_DONE in ('Y','1') then 'Y' else 'N' end;
+                  l_hold     varchar2(1) := case when :P21_AANHOUDEN in ('Y','1') then 'Y' else 'N' end;
+                  l_final    varchar2(1) := case when :P21_LAATSTE in ('Y','1') then 'Y' else 'N' end;
+                  l_vervoer  varchar2(20) := case when l_done = 'Y' then null else :P21_VERVOER end;
+                  l_lader    varchar2(20) := case when l_done = 'Y' then null else :P21_LADER end;
+                  l_err      boolean := false;
+                begin
+                  -- Date rules only when transport NOT already done.
+                  if l_done = 'N' then
+                    if PKG_SCAFF_REQ.is_business_day(l_datum) = 'N' then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.MR.FORM.DATE.WEEKEND'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P21_DATUM');
+                      l_err := true;
+                    end if;
+                    if l_datum < l_min then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.MR.FORM.DATE.TOOSOON'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P21_DATUM');
+                      l_err := true;
+                    end if;
+                    if l_vervoer is null then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.RR.FORM.VERVOER.REQ'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P21_VERVOER');
+                      l_err := true;
+                    end if;
+                    if l_lader is null then
+                      apex_error.add_error(
+                        p_message          => apex_lang.message('SCAFF.RR.FORM.LADER.REQ'),
+                        p_display_location => apex_error.c_inline_with_field_and_notif,
+                        p_page_item_name   => 'P21_LADER');
+                      l_err := true;
+                    end if;
+                  end if;
+                  if l_err then
+                    return;
+                  end if;
+                
+                  if :P21_RETURN_ID is null then
+                    insert into scaff_return_request (
+                      po_id, contact_name, site_manager, gsm,
+                      bakken_count, transport_done,
+                      vervoer_code, lader_code,
+                      delivery_date, delivery_hour,
+                      hold_flag, is_final, remark
+                    ) values (
+                      to_number(:P21_PO_ID),
+                      :P21_CONTACT, :P21_WERFLEIDER, :P21_GSM,
+                      nvl(to_number(:P21_BAKKEN),0), l_done,
+                      l_vervoer, l_lader,
+                      l_datum, :P21_UUR,
+                      l_hold, l_final, :P21_OPMERKING
+                    );
+                    apex_application.g_print_success_message := apex_lang.message('SCAFF.RR.FORM.SAVED');
+                    for r in (
+                      select 'P21_CONTACT' as nm from dual union all
+                      select 'P21_WERFLEIDER' from dual union all
+                      select 'P21_GSM' from dual union all
+                      select 'P21_BAKKEN' from dual union all
+                      select 'P21_TRANSPORT_DONE' from dual union all
+                      select 'P21_VERVOER' from dual union all
+                      select 'P21_LADER' from dual union all
+                      select 'P21_DATUM' from dual union all
+                      select 'P21_AANHOUDEN' from dual union all
+                      select 'P21_LAATSTE' from dual union all
+                      select 'P21_OPMERKING' from dual
+                    ) loop
+                      apex_util.set_session_state(r.nm, null);
+                    end loop;
+                  else
+                    if PKG_SCAFF_REQ.can_edit_return(to_number(:P21_RETURN_ID)) = 'N' then
+                      raise_application_error(-20001, 'Not allowed');
+                    end if;
+                    update scaff_return_request
+                       set contact_name   = :P21_CONTACT,
+                           site_manager   = :P21_WERFLEIDER,
+                           gsm            = :P21_GSM,
+                           bakken_count   = nvl(to_number(:P21_BAKKEN),0),
+                           transport_done = l_done,
+                           vervoer_code   = l_vervoer,
+                           lader_code     = l_lader,
+                           delivery_date  = l_datum,
+                           delivery_hour  = :P21_UUR,
+                           hold_flag      = l_hold,
+                           is_final       = l_final,
+                           remark         = :P21_OPMERKING
+                     where return_id = to_number(:P21_RETURN_ID);
+                    apex_application.g_print_success_message := apex_lang.message('SCAFF.RR.FORM.SAVED.UPDATE');
+                  end if;
+                end;
+                ```
+        }
+        execution {
+            sequence: 20
+        }
+        advanced {
+            executionMappingIdentifier: 9826367226413179
+        }
+    )
+
+)
+

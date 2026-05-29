@@ -16,6 +16,18 @@ as
     p_prefix in varchar2 default 'PO/',
     p_search in varchar2 default null
   ) return clob;
+  function get_po_list (
+    p_prefix       in varchar2 default 'PO/',
+    p_search       in varchar2 default null,
+    p_target_page  in varchar2,
+    p_target_item  in varchar2
+  ) return clob;
+  function get_po_pick_list (
+    p_prefix    in varchar2 default 'PO/',
+    p_search    in varchar2 default null,
+    p_pick_item in varchar2,
+    p_selected  in varchar2 default null
+  ) return clob;
 end PKG_SCAFF_UI;
 /
 
@@ -215,6 +227,20 @@ as
     p_search in varchar2 default null
   ) return clob
   is
+  begin
+    return get_po_list(p_prefix => p_prefix,
+                       p_search => p_search,
+                       p_target_page => '11',
+                       p_target_item => 'P11_PO_ID');
+  end get_po_list;
+
+  function get_po_list (
+    p_prefix       in varchar2 default 'PO/',
+    p_search       in varchar2 default null,
+    p_target_page  in varchar2,
+    p_target_item  in varchar2
+  ) return clob
+  is
     l_out      clob;
     l_count    pls_integer := 0;
     l_empty    varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.EMPTY');
@@ -252,8 +278,8 @@ as
     ) loop
       l_count := l_count + 1;
       l_target := apex_util.prepare_url(
-                    'f?p='||apex_application.g_flow_id||':11:'||apex_application.g_instance
-                    ||'::NO::P11_PO_ID:'||r.po_id);
+                    'f?p='||apex_application.g_flow_id||':'||p_target_page||':'||apex_application.g_instance
+                    ||'::NO::'||p_target_item||':'||r.po_id);
 
       p('<a class="scaff-list__item'
         ||case when l_count=1 then ' scaff-list__item--active' end
@@ -278,6 +304,70 @@ as
     p('</div>');
     return l_out;
   end get_po_list;
+
+  function get_po_pick_list (
+    p_prefix    in varchar2 default 'PO/',
+    p_search    in varchar2 default null,
+    p_pick_item in varchar2,
+    p_selected  in varchar2 default null
+  ) return clob
+  is
+    l_out      clob;
+    l_count    pls_integer := 0;
+    l_empty    varchar2(4000) := apex_lang.message(p_name => 'SCAFF.MR.LIST.EMPTY');
+    l_prefix   varchar2(20)   := nvl(p_prefix, 'PO/');
+    l_search   varchar2(200)  := upper(trim(p_search));
+    l_sel_id   number         := case when p_selected is not null and regexp_like(p_selected,'^[0-9]+$') then to_number(p_selected) end;
+
+    procedure p( p_text in varchar2 ) is
+    begin
+      dbms_lob.writeappend(l_out, length(p_text), p_text);
+    end;
+  begin
+    dbms_lob.createtemporary(l_out, true);
+
+    p('<div class="scaff-list">');
+    p('<div class="scaff-list__items">');
+
+    for r in (
+      select po_id, po_display, customer_name, address_line, postal_code, city
+        from scaff_po
+       where po_prefix = l_prefix
+         and (l_search is null
+              or upper(po_number)     like '%'||l_search||'%'
+              or upper(customer_name) like '%'||l_search||'%'
+              or upper(city)          like '%'||l_search||'%'
+              or upper(address_line)  like '%'||l_search||'%')
+       order by po_number
+       fetch first 50 rows only
+    ) loop
+      l_count := l_count + 1;
+      p('<a class="scaff-list__item scaff-list__item--pick'
+        ||case when l_sel_id = r.po_id then ' is-selected' end
+        ||'" href="#" '
+        ||'data-scaff-pick="'||apex_escape.html_attribute(p_pick_item)||'" '
+        ||'data-scaff-id="'||r.po_id||'">');
+      p('<span class="scaff-list__check" aria-hidden="true">'
+        ||'<span class="scaff-list__check-box"></span></span>');
+      p('<span class="scaff-list__body">');
+      p('<span class="scaff-list__title">'||apex_escape.html(r.po_display)||'</span>');
+      p('<span class="scaff-list__sub">'||apex_escape.html(r.customer_name)||'</span>');
+      p('<span class="scaff-list__meta">'
+        ||apex_escape.html(r.address_line||' , '||r.postal_code||' '||r.city)
+        ||'</span>');
+      p('</span>');
+      p('</a>');
+    end loop;
+
+    p('</div>');
+
+    if l_count = 0 then
+      p('<div class="scaff-list__empty">'||apex_escape.html(l_empty)||'</div>');
+    end if;
+
+    p('</div>');
+    return l_out;
+  end get_po_pick_list;
 
 end PKG_SCAFF_UI;
 /

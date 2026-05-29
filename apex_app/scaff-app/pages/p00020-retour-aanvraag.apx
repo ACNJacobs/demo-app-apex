@@ -1,7 +1,7 @@
 page 20 (
     name: Retour aanvraag
     alias: RETOUR-AANVRAAG
-    title: &SCAFF.MENU.RETOUR.TITLE.
+    title: Retour aanvraag
     appearance {
         pageTemplate: @/standard
         templateOptions: #DEFAULT#
@@ -14,20 +14,138 @@ page 20 (
         formAutoComplete: false
     }
 
-    region scaff-placeholder (
-        name: Placeholder
-        type: dynamicContent
-        source {
-            plsqlFunctionBody: return PKG_SCAFF_UI.get_placeholder;
-        }
+    region scaff-rr-filters (
+        name: Filters
+        type: staticContent
         layout {
-            sequence: 10
+            sequence: 5
             slot: body
         }
         appearance {
             template: @/blank-with-attributes-no-grid
             templateOptions: #DEFAULT#
         }
+    )
+
+    region scaff-rr-list (
+        name: PO list
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                return PKG_SCAFF_UI.get_po_list(
+                  p_prefix      => :P20_PREFIX,
+                  p_search      => :P20_SEARCH,
+                  p_target_page => '21',
+                  p_target_item => 'P21_PO_ID');
+                ```
+            pageItemsToSubmit: [
+                P20_PREFIX
+                P20_SEARCH
+            ]
+        }
+        layout {
+            sequence: 30
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P20_PREFIX (
+        type: selectList
+        label {
+            label: Prefix
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-po-prefix
+        }
+        layout {
+            sequence: 10
+            region: @scaff-rr-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: PO/
+        }
+    )
+
+    pageItem P20_SEARCH (
+        type: textField
+        label {
+            label: Search
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @scaff-rr-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            valuePlaceholder: Zoek PO, klant of stad...
+        }
+    )
+
+    dynamicAction scaff-rr-refresh-prefix (
+        name: Refresh on prefix change
+        execution {
+            sequence: 10
+        }
+        when {
+            selectionType: items
+            items: P20_PREFIX
+        }
+
+        action refresh-prefix (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-rr-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+
+    )
+
+    dynamicAction scaff-rr-refresh-search (
+        name: Refresh on search keyup
+        execution {
+            sequence: 20
+        }
+        when {
+            event: keyup
+            selectionType: items
+            items: P20_SEARCH
+        }
+
+        action refresh-search (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-rr-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+
     )
 
 )

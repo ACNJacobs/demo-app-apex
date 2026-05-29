@@ -9,17 +9,64 @@ page 30 (
     navigation {
         cursorFocus: doNotFocusCursor
     }
+    javaScript {
+        executeWhenPageLoads:
+            ```javascript-browser
+            (function(){
+              function bind(){
+                document.querySelectorAll('.scaff-list__item--pick').forEach(function(a){
+                  if (a.dataset.scaffBound === '1') return;
+                  a.dataset.scaffBound = '1';
+                  a.addEventListener('click', function(e){
+                    e.preventDefault();
+                    var item = a.getAttribute('data-scaff-pick');
+                    var id   = a.getAttribute('data-scaff-id');
+                    if (!item || !id) return;
+                    a.parentNode.querySelectorAll('.scaff-list__item--pick').forEach(function(x){ x.classList.remove('is-selected'); });
+                    a.classList.add('is-selected');
+                    apex.item(item).setValue(id);
+                    syncNext();
+                  });
+                });
+              }
+              function syncNext(){
+                var f = apex.item('P30_FROM_PO').getValue();
+                var t = apex.item('P30_TO_PO').getValue();
+                var btn = document.querySelector('[data-otel-label="B_NEXT"]');
+                if (!btn) return;
+                var ok = f && t && f !== t;
+                btn.disabled = !ok;
+                btn.classList.toggle('is-disabled', !ok);
+              }
+              apex.jQuery(document).on('apexafterrefresh', bind);
+              bind();
+              syncNext();
+              var nb = document.querySelector('[data-otel-label="B_NEXT"]');
+              if (nb) {
+                nb.addEventListener('click', function(e){
+                  e.preventDefault();
+                  var f = apex.item('P30_FROM_PO').getValue();
+                  var t = apex.item('P30_TO_PO').getValue();
+                  if (!f || !t || f === t) return;
+                  apex.navigation.redirect(apex.util.makeApplicationUrl({
+                    pageId: '31',
+                    clearCache: '31',
+                    itemNames: ['P31_FROM_PO','P31_TO_PO'],
+                    itemValues: [f, t]
+                  }));
+                });
+              }
+            })();
+            ```
+    }
     security {
         pageAccessProtection: argumentsMustHaveChecksum
         formAutoComplete: false
     }
 
-    region scaff-placeholder (
-        name: Placeholder
-        type: dynamicContent
-        source {
-            plsqlFunctionBody: return PKG_SCAFF_UI.get_placeholder;
-        }
+    region scaff-tr-from-filters (
+        name: From filters
+        type: staticContent
         layout {
             sequence: 10
             slot: body
@@ -28,6 +75,362 @@ page 30 (
             template: @/blank-with-attributes-no-grid
             templateOptions: #DEFAULT#
         }
+    )
+
+    region scaff-tr-from-list (
+        name: From list
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                return PKG_SCAFF_UI.get_po_pick_list(
+                  p_prefix    => :P30_FROM_PREFIX,
+                  p_search    => :P30_FROM_SEARCH,
+                  p_pick_item => 'P30_FROM_PO',
+                  p_selected  => :P30_FROM_PO);
+                ```
+            pageItemsToSubmit: [
+                P30_FROM_PREFIX
+                P30_FROM_SEARCH
+                P30_FROM_PO
+            ]
+        }
+        layout {
+            sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-header (
+        name: Header
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                return
+                  '<style>'
+                  ||'.scaff-list__item--pick{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #e5e5e5;text-decoration:none;color:inherit}'
+                  ||'.scaff-list__check{flex:0 0 22px;display:inline-flex;align-items:center;justify-content:center}'
+                  ||'.scaff-list__check-box{width:18px;height:18px;border:1.5px solid #888;border-radius:3px;display:inline-block;background:#fff}'
+                  ||'.scaff-list__item--pick.is-selected{background:#FCE6E9}'
+                  ||'.scaff-list__item--pick.is-selected .scaff-list__check-box{background:#E2001A;border-color:#E2001A;box-shadow:inset 0 0 0 3px #fff}'
+                  ||'.scaff-list__item--pick .scaff-list__body{flex:1;display:flex;flex-direction:column}'
+                  ||'.scaff-list__item--pick .scaff-list__title{font-weight:600;color:#1a73e8}'
+                  ||'.scaff-list__item--pick .scaff-list__sub{font-size:.95em}'
+                  ||'.scaff-list__item--pick .scaff-list__meta{font-size:.85em;color:#666}'
+                  ||'#scaff-tr-from-list_content,#scaff-tr-to-list_content{max-height:38vh;overflow-y:auto;border:1px solid #ddd;border-radius:4px}'
+                  ||'.scaff-section__head{background:#4a4a4a;color:#fff;text-align:center;padding:8px 12px;font-weight:600}'
+                  ||'#scaff-tr-next{margin-top:16px;text-align:center}'
+                  ||'</style>'
+                  ||'<div class="scaff-section__head">Selecteer ''van'' PO</div>';
+                ```
+        }
+        layout {
+            sequence: 5
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-next (
+        name: Next
+        type: staticContent
+        layout {
+            sequence: 60
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-to-filters (
+        name: To filters
+        type: staticContent
+        layout {
+            sequence: 40
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-to-header (
+        name: To header
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">Selecteer ''naar'' PO</div>';
+        }
+        layout {
+            sequence: 30
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-tr-to-list (
+        name: To list
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                return PKG_SCAFF_UI.get_po_pick_list(
+                  p_prefix    => :P30_TO_PREFIX,
+                  p_search    => :P30_TO_SEARCH,
+                  p_pick_item => 'P30_TO_PO',
+                  p_selected  => :P30_TO_PO);
+                ```
+            pageItemsToSubmit: [
+                P30_TO_PREFIX
+                P30_TO_SEARCH
+                P30_TO_PO
+            ]
+        }
+        layout {
+            sequence: 50
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P30_FROM_PO (
+        type: hidden
+        layout {
+            sequence: 1
+            region: @scaff-tr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P30_FROM_PREFIX (
+        type: selectList
+        label {
+            label: Prefix
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-po-prefix
+        }
+        layout {
+            sequence: 10
+            region: @scaff-tr-from-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: PO/
+        }
+    )
+
+    pageItem P30_FROM_SEARCH (
+        type: textField
+        label {
+            label: Search
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @scaff-tr-from-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            valuePlaceholder: Zoeken...
+        }
+    )
+
+    pageItem P30_TO_PO (
+        type: hidden
+        layout {
+            sequence: 2
+            region: @scaff-tr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P30_TO_PREFIX (
+        type: selectList
+        label {
+            label: Prefix
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-po-prefix
+        }
+        layout {
+            sequence: 10
+            region: @scaff-tr-to-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: PO/
+        }
+    )
+
+    pageItem P30_TO_SEARCH (
+        type: textField
+        label {
+            label: Search
+            alignment: right
+        }
+        layout {
+            sequence: 20
+            region: @scaff-tr-to-filters
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            valuePlaceholder: Zoeken...
+        }
+    )
+
+    button next-transfer (
+        buttonName: B_NEXT
+        label: Volgende
+        layout {
+            sequence: 10
+            region: @scaff-tr-next
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+            templateOptions: #DEFAULT#
+        }
+        behavior {
+            action: definedByDynamicAction
+        }
+    )
+
+    dynamicAction scaff-tr-refresh-from-prefix (
+        name: Refresh from list on prefix change
+        execution {
+            sequence: 10
+        }
+        when {
+            selectionType: items
+            items: P30_FROM_PREFIX
+        }
+
+        action act-refresh-from-prefix (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-tr-from-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+
+    )
+
+    dynamicAction scaff-tr-refresh-from-search (
+        name: Refresh from list on search keyup
+        execution {
+            sequence: 20
+        }
+        when {
+            event: keyup
+            selectionType: items
+            items: P30_FROM_SEARCH
+        }
+
+        action act-refresh-from-search (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-tr-from-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+
+    )
+
+    dynamicAction scaff-tr-refresh-to-prefix (
+        name: Refresh to list on prefix change
+        execution {
+            sequence: 30
+        }
+        when {
+            selectionType: items
+            items: P30_TO_PREFIX
+        }
+
+        action act-refresh-to-prefix (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-tr-to-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+
+    )
+
+    dynamicAction scaff-tr-refresh-to-search (
+        name: Refresh to list on search keyup
+        execution {
+            sequence: 40
+        }
+        when {
+            event: keyup
+            selectionType: items
+            items: P30_TO_SEARCH
+        }
+
+        action act-refresh-to-search (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-tr-to-list
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+
     )
 
 )

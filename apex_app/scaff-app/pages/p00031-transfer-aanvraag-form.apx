@@ -1,0 +1,69 @@
+page 31 (
+    name: Transfer aanvraag - formulier
+    alias: TRANSFER-AANVRAAG-FORM
+    title: Transfer aanvraag
+    appearance {
+        pageTemplate: @/standard
+        templateOptions: #DEFAULT#
+    }
+    navigation {
+        cursorFocus: doNotFocusCursor
+    }
+    security {
+        formAutoComplete: false
+    }
+
+    region scaff-tr-form-placeholder (
+        name: Placeholder
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                declare
+                  l_from varchar2(200);
+                  l_to   varchar2(200);
+                begin
+                  begin select po_display into l_from from scaff_po where po_id = to_number(:P31_FROM_PO); exception when others then l_from := '?'; end;
+                  begin select po_display into l_to   from scaff_po where po_id = to_number(:P31_TO_PO);   exception when others then l_to   := '?'; end;
+                  return '<div class="scaff-section__sub" style="padding:16px;">'
+                       ||'<p><strong>Van:</strong> '||apex_escape.html(l_from)||'</p>'
+                       ||'<p><strong>Naar:</strong> '||apex_escape.html(l_to)||'</p>'
+                       ||'<p><em>Formulier volgt in de volgende stap.</em></p>'
+                       ||'</div>';
+                end;
+                ```
+            pageItemsToSubmit: [
+                P31_FROM_PO
+                P31_TO_PO
+            ]
+        }
+        layout {
+            sequence: 10
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P31_FROM_PO (
+        type: hidden
+        layout {
+            sequence: 1
+            region: @scaff-tr-form-placeholder
+            slot: regionBody
+        }
+    )
+
+    pageItem P31_TO_PO (
+        type: hidden
+        layout {
+            sequence: 2
+            region: @scaff-tr-form-placeholder
+            slot: regionBody
+        }
+    )
+
+)
+
