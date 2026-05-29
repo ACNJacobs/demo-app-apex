@@ -122,7 +122,7 @@ page 30 (
                   ||'.scaff-list__item--pick .scaff-list__title{font-weight:600;color:#1a73e8}'
                   ||'.scaff-list__item--pick .scaff-list__sub{font-size:.95em}'
                   ||'.scaff-list__item--pick .scaff-list__meta{font-size:.85em;color:#666}'
-                  ||'#scaff-tr-from-list_content,#scaff-tr-to-list_content{max-height:38vh;overflow-y:auto;border:1px solid #ddd;border-radius:4px}'
+                  ||'.scaff-list{border:1px solid #ddd;border-radius:4px;max-height:22vh;overflow-y:auto;-webkit-overflow-scrolling:touch}'
                   ||'.scaff-section__head{background:#4a4a4a;color:#fff;text-align:center;padding:8px 12px;font-weight:600}'
                   ||'#scaff-tr-next{margin-top:16px;text-align:center}'
                   ||'</style>'
