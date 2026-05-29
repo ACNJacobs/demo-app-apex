@@ -138,6 +138,300 @@ textMessage SCAFF.MENU.TRANSFER.TITLE (
     }
 )
 
+textMessage SCAFF.MR.FORM.AANHOUDEN (
+    message {
+        text: Hold
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.AANHOUDEN (
+    message {
+        text: Aanhouden
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.AGAIN (
+    message {
+        text: New request
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.AGAIN (
+    message {
+        text: Nieuwe aanvraag
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.CANCEL (
+    message {
+        text: Cancel
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.CANCEL (
+    message {
+        text: Annuleren
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACT (
+    message {
+        text: Contact
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACT (
+    message {
+        text: Contact
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
+    message {
+        text: Contact details
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
+    message {
+        text: Contactgegevens
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATUM (
+    message {
+        text: Date
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATUM (
+    message {
+        text: Datum
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.GSM (
+    message {
+        text: Mobile
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.GSM (
+    message {
+        text: GSM
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.LADER (
+    message {
+        text: Loader
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.LADER (
+    message {
+        text: Lader
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
+    message {
+        text: Delivery details
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
+    message {
+        text: Leveringdetails
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.MINE (
+    message {
+        text: View my requests
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.MINE (
+    message {
+        text: Mijn aanvragen
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.OPMERKING (
+    message {
+        text: Remark
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.OPMERKING (
+    message {
+        text: Opmerking
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVE (
+    message {
+        text: Save
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVE (
+    message {
+        text: Opslaan
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVED (
+    message {
+        text: Request saved.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVED (
+    message {
+        text: Aanvraag opgeslagen.
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.UUR (
+    message {
+        text: Hour
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.UUR (
+    message {
+        text: Uur
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.VERVOER (
+    message {
+        text: Transport
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.VERVOER (
+    message {
+        text: Vervoer
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.WERFLEIDER (
+    message {
+        text: Site manager
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.WERFLEIDER (
+    message {
+        text: Werfleider
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.FORM.WHATNEXT (
+    message {
+        text: What would you like to do next?
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.WHATNEXT (
+    message {
+        text: Wat wilt u nu doen?
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.EMPTY (
+    message {
+        text: No POs found.
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.EMPTY (
+    message {
+        text: Geen PO's gevonden.
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.HEAD (
+    message {
+        text: Select PO
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.HEAD (
+    message {
+        text: Selecteer PO
+        language: nl
+    }
+)
+
+textMessage SCAFF.MR.LIST.SEARCH (
+    message {
+        text: Search...
+        language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.SEARCH (
+    message {
+        text: Zoeken...
+        language: nl
+    }
+)
+
+textMessage SCAFF.MY.HOLD (
+    message {
+        text: On hold
+        language: en
+    }
+)
+
+textMessage SCAFF.MY.HOLD (
+    message {
+        text: Aangehouden
+        language: nl
+    }
+)
+
 textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
     message {
         text: Created
@@ -250,255 +544,3 @@ textMessage SCAFF.PAGE.INPROGRESS.TEXT (
     }
 )
 
-
-textMessage SCAFF.MR.LIST.HEAD (
-    message {
-        text: Select PO
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.LIST.HEAD (
-    message {
-        text: Selecteer PO
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.LIST.EMPTY (
-    message {
-        text: No POs found.
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.LIST.EMPTY (
-    message {
-        text: Geen PO's gevonden.
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.LIST.SEARCH (
-    message {
-        text: Search...
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.LIST.SEARCH (
-    message {
-        text: Zoeken...
-        language: nl
-    }
-)
-
-textMessage SCAFF.MY.HOLD (
-    message {
-        text: On hold
-        language: en
-    }
-)
-
-textMessage SCAFF.MY.HOLD (
-    message {
-        text: Aangehouden
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
-    message {
-        text: Contact details
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
-    message {
-        text: Contactgegevens
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
-    message {
-        text: Delivery details
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
-    message {
-        text: Leveringdetails
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.CONTACT (
-    message {
-        text: Contact
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.CONTACT (
-    message {
-        text: Contact
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.WERFLEIDER (
-    message {
-        text: Site manager
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.WERFLEIDER (
-    message {
-        text: Werfleider
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.GSM (
-    message {
-        text: Mobile
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.GSM (
-    message {
-        text: GSM
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.VERVOER (
-    message {
-        text: Transport
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.VERVOER (
-    message {
-        text: Vervoer
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.LADER (
-    message {
-        text: Loader
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.LADER (
-    message {
-        text: Lader
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.DATUM (
-    message {
-        text: Date
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.DATUM (
-    message {
-        text: Datum
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.UUR (
-    message {
-        text: Hour
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.UUR (
-    message {
-        text: Uur
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.AANHOUDEN (
-    message {
-        text: Hold
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.AANHOUDEN (
-    message {
-        text: Aanhouden
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.OPMERKING (
-    message {
-        text: Remark
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.OPMERKING (
-    message {
-        text: Opmerking
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.SAVED (
-    message {
-        text: Request saved.
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.SAVED (
-    message {
-        text: Aanvraag opgeslagen.
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.SAVE (
-    message {
-        text: Save
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.SAVE (
-    message {
-        text: Opslaan
-        language: nl
-    }
-)
-
-textMessage SCAFF.MR.FORM.CANCEL (
-    message {
-        text: Cancel
-        language: en
-    }
-)
-
-textMessage SCAFF.MR.FORM.CANCEL (
-    message {
-        text: Annuleren
-        language: nl
-    }
-)

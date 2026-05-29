@@ -9,59 +9,58 @@ page 11 (
     navigation {
         cursorFocus: doNotFocusCursor
     }
-    security {
-        pageAccessProtection: argumentsMustHaveChecksum
-        formAutoComplete: false
-    }
     javaScript {
         executeWhenPageLoads:
-            ```javascript
+            ```javascript-browser
             (function(){
               var s = document.querySelector('.t-Body-alert .t-Alert--success, #APEX_SUCCESS_MESSAGE .t-Alert--success');
               if (!s) { return; }
               var txt = (s.textContent || '').replace(/\s+/g,'');
               if (!txt) { return; }
-              setTimeout(function(){
-                try { apex.message.hidePageSuccess(); } catch(e) {}
-                apex.navigation.redirect( apex.util.makeApplicationUrl({ pageId: '10' }) );
-              }, 2500);
+              var actions = document.getElementById('scaff-mr-actions-box');
+              if (actions) {
+                actions.style.display = 'block';
+                try { actions.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e) {}
+              }
             })();
             ```
     }
+    security {
+        pageAccessProtection: argumentsMustHaveChecksum
+        formAutoComplete: false
+    }
 
-    region scaff-mr-header (
-        name: PO header
+    region scaff-mr-actions (
+        name: Na opslaan acties
         type: dynamicContent
         source {
             plsqlFunctionBody:
+                ```plsql
+                declare
+                  l_url_new   varchar2(4000);
+                  l_url_mine  varchar2(4000);
+                begin
+                  l_url_new  := apex_util.prepare_url(
+                                  'f?p='||apex_application.g_flow_id||':10:'||apex_application.g_instance);
+                  l_url_mine := apex_util.prepare_url(
+                                  'f?p='||apex_application.g_flow_id||':50:'||apex_application.g_instance);
+                  return
+                    '<div id="scaff-mr-actions-box" class="scaff-after-save" style="display:none;'
+                    ||'margin:1rem 0;padding:1rem;border:1px solid #E2001A;border-radius:8px;'
+                    ||'background:#FCE6E9;text-align:center;">'
+                    ||'<div style="margin-bottom:.75rem;font-weight:600;color:#B30015;">'
+                    ||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.WHATNEXT'))||'</div>'
+                    ||'<a href="'||l_url_new||'" class="t-Button t-Button--hot" '
+                    ||'style="margin:.25rem;background:#E2001A;color:#fff;">'
+                    ||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.AGAIN'))||'</a>'
+                    ||'<a href="'||l_url_mine||'" class="t-Button" style="margin:.25rem;">'
+                    ||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.MINE'))||'</a>'
+                    ||'</div>';
+                end;
                 ```
-                return '<style id="scaff-mobile-css">'||HD_MOBILE_UI_PKG.get_menu_css||'</style>'
-                    ||'<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.LIST.HEAD'))||'</div>'
-                    ||'<div class="scaff-section__sub"><strong>'||apex_escape.html(nvl(:P11_PO_DISPLAY,'?'))||'</strong>'||apex_escape.html(:P11_CUSTOMER)||'</div>';
-                ```
-            pageItemsToSubmit: [
-                P11_PO_DISPLAY
-                P11_CUSTOMER
-            ]
         }
         layout {
-            sequence: 5
-            slot: body
-        }
-        appearance {
-            template: @/blank-with-attributes-no-grid
-            templateOptions: #DEFAULT#
-        }
-    )
-
-    region scaff-mr-contact-head (
-        name: Contactgegevens banner
-        type: dynamicContent
-        source {
-            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.CONTACTGEGEVENS'))||'</div>';
-        }
-        layout {
-            sequence: 10
+            sequence: 25
             slot: body
         }
         appearance {
@@ -86,14 +85,14 @@ page 11 (
         }
     )
 
-    region scaff-mr-delivery-head (
-        name: Leveringdetails banner
+    region scaff-mr-contact-head (
+        name: Contactgegevens banner
         type: dynamicContent
         source {
-            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.LEVERINGDETAILS'))||'</div>';
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.CONTACTGEGEVENS'))||'</div>';
         }
         layout {
-            sequence: 20
+            sequence: 10
             slot: body
         }
         appearance {
@@ -118,30 +117,66 @@ page 11 (
         }
     )
 
-    pageItem P11_PO_ID (
-        type: hidden
+    region scaff-mr-delivery-head (
+        name: Leveringdetails banner
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return '<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.FORM.LEVERINGDETAILS'))||'</div>';
+        }
+        layout {
+            sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region scaff-mr-header (
+        name: PO header
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                return '<style id="scaff-mobile-css">'||HD_MOBILE_UI_PKG.get_menu_css||'</style>'
+                    ||'<div class="scaff-section__head">'||apex_escape.html(apex_lang.message('SCAFF.MR.LIST.HEAD'))||'</div>'
+                    ||'<div class="scaff-section__sub"><strong>'||apex_escape.html(nvl(:P11_PO_DISPLAY,'?'))||'</strong>'||apex_escape.html(:P11_CUSTOMER)||'</div>';
+                ```
+            pageItemsToSubmit: [
+                P11_PO_DISPLAY
+                P11_CUSTOMER
+            ]
+        }
         layout {
             sequence: 5
-            region: @scaff-mr-header
-            slot: regionBody
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
         }
     )
 
-    pageItem P11_PO_DISPLAY (
-        type: hidden
-        layout {
-            sequence: 6
-            region: @scaff-mr-header
-            slot: regionBody
+    pageItem P11_AANHOUDEN (
+        type: checkbox
+        label {
+            label: Aanhouden
+            alignment: right
         }
-    )
-
-    pageItem P11_CUSTOMER (
-        type: hidden
         layout {
-            sequence: 7
-            region: @scaff-mr-header
+            sequence: 50
+            region: @scaff-mr-delivery
             slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: N
         }
     )
 
@@ -166,24 +201,34 @@ page 11 (
         }
     )
 
-    pageItem P11_WERFLEIDER (
-        type: textField
+    pageItem P11_CUSTOMER (
+        type: hidden
+        layout {
+            sequence: 7
+            region: @scaff-mr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P11_DATUM (
+        type: datePicker
         label {
-            label: Werfleider
+            label: Leverdatum
             alignment: right
         }
         layout {
-            sequence: 20
-            region: @scaff-mr-contact
+            sequence: 30
+            region: @scaff-mr-delivery
             slot: regionBody
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/required
             templateOptions: #DEFAULT#
+            formatMask: ddMonYyyy
         }
         validation {
-            maxLength: 100
+            valueRequired: true
         }
     )
 
@@ -206,31 +251,6 @@ page 11 (
         validation {
             valueRequired: true
             maxLength: 40
-        }
-    )
-
-    pageItem P11_VERVOER (
-        type: selectList
-        label {
-            label: Vervoer
-            alignment: right
-        }
-        lov {
-            type: sharedComponent
-            lov: @scaff-ref-vervoer
-        }
-        layout {
-            sequence: 10
-            region: @scaff-mr-delivery
-            slot: regionBody
-            alignment: left
-        }
-        appearance {
-            template: @/required
-            templateOptions: #DEFAULT#
-        }
-        validation {
-            valueRequired: true
         }
     )
 
@@ -259,25 +279,43 @@ page 11 (
         }
     )
 
-    pageItem P11_DATUM (
-        type: datePicker
+    pageItem P11_OPMERKING (
+        type: textarea
         label {
-            label: Leverdatum
+            label: Opmerking
             alignment: right
         }
         layout {
-            sequence: 30
+            sequence: 60
             region: @scaff-mr-delivery
             slot: regionBody
             alignment: left
         }
         appearance {
-            template: @/required
+            template: @/optional
             templateOptions: #DEFAULT#
-            formatMask: ddMonYyyy
+            height: 4
         }
         validation {
-            valueRequired: true
+            maxLength: 4000
+        }
+    )
+
+    pageItem P11_PO_DISPLAY (
+        type: hidden
+        layout {
+            sequence: 6
+            region: @scaff-mr-header
+            slot: regionBody
+        }
+    )
+
+    pageItem P11_PO_ID (
+        type: hidden
+        layout {
+            sequence: 5
+            region: @scaff-mr-header
+            slot: regionBody
         }
     )
 
@@ -307,65 +345,49 @@ page 11 (
         }
     )
 
-    pageItem P11_AANHOUDEN (
-        type: checkbox
+    pageItem P11_VERVOER (
+        type: selectList
         label {
-            label: Aanhouden
+            label: Vervoer
             alignment: right
         }
+        lov {
+            type: sharedComponent
+            lov: @scaff-ref-vervoer
+        }
         layout {
-            sequence: 50
+            sequence: 10
             region: @scaff-mr-delivery
             slot: regionBody
             alignment: left
         }
         appearance {
-            template: @/optional
+            template: @/required
             templateOptions: #DEFAULT#
-        }
-        default {
-            type: static
-            staticValue: N
-        }
-    )
-
-    pageItem P11_OPMERKING (
-        type: textarea
-        label {
-            label: Opmerking
-            alignment: right
-        }
-        layout {
-            sequence: 60
-            region: @scaff-mr-delivery
-            slot: regionBody
-            alignment: left
-        }
-        appearance {
-            template: @/optional
-            templateOptions: #DEFAULT#
-            height: 4
         }
         validation {
-            maxLength: 4000
+            valueRequired: true
         }
     )
 
-    button save-request (
-        buttonName: SAVE
-        label: Opslaan
+    pageItem P11_WERFLEIDER (
+        type: textField
+        label {
+            label: Werfleider
+            alignment: right
+        }
         layout {
-            sequence: 70
-            region: @scaff-mr-delivery
+            sequence: 20
+            region: @scaff-mr-contact
             slot: regionBody
+            alignment: left
         }
         appearance {
-            buttonTemplate: @/text
-            hot: true
+            template: @/optional
             templateOptions: #DEFAULT#
         }
-        behavior {
-            warnOnUnsavedChanges: doNotCheck
+        validation {
+            maxLength: 100
         }
     )
 
@@ -386,6 +408,24 @@ page 11 (
             target: {
                 page: 10
             }
+            warnOnUnsavedChanges: doNotCheck
+        }
+    )
+
+    button save-request (
+        buttonName: SAVE
+        label: Opslaan
+        layout {
+            sequence: 70
+            region: @scaff-mr-delivery
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+            templateOptions: #DEFAULT#
+        }
+        behavior {
             warnOnUnsavedChanges: doNotCheck
         }
     )
@@ -411,6 +451,9 @@ page 11 (
         execution {
             sequence: 10
             point: beforeHeader
+        }
+        advanced {
+            executionMappingIdentifier: 9210037628920273
         }
         serverSideCondition {
             type: itemIsNotNull
@@ -459,6 +502,10 @@ page 11 (
         execution {
             sequence: 20
         }
+        advanced {
+            executionMappingIdentifier: 9210199130920274
+        }
     )
 
 )
+
