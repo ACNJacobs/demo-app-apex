@@ -22,6 +22,13 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.TITLE',    'nl', 'Inspectie');
   HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.SUBTITLE', 'nl', 'Materiaal of steiger inspecteren');
 
+  -- Language selector
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.TITLE', 'nl', 'Taal');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.APPLY', 'nl', 'Taal toepassen');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.NL',    'nl', 'Nederlands');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.EN',    'nl', 'Engels');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.FR',    'nl', 'Frans');
+
   commit;
 end;
 /

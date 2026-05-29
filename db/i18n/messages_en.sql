@@ -18,6 +18,13 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.TITLE',    'en', 'Inspection');
   HD_I18N_INSTALL.upsert('SCAFF.MENU.INSPECTIE.SUBTITLE', 'en', 'Inspect material or scaffold');
 
+  -- Language selector
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.TITLE', 'en', 'Language');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.APPLY', 'en', 'Apply language');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.NL',    'en', 'Nederlands');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.EN',    'en', 'English');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.FR',    'en', 'French');
+
   commit;
 end;
 /

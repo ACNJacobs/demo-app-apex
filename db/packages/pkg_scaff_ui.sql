@@ -37,6 +37,7 @@ as
   function get_mobile_menu return clob
   is
     l_out clob;
+    l_lang varchar2(10) := lower(nvl(v('P1_LANG'), nvl(apex_util.get_preference('FSP_LANGUAGE_PREFERENCE'), apex_util.get_session_lang)));
 
     procedure p( p_text in varchar2 ) is
     begin
@@ -44,6 +45,10 @@ as
     end;
   begin
     dbms_lob.createtemporary(l_out, true);
+
+    if l_lang not in ('nl','en','fr') then
+      l_lang := 'en';
+    end if;
 
     -- 1. Inject CSS in-line (eigen class names, geen conflict met UT)
     p('<style id="scaff-mobile-css">');
@@ -59,8 +64,8 @@ as
        order by display_sequence
     ) loop
       declare
-        l_title    varchar2(4000) := apex_lang.message(p_name => r.title_key);
-        l_subtitle varchar2(4000) := apex_lang.message(p_name => r.subtitle_key);
+        l_title    varchar2(4000) := apex_lang.message(p_name => r.title_key, p_lang => l_lang);
+        l_subtitle varchar2(4000) := apex_lang.message(p_name => r.subtitle_key, p_lang => l_lang);
         l_classes  varchar2(200);
         l_link     varchar2(4000) := r.card_link;
       begin

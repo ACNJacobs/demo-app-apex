@@ -1257,3 +1257,108 @@ textMessage SCAFF.TR.FORM.SAVED.UPDATE (
         language: fr
     }
 )
+
+textMessage SCAFF.LANG.TITLE (
+    message {
+        text: Language
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.TITLE (
+    message {
+        text: Taal
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.TITLE (
+    message {
+        text: Langue
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.APPLY (
+    message {
+        text: Apply language
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.APPLY (
+    message {
+        text: Taal toepassen
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.APPLY (
+    message {
+        text: Appliquer la langue
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.NL (
+    message {
+        text: Nederlands
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.NL (
+    message {
+        text: Nederlands
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.NL (
+    message {
+        text: Neerlandais
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.EN (
+    message {
+        text: English
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.EN (
+    message {
+        text: Engels
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.EN (
+    message {
+        text: Anglais
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.FR (
+    message {
+        text: French
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.FR (
+    message {
+        text: Frans
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.FR (
+    message {
+        text: Francais
+        language: fr
+    }
+)

@@ -14,20 +14,96 @@ page 1 (
         formAutoComplete: false
     }
 
-    region scaff-app (
-        name: SCAFF APP
-        type: dynamicContent
-        source {
-            plsqlFunctionBody: return PKG_SCAFF_UI.get_mobile_menu;
-        }
+    region scaff-lang-switch (
+        name: Taal
+        type: staticContent
         layout {
-            sequence: 10
+            sequence: 5
             slot: body
         }
         appearance {
             template: @/blank-with-attributes-no-grid
             templateOptions: #DEFAULT#
         }
+    )
+
+    region scaff-app (
+        name: SCAFF APP
+        type: dynamicContent
+        source {
+            plsqlFunctionBody: return PKG_SCAFF_UI.get_mobile_menu;
+            pageItemsToSubmit: P1_LANG
+        }
+        layout {
+            sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    pageItem P1_LANG (
+        type: selectList
+        label {
+            label: Taal
+            alignment: right
+        }
+        lov {
+            type: sharedComponent
+            lov: @scaff-language
+        }
+        layout {
+            sequence: 10
+            region: @scaff-lang-switch
+            slot: regionBody
+            alignment: left
+        }
+        appearance {
+            template: @/optional-floating
+            templateOptions: #DEFAULT#
+        }
+        default {
+            type: static
+            staticValue: nl
+        }
+    )
+
+    process init-current-language (
+        name: Init current language
+        type: executeCode
+        source {
+            plsqlCode: :P1_LANG := nvl(apex_util.get_session_lang, 'nl');
+        }
+        execution {
+            sequence: 5
+            point: beforeHeader
+        }
+    )
+
+    dynamicAction refresh-home-menu-on-language (
+        name: Refresh home menu on language change
+        execution {
+            sequence: 10
+        }
+        when {
+            selectionType: items
+            items: P1_LANG
+        }
+
+        action refresh-home-menu (
+            action: refresh
+            affectedElements {
+                selectionType: region
+                region: @scaff-app
+            }
+            execution {
+                sequence: 10
+                fireOnInit: false
+            }
+        )
+
     )
 
 )

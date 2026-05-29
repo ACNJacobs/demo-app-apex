@@ -66,6 +66,12 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.TR.FORM.SAVED', 'fr', 'Demande de transfert enregistree.');
   HD_I18N_INSTALL.upsert('SCAFF.TR.FORM.SAVED.UPDATE', 'fr', 'Demande de transfert mise a jour.');
 
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.TITLE', 'fr', 'Langue');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.APPLY', 'fr', 'Appliquer la langue');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.NL', 'fr', 'Neerlandais');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.EN', 'fr', 'Anglais');
+  HD_I18N_INSTALL.upsert('SCAFF.LANG.FR', 'fr', 'Francais');
+
   commit;
 end;
 /
