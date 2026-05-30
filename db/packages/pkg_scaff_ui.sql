@@ -58,7 +58,7 @@ as
       )
     )));
     
-    if l_lang not in ('nl','en','fr') then
+    if l_lang not in ('nl','en','fr','de','pl','ru','ar','tr') then
       l_lang := 'en';
     end if;
 
