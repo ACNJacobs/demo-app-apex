@@ -48,6 +48,10 @@ app SCAFF-APP (
     runtime {
         allowFeedback: true
     }
+    globalization {
+        primaryLanguage: en
+        languageDerivedFrom: appPreference
+    }
 
     substitution APP_NAME (
         value {
