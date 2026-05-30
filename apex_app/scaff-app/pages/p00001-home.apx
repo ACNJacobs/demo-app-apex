@@ -83,7 +83,7 @@ page 1 (
         action set-language-and-refresh (
             action: executeJsCode
             settings {
-                jsCode: apex.server.process('SET_LANGUAGE', {x01: apex.item('P1_LANG').getValue()}, {success: function(data) { var region = apex.region('scaff-app'); if (region) { region.refresh(); } }, dataType: 'text'});
+                jsCode: apex.server.process('SET_LANGUAGE', {x01: apex.item('P1_LANG').getValue()}, {dataType: 'text'}).done(function() { window.location.reload(); });
             }
             execution {
                 sequence: 10
@@ -97,7 +97,7 @@ page 1 (
         name: Init current language
         type: executeCode
         source {
-            plsqlCode: declare l_browser_lang varchar2(10); begin l_browser_lang := owa_util.get_cgi_env('HTTP_ACCEPT_LANGUAGE'); if l_browser_lang is not null then l_browser_lang := lower(substr(l_browser_lang, 1, 2)); if l_browser_lang not in ('nl', 'en', 'fr') then l_browser_lang := 'en'; end if; else l_browser_lang := 'en'; end if; :P1_LANG := nvl(apex_util.get_preference('FSP_LANGUAGE_PREFERENCE'), l_browser_lang); end;
+            plsqlCode: declare l_browser_lang varchar2(100); begin l_browser_lang := owa_util.get_cgi_env('HTTP_ACCEPT_LANGUAGE'); if l_browser_lang is not null then l_browser_lang := lower(substr(l_browser_lang, 1, 2)); if l_browser_lang not in ('nl', 'en', 'fr') then l_browser_lang := 'en'; end if; else l_browser_lang := 'en'; end if; :P1_LANG := nvl(apex_util.get_preference('FSP_LANGUAGE_PREFERENCE'), l_browser_lang); end;
         }
         execution {
             sequence: 5
