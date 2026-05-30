@@ -66,6 +66,36 @@ lov scaff-language (
         return: nl
     )
 
+    entry de (
+        sequence: 4
+        display: Deutsch
+        return: de
+    )
+
+    entry pl (
+        sequence: 5
+        display: Polski
+        return: pl
+    )
+
+    entry ru (
+        sequence: 6
+        display: Русский
+        return: ru
+    )
+
+    entry ar (
+        sequence: 7
+        display: العربية
+        return: ar
+    )
+
+    entry tr (
+        sequence: 8
+        display: Türkçe
+        return: tr
+    )
+
 )
 
 lov scaff-po-prefix (

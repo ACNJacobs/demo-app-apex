@@ -97,7 +97,7 @@ page 1 (
         name: Init current language
         type: executeCode
         source {
-            plsqlCode: declare l_browser_lang varchar2(100); begin l_browser_lang := owa_util.get_cgi_env('HTTP_ACCEPT_LANGUAGE'); if l_browser_lang is not null then l_browser_lang := lower(substr(l_browser_lang, 1, 2)); if l_browser_lang not in ('nl', 'en', 'fr') then l_browser_lang := 'en'; end if; else l_browser_lang := 'en'; end if; :P1_LANG := nvl(apex_util.get_preference('FSP_LANGUAGE_PREFERENCE'), l_browser_lang); end;
+            plsqlCode: declare l_browser_lang varchar2(100); begin l_browser_lang := owa_util.get_cgi_env('HTTP_ACCEPT_LANGUAGE'); if l_browser_lang is not null then l_browser_lang := lower(substr(l_browser_lang, 1, 2)); if l_browser_lang not in ('nl', 'en', 'fr', 'de', 'pl', 'ru', 'ar', 'tr') then l_browser_lang := 'en'; end if; else l_browser_lang := 'en'; end if; :P1_LANG := nvl(apex_util.get_preference('FSP_LANGUAGE_PREFERENCE'), l_browser_lang); end;
         }
         execution {
             sequence: 5
@@ -112,7 +112,7 @@ page 1 (
         name: SET_LANGUAGE
         type: executeCode
         source {
-            plsqlCode: declare l_lang varchar2(10) := apex_application.g_x01; begin if l_lang in ('nl', 'en', 'fr') then apex_util.set_preference('FSP_LANGUAGE_PREFERENCE', l_lang); apex_util.set_session_lang(l_lang); end if; apex_json.open_object; apex_json.write('status', 'success'); apex_json.close_object; end;
+            plsqlCode: declare l_lang varchar2(10) := apex_application.g_x01; begin if l_lang in ('nl', 'en', 'fr', 'de', 'pl', 'ru', 'ar', 'tr') then apex_util.set_preference('FSP_LANGUAGE_PREFERENCE', l_lang); apex_util.set_session_lang(l_lang); end if; apex_json.open_object; apex_json.write('status', 'success'); apex_json.close_object; end;
         }
         execution {
             sequence: 15
