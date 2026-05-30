@@ -13,36 +13,6 @@ page 31 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
-              // Load label translations
-              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
-                success: function(data) {
-                  // Update form labels
-                  Object.keys(data).forEach(function(key) {
-                    var label = data[key];
-                    // Update item labels
-                    if (key.startsWith('P_LBL_')) {
-                      var itemId = key.replace('P_LBL_', 'P31_');
-                      var item = apex.item(itemId);
-                      if (item) {
-                        // For items with labels, update the label
-                        var labelElem = $('label[for="' + item.id + '"]');
-                        if (labelElem.length) {
-                          labelElem.text(label);
-                        }
-                      }
-                    }
-                  });
-                  
-                  // Update static labels (prefix, search, etc.)
-                  $('[data-i18n]').each(function() {
-                    var key = $(this).data('i18n');
-                    if (data[key]) {
-                      $(this).text(data[key]);
-                    }
-                  });
-                }
-              });
-
               function addBizDays(d, n) {
                 var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
                 var left = n;
@@ -95,11 +65,91 @@ page 31 (
                 apex.navigation.redirect( apex.util.makeApplicationUrl({ pageId: targetPage }) );
               }, 2000);
             })();
+
+            // Translate form labels (messages registered server-side by region i18n-labels)
+            (function(){
+              if (window._scaffMsgData) { apex.lang.addMessages(window._scaffMsgData); }
+              var labelMap = {
+                'P31_CONTACT':        'SCAFF.MR.FORM.CONTACT',
+                'P31_WERFLEIDER':     'SCAFF.MR.FORM.WERFLEIDER',
+                'P31_GSM':            'SCAFF.MR.FORM.GSM',
+                'P31_DATUM':          'SCAFF.MR.FORM.DELIVERY_DATE',
+                'P31_TRANSPORT_DONE': 'SCAFF.MR.FORM.TRANSPORT',
+                'P31_VERVOER':        'SCAFF.MR.FORM.VERVOER',
+                'P31_LADER':          'SCAFF.MR.FORM.LADER',
+                'P31_UUR':            'SCAFF.MR.FORM.UUR',
+                'P31_AANHOUDEN':      'SCAFF.MR.FORM.AANHOUDEN',
+                'P31_OPMERKING':      'SCAFF.MR.FORM.OPMERKING'
+              };
+              Object.keys(labelMap).forEach(function(itemId) {
+                var msg = apex.lang.getMessage(labelMap[itemId]);
+                if (!msg || msg === labelMap[itemId]) { return; }
+                var lbl = document.querySelector('label[for="' + itemId + '"]');
+                if (lbl) {
+                  var tn = lbl.childNodes[0];
+                  if (tn && tn.nodeType === 3) { tn.textContent = msg; }
+                  else { lbl.prepend(document.createTextNode(msg)); }
+                }
+              });
+              var msgSave = apex.lang.getMessage('SCAFF.MR.FORM.BTN.SAVE');
+              var msgCancel = apex.lang.getMessage('SCAFF.MR.FORM.BTN.CANCEL');
+              if (msgSave && msgSave !== 'SCAFF.MR.FORM.BTN.SAVE') {
+                document.querySelectorAll('button.t-Button--hot').forEach(function(b){
+                  if (/Opslaan/i.test(b.textContent.trim())) { b.textContent = msgSave; }
+                });
+              }
+              if (msgCancel && msgCancel !== 'SCAFF.MR.FORM.BTN.CANCEL') {
+                document.querySelectorAll('button.t-Button:not(.t-Button--hot)').forEach(function(b){
+                  if (/Annuleren/i.test(b.textContent.trim())) { b.textContent = msgCancel; }
+                });
+              }
+            })();
             ```
     }
     security {
         formAutoComplete: false
     }
+
+    region i18n-labels (
+        name: i18n labels
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                declare
+                  function msg(p_key varchar2) return varchar2 is
+                    l_m varchar2(4000) := apex_lang.message(p_key);
+                  begin
+                    return '"'||replace(replace(p_key,'\','\\'),'"','\"')||'":"'
+                               ||replace(replace(l_m,'\','\\'),'"','\"')||'"';
+                  end;
+                begin
+                  return '<script>window._scaffMsgData={'||
+                    msg('SCAFF.MR.FORM.CONTACT')||','||
+                    msg('SCAFF.MR.FORM.WERFLEIDER')||','||
+                    msg('SCAFF.MR.FORM.GSM')||','||
+                    msg('SCAFF.MR.FORM.DELIVERY_DATE')||','||
+                    msg('SCAFF.MR.FORM.TRANSPORT')||','||
+                    msg('SCAFF.MR.FORM.VERVOER')||','||
+                    msg('SCAFF.MR.FORM.LADER')||','||
+                    msg('SCAFF.MR.FORM.UUR')||','||
+                    msg('SCAFF.MR.FORM.AANHOUDEN')||','||
+                    msg('SCAFF.MR.FORM.OPMERKING')||','||
+                    msg('SCAFF.MR.FORM.BTN.SAVE')||','||
+                    msg('SCAFF.MR.FORM.BTN.CANCEL')||
+                  '};</scr'||'ipt>';
+                end;
+                ```
+        }
+        layout {
+            sequence: 1
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
 
     region scaff-tr-contact (
         name: Contactgegevens
@@ -775,22 +825,6 @@ page 31 (
         }
         advanced {
             executionMappingIdentifier: 10006587612160798
-        }
-    )
-
-    process GET_LABEL_TRANSLATIONS (
-        point: ajaxCallback
-        source {
-            plsqlCode:
-                ```plsql
-                htp.p(PKG_SCAFF_UI.get_label_translations);
-                ```
-        }
-        execution {
-            sequence: 10
-        }
-        advanced {
-            executionMappingIdentifier: 10006587612160799
         }
     )
 

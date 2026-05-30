@@ -83,19 +83,12 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.TR.FORM.SAVED.UPDATE',    'ar', 'تم تحديث طلب النقل.');
 
   -- Form page labels
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.CONTACT',         'ar', 'LABEL_CONTACT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.WERFLEIDER',      'ar', 'LABEL_WERFLEIDER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.GSM',             'ar', 'LABEL_GSM');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'ar', 'LABEL_DELIVERY_DATE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'ar', 'LABEL_BAKKEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'ar', 'LABEL_TRANSPORT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LADER',           'ar', 'LABEL_LADER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.UUR',             'ar', 'LABEL_UUR');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.AANHOUDEN',       'ar', 'LABEL_AANHOUDEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'ar', 'LABEL_LAASTE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.OPMERKING',       'ar', 'LABEL_OPMERKING');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'ar', 'LABEL_OPSLAAN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'ar', 'LABEL_ANNULEREN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'ar', 'تاريخ التسليم');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'ar', '# صناديق');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'ar', 'النقل تم بالفعل');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'ar', 'آخر مرتجع؟');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'ar', 'حفظ');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'ar', 'إلغاء');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.PREFIX',          'ar', 'LABEL_PREFIX');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.SEARCH',          'ar', 'LABEL_SEARCH');
 

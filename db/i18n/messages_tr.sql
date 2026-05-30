@@ -83,19 +83,12 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.TR.FORM.SAVED.UPDATE',    'tr', 'Transfer talebi güncellendi.');
 
   -- Form page labels
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.CONTACT',         'tr', 'LABEL_CONTACT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.WERFLEIDER',      'tr', 'LABEL_WERFLEIDER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.GSM',             'tr', 'LABEL_GSM');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'tr', 'LABEL_DELIVERY_DATE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'tr', 'LABEL_BAKKEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'tr', 'LABEL_TRANSPORT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LADER',           'tr', 'LABEL_LADER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.UUR',             'tr', 'LABEL_UUR');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.AANHOUDEN',       'tr', 'LABEL_AANHOUDEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'tr', 'LABEL_LAASTE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.OPMERKING',       'tr', 'LABEL_OPMERKING');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'tr', 'LABEL_OPSLAAN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'tr', 'LABEL_ANNULEREN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'tr', 'Teslim tarihi');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'tr', '# Sepet');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'tr', 'Nakliye yapıldı');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'tr', 'Son iade?');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'tr', 'Kaydet');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'tr', 'İptal');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.PREFIX',          'tr', 'LABEL_PREFIX');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.SEARCH',          'tr', 'LABEL_SEARCH');
 

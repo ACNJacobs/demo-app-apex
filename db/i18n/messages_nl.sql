@@ -30,19 +30,19 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.LANG.FR',    'nl', 'Frans');
 
   -- Form page labels
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.CONTACT',         'nl', 'LABEL_CONTACT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.WERFLEIDER',      'nl', 'LABEL_WERFLEIDER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.GSM',             'nl', 'LABEL_GSM');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'nl', 'LABEL_DELIVERY_DATE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'nl', 'LABEL_BAKKEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'nl', 'LABEL_TRANSPORT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LADER',           'nl', 'LABEL_LADER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.UUR',             'nl', 'LABEL_UUR');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.AANHOUDEN',       'nl', 'LABEL_AANHOUDEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'nl', 'LABEL_LAASTE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.OPMERKING',       'nl', 'LABEL_OPMERKING');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'nl', 'LABEL_OPSLAAN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'nl', 'LABEL_ANNULEREN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.CONTACT',         'nl', 'Contactpersoon');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.WERFLEIDER',      'nl', 'Werfleider');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.GSM',             'nl', 'GSM');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'nl', 'Leverdatum');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'nl', '# Bakken');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'nl', 'Transport reeds uitgevoerd');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LADER',           'nl', 'Lader');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.UUR',             'nl', 'Uur');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.AANHOUDEN',       'nl', 'Aanhouden');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'nl', 'Laatste retour?');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.OPMERKING',       'nl', 'Opmerking');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'nl', 'Opslaan');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'nl', 'Annuleren');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.PREFIX',          'nl', 'LABEL_PREFIX');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.SEARCH',          'nl', 'LABEL_SEARCH');
 

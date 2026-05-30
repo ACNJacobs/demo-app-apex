@@ -45,12 +45,11 @@ app SCAFF-APP (
     sessionStateProtection {
         checksumSalt: B4AF2F75F57898AC125DEBFDCDB669AB4B18884E9B800DB8492F105827AF68BC
     }
+    globalization {
+        languageDerivedFrom: appPreference
+    }
     runtime {
         allowFeedback: true
-    }
-    globalization {
-        primaryLanguage: en
-        languageDerivedFrom: appPreference
     }
 
     substitution APP_NAME (

@@ -13,36 +13,6 @@ page 21 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
-              // Load label translations
-              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
-                success: function(data) {
-                  // Update form labels
-                  Object.keys(data).forEach(function(key) {
-                    var label = data[key];
-                    // Update item labels
-                    if (key.startsWith('P_LBL_')) {
-                      var itemId = key.replace('P_LBL_', 'P21_');
-                      var item = apex.item(itemId);
-                      if (item) {
-                        // For items with labels, update the label
-                        var labelElem = $('label[for="' + item.id + '"]');
-                        if (labelElem.length) {
-                          labelElem.text(label);
-                        }
-                      }
-                    }
-                  });
-                  
-                  // Update static labels (prefix, search, etc.)
-                  $('[data-i18n]').each(function() {
-                    var key = $(this).data('i18n');
-                    if (data[key]) {
-                      $(this).text(data[key]);
-                    }
-                  });
-                }
-              });
-
               // Datepicker: minimum = today + 5 business days, no weekends.
               function addBizDays(d, n) {
                 var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -100,12 +70,96 @@ page 21 (
                 apex.navigation.redirect( apex.util.makeApplicationUrl({ pageId: targetPage }) );
               }, 2000);
             })();
+
+            // Translate form labels (messages registered server-side by region i18n-labels)
+            (function(){
+              if (window._scaffMsgData) { apex.lang.addMessages(window._scaffMsgData); }
+              var labelMap = {
+                'P21_CONTACT':        'SCAFF.MR.FORM.CONTACT',
+                'P21_WERFLEIDER':     'SCAFF.MR.FORM.WERFLEIDER',
+                'P21_GSM':            'SCAFF.MR.FORM.GSM',
+                'P21_DATUM':          'SCAFF.MR.FORM.DELIVERY_DATE',
+                'P21_BAKKEN':         'SCAFF.MR.FORM.BAKKEN',
+                'P21_TRANSPORT_DONE': 'SCAFF.MR.FORM.TRANSPORT',
+                'P21_VERVOER':        'SCAFF.MR.FORM.VERVOER',
+                'P21_LADER':          'SCAFF.MR.FORM.LADER',
+                'P21_UUR':            'SCAFF.MR.FORM.UUR',
+                'P21_AANHOUDEN':      'SCAFF.MR.FORM.AANHOUDEN',
+                'P21_LAATSTE':        'SCAFF.MR.FORM.LAASTE',
+                'P21_OPMERKING':      'SCAFF.MR.FORM.OPMERKING'
+              };
+              Object.keys(labelMap).forEach(function(itemId) {
+                var msg = apex.lang.getMessage(labelMap[itemId]);
+                if (!msg || msg === labelMap[itemId]) { return; }
+                var lbl = document.querySelector('label[for="' + itemId + '"]');
+                if (lbl) {
+                  var tn = lbl.childNodes[0];
+                  if (tn && tn.nodeType === 3) { tn.textContent = msg; }
+                  else { lbl.prepend(document.createTextNode(msg)); }
+                }
+              });
+              var msgSave = apex.lang.getMessage('SCAFF.MR.FORM.BTN.SAVE');
+              var msgCancel = apex.lang.getMessage('SCAFF.MR.FORM.BTN.CANCEL');
+              if (msgSave && msgSave !== 'SCAFF.MR.FORM.BTN.SAVE') {
+                document.querySelectorAll('button.t-Button--hot').forEach(function(b){
+                  if (/Opslaan/i.test(b.textContent.trim())) { b.textContent = msgSave; }
+                });
+              }
+              if (msgCancel && msgCancel !== 'SCAFF.MR.FORM.BTN.CANCEL') {
+                document.querySelectorAll('button.t-Button:not(.t-Button--hot)').forEach(function(b){
+                  if (/Annuleren/i.test(b.textContent.trim())) { b.textContent = msgCancel; }
+                });
+              }
+            })();
             ```
     }
     security {
         pageAccessProtection: argumentsMustHaveChecksum
         formAutoComplete: false
     }
+
+    region i18n-labels (
+        name: i18n labels
+        type: dynamicContent
+        source {
+            plsqlFunctionBody:
+                ```plsql
+                declare
+                  function msg(p_key varchar2) return varchar2 is
+                    l_m varchar2(4000) := apex_lang.message(p_key);
+                  begin
+                    return '"'||replace(replace(p_key,'\','\\'),'"','\"')||'":"'
+                               ||replace(replace(l_m,'\','\\'),'"','\"')||'"';
+                  end;
+                begin
+                  return '<script>window._scaffMsgData={'||
+                    msg('SCAFF.MR.FORM.CONTACT')||','||
+                    msg('SCAFF.MR.FORM.WERFLEIDER')||','||
+                    msg('SCAFF.MR.FORM.GSM')||','||
+                    msg('SCAFF.MR.FORM.DELIVERY_DATE')||','||
+                    msg('SCAFF.MR.FORM.BAKKEN')||','||
+                    msg('SCAFF.MR.FORM.TRANSPORT')||','||
+                    msg('SCAFF.MR.FORM.VERVOER')||','||
+                    msg('SCAFF.MR.FORM.LADER')||','||
+                    msg('SCAFF.MR.FORM.UUR')||','||
+                    msg('SCAFF.MR.FORM.AANHOUDEN')||','||
+                    msg('SCAFF.MR.FORM.LAASTE')||','||
+                    msg('SCAFF.MR.FORM.OPMERKING')||','||
+                    msg('SCAFF.MR.FORM.BTN.SAVE')||','||
+                    msg('SCAFF.MR.FORM.BTN.CANCEL')||
+                  '};</scr'||'ipt>';
+                end;
+                ```
+        }
+        layout {
+            sequence: 1
+            slot: body
+        }
+        appearance {
+            template: @/blank-with-attributes-no-grid
+            templateOptions: #DEFAULT#
+        }
+    )
 
     region scaff-rr-contact (
         name: Contactgegevens
@@ -198,7 +252,7 @@ page 21 (
     pageItem P21_AANHOUDEN (
         type: checkbox
         label {
-            label: &SCAFF.MR.FORM.AANHOUDEN.
+            label: Aanhouden
             alignment: right
         }
         layout {
@@ -220,7 +274,7 @@ page 21 (
     pageItem P21_BAKKEN (
         type: numberField
         label {
-            label: &SCAFF.MR.FORM.BAKKEN.
+            label: # Bakken
             alignment: right
         }
         layout {
@@ -242,7 +296,7 @@ page 21 (
     pageItem P21_CONTACT (
         type: textField
         label {
-            label: &SCAFF.MR.FORM.CONTACT.
+            label: Contact
             alignment: right
         }
         layout {
@@ -272,7 +326,7 @@ page 21 (
     pageItem P21_DATUM (
         type: datePicker
         label {
-            label: &SCAFF.MR.FORM.DELIVERY_DATE.
+            label: Datum
             alignment: right
         }
         layout {
@@ -294,7 +348,7 @@ page 21 (
     pageItem P21_GSM (
         type: textField
         label {
-            label: &SCAFF.MR.FORM.GSM.
+            label: GSM
             alignment: right
         }
         layout {
@@ -316,7 +370,7 @@ page 21 (
     pageItem P21_LAATSTE (
         type: switch
         label {
-            label: &SCAFF.MR.FORM.LAASTE.
+            label: Laatste retour?
             alignment: right
         }
         layout {
@@ -338,7 +392,7 @@ page 21 (
     pageItem P21_LADER (
         type: selectList
         label {
-            label: &SCAFF.MR.FORM.LADER.
+            label: Lader
             alignment: right
         }
         lov {
@@ -360,7 +414,7 @@ page 21 (
     pageItem P21_OPMERKING (
         type: textarea
         label {
-            label: &SCAFF.MR.FORM.OPMERKING.
+            label: Opmerking
             alignment: right
         }
         layout {
@@ -409,7 +463,7 @@ page 21 (
     pageItem P21_TRANSPORT_DONE (
         type: switch
         label {
-            label: &SCAFF.MR.FORM.TRANSPORT.
+            label: Transport reeds uitgevoerd
             alignment: right
         }
         layout {
@@ -431,7 +485,7 @@ page 21 (
     pageItem P21_UUR (
         type: selectList
         label {
-            label: &SCAFF.MR.FORM.UUR.
+            label: Uur
             alignment: right
         }
         lov {
@@ -457,7 +511,7 @@ page 21 (
     pageItem P21_VERVOER (
         type: selectList
         label {
-            label: &SCAFF.MR.FORM.TRANSPORT.
+            label: Vervoer
             alignment: right
         }
         lov {
@@ -479,7 +533,7 @@ page 21 (
     pageItem P21_WERFLEIDER (
         type: textField
         label {
-            label: &SCAFF.MR.FORM.WERFLEIDER.
+            label: Werfleider
             alignment: right
         }
         layout {
@@ -499,7 +553,7 @@ page 21 (
 
     button cancel-return (
         buttonName: CANCEL
-        label: &SCAFF.MR.FORM.BTN.CANCEL.
+        label: Annuleren
         layout {
             sequence: 80
             region: @scaff-rr-delivery
@@ -520,7 +574,7 @@ page 21 (
 
     button save-return (
         buttonName: SAVE
-        label: &SCAFF.MR.FORM.BTN.SAVE.
+        label: Opslaan
         layout {
             sequence: 70
             region: @scaff-rr-delivery
@@ -742,38 +796,6 @@ page 21 (
         }
         advanced {
             executionMappingIdentifier: 9826367226413179
-        }
-    )
-
-    process GET_LABEL_TRANSLATIONS (
-        point: ajaxCallback
-        source {
-            plsqlCode:
-                ```plsql
-                htp.p(PKG_SCAFF_UI.get_label_translations);
-                ```
-        }
-        execution {
-            sequence: 10
-        }
-        advanced {
-            executionMappingIdentifier: 9826367226413180
-        }
-    )
-
-    process SAVE_RETURN_REQUEST (
-        point: ajaxCallback
-        source {
-            plsqlCode:
-                ```plsql
-                htp.p(PKG_SCAFF_UI.get_label_translations);
-                ```
-        }
-        execution {
-            sequence: 20
-        }
-        advanced {
-            executionMappingIdentifier: 9826367226413180
         }
     )
 

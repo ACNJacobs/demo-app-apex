@@ -83,19 +83,12 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.TR.FORM.SAVED.UPDATE',    'ru', 'Заявка на перемещение обновлена.');
 
   -- Form page labels
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.CONTACT',         'ru', 'LABEL_CONTACT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.WERFLEIDER',      'ru', 'LABEL_WERFLEIDER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.GSM',             'ru', 'LABEL_GSM');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'ru', 'LABEL_DELIVERY_DATE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'ru', 'LABEL_BAKKEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'ru', 'LABEL_TRANSPORT');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LADER',           'ru', 'LABEL_LADER');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.UUR',             'ru', 'LABEL_UUR');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.AANHOUDEN',       'ru', 'LABEL_AANHOUDEN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'ru', 'LABEL_LAASTE');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.OPMERKING',       'ru', 'LABEL_OPMERKING');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'ru', 'LABEL_OPSLAAN');
-  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'ru', 'LABEL_ANNULEREN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'ru', 'Дата доставки');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'ru', '# Контейнеров');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'ru', 'Транспорт уже выполнен');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'ru', 'Последний возврат?');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'ru', 'Сохранить');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'ru', 'Отмена');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.PREFIX',          'ru', 'LABEL_PREFIX');
   HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.SEARCH',          'ru', 'LABEL_SEARCH');
 

@@ -423,6 +423,43 @@ as
     apex_json.write('P_LBL_VERWIJDEREN',    apex_lang.message('SCAFF.MR.LIST.DELETE'));
     apex_json.write('P_LBL_BEVESTIGEN',     apex_lang.message('SCAFF.MR.LIST.DELETE.CONFIRM'));
 
+    -- Item IDs for form pages
+    apex_json.write('P11_CONTACT',          'P11_CONTACT');
+    apex_json.write('P11_WERFLEIDER',       'P11_WERFLEIDER');
+    apex_json.write('P11_GSM',              'P11_GSM');
+    apex_json.write('P11_DELIVERY_DATE',    'P11_DELIVERY_DATE');
+    apex_json.write('P11_BAKKEN',           'P11_BAKKEN');
+    apex_json.write('P11_TRANSPORT',        'P11_TRANSPORT_DONE');
+    apex_json.write('P11_LADER',            'P11_LADER');
+    apex_json.write('P11_UUR',              'P11_UUR');
+    apex_json.write('P11_AANHOUDEN',        'P11_AANHOUDEN');
+    apex_json.write('P11_LAASTE',           'P11_LAATSTE');
+    apex_json.write('P11_OPMERKING',        'P11_OPMERKING');
+    
+    apex_json.write('P21_CONTACT',          'P21_CONTACT');
+    apex_json.write('P21_WERFLEIDER',       'P21_WERFLEIDER');
+    apex_json.write('P21_GSM',              'P21_GSM');
+    apex_json.write('P21_DELIVERY_DATE',    'P21_DATUM');
+    apex_json.write('P21_BAKKEN',           'P21_BAKKEN');
+    apex_json.write('P21_TRANSPORT',        'P21_TRANSPORT_DONE');
+    apex_json.write('P21_LADER',            'P21_LADER');
+    apex_json.write('P21_UUR',              'P21_UUR');
+    apex_json.write('P21_AANHOUDEN',        'P21_AANHOUDEN');
+    apex_json.write('P21_LAASTE',           'P21_LAATSTE');
+    apex_json.write('P21_OPMERKING',        'P21_OPMERKING');
+    
+    apex_json.write('P31_CONTACT',          'P31_CONTACT');
+    apex_json.write('P31_WERFLEIDER',       'P31_WERFLEIDER');
+    apex_json.write('P31_GSM',              'P31_GSM');
+    apex_json.write('P31_DELIVERY_DATE',    'P31_DATUM');
+    apex_json.write('P31_BAKKEN',           'P31_BAKKEN');
+    apex_json.write('P31_TRANSPORT',        'P31_TRANSPORT_DONE');
+    apex_json.write('P31_LADER',            'P31_LADER');
+    apex_json.write('P31_UUR',              'P31_UUR');
+    apex_json.write('P31_AANHOUDEN',        'P31_AANHOUDEN');
+    apex_json.write('P31_LAASTE',           'P31_LAATSTE');
+    apex_json.write('P31_OPMERKING',        'P31_OPMERKING');
+
     apex_json.close_object;
     l_json := apex_json.get_clob_output;
     apex_json.free_output;

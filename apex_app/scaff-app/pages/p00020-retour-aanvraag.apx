@@ -59,7 +59,6 @@ page 20 (
         label {
             label: Prefix
             alignment: right
-            attributes: data-i18n="P_LBL_PREFIX"
         }
         lov {
             type: sharedComponent
@@ -85,7 +84,8 @@ page 20 (
         type: textField
         label {
             label: Search
-            alignment: right            attributes: data-i18n="P_LBL_SEARCH"        }
+            alignment: right
+        }
         layout {
             sequence: 20
             region: @scaff-rr-filters
@@ -96,22 +96,6 @@ page 20 (
             template: @/optional-floating
             templateOptions: #DEFAULT#
             valuePlaceholder: Zoek PO, klant of stad...
-        }
-    )
-
-    process GET_LABEL_TRANSLATIONS (
-        point: ajaxCallback
-        source {
-            plsqlCode:
-                ```plsql
-                htp.p(PKG_SCAFF_UI.get_label_translations);
-                ```
-        }
-        execution {
-            sequence: 5
-        }
-        advanced {
-            executionMappingIdentifier: 9813587104223726
         }
     )
 
@@ -164,24 +148,5 @@ page 20 (
 
     )
 
-    javaScript {
-        executeWhenPageLoads:
-            ```javascript-browser
-            (function(){
-              // Load label translations
-              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
-                success: function(data) {
-                  // Update static labels
-                  $('[data-i18n]').each(function() {
-                    var key = $(this).data('i18n');
-                    if (data[key]) {
-                      $(this).text(data[key]);
-                    }
-                  });
-                }
-              });
-            })();
-            ```
-    }
 )
 

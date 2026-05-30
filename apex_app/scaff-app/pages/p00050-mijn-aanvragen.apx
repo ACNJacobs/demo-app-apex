@@ -13,19 +13,6 @@ page 50 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
-              // Load label translations
-              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
-                success: function(data) {
-                  // Update static labels
-                  $('[data-i18n]').each(function() {
-                    var key = $(this).data('i18n');
-                    if (data[key]) {
-                      $(this).text(data[key]);
-                    }
-                  });
-                }
-              });
-
               function refresh(){
                 try { apex.region('mijn-aanvragen').refresh(); }
                 catch(e) { window.location.reload(); }
@@ -119,22 +106,6 @@ page 50 (
         }
         advanced {
             executionMappingIdentifier: 9813587104223724
-        }
-    )
-
-    process GET_LABEL_TRANSLATIONS (
-        point: ajaxCallback
-        source {
-            plsqlCode:
-                ```plsql
-                htp.p(PKG_SCAFF_UI.get_label_translations);
-                ```
-        }
-        execution {
-            sequence: 5
-        }
-        advanced {
-            executionMappingIdentifier: 9813587104223725
         }
     )
 
