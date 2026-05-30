@@ -83,7 +83,7 @@ page 1 (
         action set-language-and-refresh (
             action: executeJsCode
             settings {
-                jsCode: apex.server.process('SET_LANGUAGE', {x01: apex.item('P1_LANG').getValue()}, {dataType: 'text'}).done(function() { window.location.reload(); });
+                jsCode: apex.server.process('SET_LANGUAGE', {x01: apex.item('P1_LANG').getValue()}, {dataType: 'text'}).done(function() { if (apex.page && apex.page.cancelWarnOnUnsavedChanges) { apex.page.cancelWarnOnUnsavedChanges(); } window.location.reload(); });
             }
             execution {
                 sequence: 10
