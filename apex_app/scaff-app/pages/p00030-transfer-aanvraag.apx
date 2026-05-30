@@ -13,6 +13,19 @@ page 30 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
+              // Load label translations
+              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
+                success: function(data) {
+                  // Update static labels
+                  $('[data-i18n]').each(function() {
+                    var key = $(this).data('i18n');
+                    if (data[key]) {
+                      $(this).text(data[key]);
+                    }
+                  });
+                }
+              });
+
               function bind(){
                 document.querySelectorAll('.scaff-list__item--pick').forEach(function(a){
                   if (a.dataset.scaffBound === '1') return;
@@ -231,6 +244,7 @@ page 30 (
         label {
             label: Prefix
             alignment: right
+            attributes: data-i18n="P_LBL_PREFIX"
         }
         lov {
             type: sharedComponent
@@ -256,8 +270,7 @@ page 30 (
         type: textField
         label {
             label: Search
-            alignment: right
-        }
+            alignment: right            attributes: data-i18n="P_LBL_SEARCH"        }
         layout {
             sequence: 20
             region: @scaff-tr-from-filters
@@ -285,6 +298,7 @@ page 30 (
         label {
             label: Prefix
             alignment: right
+            attributes: data-i18n="P_LBL_PREFIX"
         }
         lov {
             type: sharedComponent
@@ -310,8 +324,7 @@ page 30 (
         type: textField
         label {
             label: Search
-            alignment: right
-        }
+            alignment: right            attributes: data-i18n="P_LBL_SEARCH"        }
         layout {
             sequence: 20
             region: @scaff-tr-to-filters
@@ -328,6 +341,7 @@ page 30 (
     button next-transfer (
         buttonName: B_NEXT
         label: Volgende
+        labelAttributes: data-i18n="P_LBL_OPSLAAN"
         layout {
             sequence: 10
             region: @scaff-tr-next
@@ -439,6 +453,22 @@ page 30 (
             }
         )
 
+    )
+
+    process GET_LABEL_TRANSLATIONS (
+        point: ajaxCallback
+        source {
+            plsqlCode:
+                ```plsql
+                htp.p(PKG_SCAFF_UI.get_label_translations);
+                ```
+        }
+        execution {
+            sequence: 5
+        }
+        advanced {
+            executionMappingIdentifier: 9813587104223727
+        }
     )
 
 )

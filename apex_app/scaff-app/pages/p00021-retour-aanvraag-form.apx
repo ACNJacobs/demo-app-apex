@@ -198,7 +198,7 @@ page 21 (
     pageItem P21_AANHOUDEN (
         type: checkbox
         label {
-            label: Aanhouden
+            label: &SCAFF.MR.FORM.AANHOUDEN.
             alignment: right
         }
         layout {
@@ -220,7 +220,7 @@ page 21 (
     pageItem P21_BAKKEN (
         type: numberField
         label {
-            label: # Bakken
+            label: &SCAFF.MR.FORM.BAKKEN.
             alignment: right
         }
         layout {
@@ -242,7 +242,7 @@ page 21 (
     pageItem P21_CONTACT (
         type: textField
         label {
-            label: Contact
+            label: &SCAFF.MR.FORM.CONTACT.
             alignment: right
         }
         layout {
@@ -272,7 +272,7 @@ page 21 (
     pageItem P21_DATUM (
         type: datePicker
         label {
-            label: Datum
+            label: &SCAFF.MR.FORM.DELIVERY_DATE.
             alignment: right
         }
         layout {
@@ -294,7 +294,7 @@ page 21 (
     pageItem P21_GSM (
         type: textField
         label {
-            label: GSM
+            label: &SCAFF.MR.FORM.GSM.
             alignment: right
         }
         layout {
@@ -316,7 +316,7 @@ page 21 (
     pageItem P21_LAATSTE (
         type: switch
         label {
-            label: Laatste retour?
+            label: &SCAFF.MR.FORM.LAASTE.
             alignment: right
         }
         layout {
@@ -338,7 +338,7 @@ page 21 (
     pageItem P21_LADER (
         type: selectList
         label {
-            label: Lader
+            label: &SCAFF.MR.FORM.LADER.
             alignment: right
         }
         lov {
@@ -360,7 +360,7 @@ page 21 (
     pageItem P21_OPMERKING (
         type: textarea
         label {
-            label: Opmerking
+            label: &SCAFF.MR.FORM.OPMERKING.
             alignment: right
         }
         layout {
@@ -409,7 +409,7 @@ page 21 (
     pageItem P21_TRANSPORT_DONE (
         type: switch
         label {
-            label: Transport reeds uitgevoerd
+            label: &SCAFF.MR.FORM.TRANSPORT.
             alignment: right
         }
         layout {
@@ -431,7 +431,7 @@ page 21 (
     pageItem P21_UUR (
         type: selectList
         label {
-            label: Uur
+            label: &SCAFF.MR.FORM.UUR.
             alignment: right
         }
         lov {
@@ -457,7 +457,7 @@ page 21 (
     pageItem P21_VERVOER (
         type: selectList
         label {
-            label: Vervoer
+            label: &SCAFF.MR.FORM.TRANSPORT.
             alignment: right
         }
         lov {
@@ -479,7 +479,7 @@ page 21 (
     pageItem P21_WERFLEIDER (
         type: textField
         label {
-            label: Werfleider
+            label: &SCAFF.MR.FORM.WERFLEIDER.
             alignment: right
         }
         layout {
@@ -499,7 +499,7 @@ page 21 (
 
     button cancel-return (
         buttonName: CANCEL
-        label: Annuleren
+        label: &SCAFF.MR.FORM.BTN.CANCEL.
         layout {
             sequence: 80
             region: @scaff-rr-delivery
@@ -520,7 +520,7 @@ page 21 (
 
     button save-return (
         buttonName: SAVE
-        label: Opslaan
+        label: &SCAFF.MR.FORM.BTN.SAVE.
         layout {
             sequence: 70
             region: @scaff-rr-delivery

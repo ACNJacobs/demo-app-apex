@@ -14,6 +14,25 @@ page 10 (
         formAutoComplete: false
     }
 
+    javaScript {
+        executeWhenPageLoads:
+            ```javascript-browser
+            (function(){
+              // Load label translations
+              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
+                success: function(data) {
+                  // Update static labels
+                  $('[data-i18n]').each(function() {
+                    var key = $(this).data('i18n');
+                    if (data[key]) {
+                      $(this).text(data[key]);
+                    }
+                  });
+                }
+              });
+            })();
+            ```
+
     region scaff-mr-filters (
         name: Filters
         type: staticContent
@@ -52,6 +71,7 @@ page 10 (
         label {
             label: Prefix
             alignment: right
+            attributes: data-i18n="P_LBL_PREFIX"
         }
         lov {
             type: sharedComponent
@@ -77,8 +97,7 @@ page 10 (
         type: textField
         label {
             label: Search
-            alignment: right
-        }
+            alignment: right            attributes: data-i18n="P_LBL_SEARCH"        }
         layout {
             sequence: 20
             region: @scaff-mr-filters
@@ -89,6 +108,22 @@ page 10 (
             template: @/optional-floating
             templateOptions: #DEFAULT#
             valuePlaceholder: Zoek PO, klant of stad...
+        }
+    )
+
+    process GET_LABEL_TRANSLATIONS (
+        point: ajaxCallback
+        source {
+            plsqlCode:
+                ```plsql
+                htp.p(PKG_SCAFF_UI.get_label_translations);
+                ```
+        }
+        execution {
+            sequence: 5
+        }
+        advanced {
+            executionMappingIdentifier: 9813587104223728
         }
     )
 

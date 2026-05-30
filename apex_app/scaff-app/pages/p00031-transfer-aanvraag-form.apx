@@ -13,6 +13,36 @@ page 31 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
+              // Load label translations
+              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
+                success: function(data) {
+                  // Update form labels
+                  Object.keys(data).forEach(function(key) {
+                    var label = data[key];
+                    // Update item labels
+                    if (key.startsWith('P_LBL_')) {
+                      var itemId = key.replace('P_LBL_', 'P31_');
+                      var item = apex.item(itemId);
+                      if (item) {
+                        // For items with labels, update the label
+                        var labelElem = $('label[for="' + item.id + '"]');
+                        if (labelElem.length) {
+                          labelElem.text(label);
+                        }
+                      }
+                    }
+                  });
+                  
+                  // Update static labels (prefix, search, etc.)
+                  $('[data-i18n]').each(function() {
+                    var key = $(this).data('i18n');
+                    if (data[key]) {
+                      $(this).text(data[key]);
+                    }
+                  });
+                }
+              });
+
               function addBizDays(d, n) {
                 var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
                 var left = n;
@@ -745,6 +775,22 @@ page 31 (
         }
         advanced {
             executionMappingIdentifier: 10006587612160798
+        }
+    )
+
+    process GET_LABEL_TRANSLATIONS (
+        point: ajaxCallback
+        source {
+            plsqlCode:
+                ```plsql
+                htp.p(PKG_SCAFF_UI.get_label_translations);
+                ```
+        }
+        execution {
+            sequence: 10
+        }
+        advanced {
+            executionMappingIdentifier: 10006587612160799
         }
     )
 

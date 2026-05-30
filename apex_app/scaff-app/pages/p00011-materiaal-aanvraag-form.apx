@@ -13,6 +13,36 @@ page 11 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
+              // Load label translations
+              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
+                success: function(data) {
+                  // Update form labels
+                  Object.keys(data).forEach(function(key) {
+                    var label = data[key];
+                    // Update item labels
+                    if (key.startsWith('P_LBL_')) {
+                      var itemId = key.replace('P_LBL_', 'P11_');
+                      var item = apex.item(itemId);
+                      if (item) {
+                        // For items with labels, update the label
+                        var labelElem = $('label[for="' + item.id + '"]');
+                        if (labelElem.length) {
+                          labelElem.text(label);
+                        }
+                      }
+                    }
+                  });
+                  
+                  // Update static labels (prefix, search, etc.)
+                  $('[data-i18n]').each(function() {
+                    var key = $(this).data('i18n');
+                    if (data[key]) {
+                      $(this).text(data[key]);
+                    }
+                  });
+                }
+              });
+
               // Datepicker: minimum = today + 5 business days, no weekends.
               function addBizDays(d, n) {
                 var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -147,7 +177,7 @@ page 11 (
     pageItem P11_AANHOUDEN (
         type: checkbox
         label {
-            label: Aanhouden
+            label: &SCAFF.MR.FORM.AANHOUDEN.
             alignment: right
         }
         layout {
@@ -601,6 +631,22 @@ page 11 (
         }
         advanced {
             executionMappingIdentifier: 9210199130920274
+        }
+    )
+
+    process GET_LABEL_TRANSLATIONS (
+        point: ajaxCallback
+        source {
+            plsqlCode:
+                ```plsql
+                htp.p(PKG_SCAFF_UI.get_label_translations);
+                ```
+        }
+        execution {
+            sequence: 10
+        }
+        advanced {
+            executionMappingIdentifier: 9210199130920275
         }
     )
 
