@@ -13,6 +13,36 @@ page 21 (
         executeWhenPageLoads:
             ```javascript-browser
             (function(){
+              // Load label translations
+              apex.server.process('GET_LABEL_TRANSLATIONS', {}, {
+                success: function(data) {
+                  // Update form labels
+                  Object.keys(data).forEach(function(key) {
+                    var label = data[key];
+                    // Update item labels
+                    if (key.startsWith('P_LBL_')) {
+                      var itemId = key.replace('P_LBL_', 'P21_');
+                      var item = apex.item(itemId);
+                      if (item) {
+                        // For items with labels, update the label
+                        var labelElem = $('label[for="' + item.id + '"]');
+                        if (labelElem.length) {
+                          labelElem.text(label);
+                        }
+                      }
+                    }
+                  });
+                  
+                  // Update static labels (prefix, search, etc.)
+                  $('[data-i18n]').each(function() {
+                    var key = $(this).data('i18n');
+                    if (data[key]) {
+                      $(this).text(data[key]);
+                    }
+                  });
+                }
+              });
+
               // Datepicker: minimum = today + 5 business days, no weekends.
               function addBizDays(d, n) {
                 var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -712,6 +742,38 @@ page 21 (
         }
         advanced {
             executionMappingIdentifier: 9826367226413179
+        }
+    )
+
+    process GET_LABEL_TRANSLATIONS (
+        point: ajaxCallback
+        source {
+            plsqlCode:
+                ```plsql
+                htp.p(PKG_SCAFF_UI.get_label_translations);
+                ```
+        }
+        execution {
+            sequence: 10
+        }
+        advanced {
+            executionMappingIdentifier: 9826367226413180
+        }
+    )
+
+    process SAVE_RETURN_REQUEST (
+        point: ajaxCallback
+        source {
+            plsqlCode:
+                ```plsql
+                htp.p(PKG_SCAFF_UI.get_label_translations);
+                ```
+        }
+        execution {
+            sequence: 20
+        }
+        advanced {
+            executionMappingIdentifier: 9826367226413180
         }
     )
 

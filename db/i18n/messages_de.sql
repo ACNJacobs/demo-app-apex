@@ -82,6 +82,41 @@ begin
   HD_I18N_INSTALL.upsert('SCAFF.TR.FORM.SAVED',           'de', 'Transferanfrage gespeichert.');
   HD_I18N_INSTALL.upsert('SCAFF.TR.FORM.SAVED.UPDATE',    'de', 'Transferanfrage aktualisiert.');
 
+  -- Form page labels
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.CONTACT',         'de', 'LABEL_CONTACT');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.WERFLEIDER',      'de', 'LABEL_WERFLEIDER');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.GSM',             'de', 'LABEL_GSM');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.DELIVERY_DATE',   'de', 'LABEL_DELIVERY_DATE');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BAKKEN',          'de', 'LABEL_BAKKEN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.TRANSPORT',       'de', 'LABEL_TRANSPORT');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LADER',           'de', 'LABEL_LADER');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.UUR',             'de', 'LABEL_UUR');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.AANHOUDEN',       'de', 'LABEL_AANHOUDEN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LAASTE',          'de', 'LABEL_LAASTE');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.OPMERKING',       'de', 'LABEL_OPMERKING');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.SAVE',        'de', 'LABEL_OPSLAAN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.BTN.CANCEL',      'de', 'LABEL_ANNULEREN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.PREFIX',          'de', 'LABEL_PREFIX');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.SEARCH',          'de', 'LABEL_SEARCH');
+
+  -- List page labels
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.PO',              'de', 'LABEL_PO');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.KLANT',           'de', 'LABEL_KLANT');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.STAD',            'de', 'LABEL_STAD');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.DATUM',           'de', 'LABEL_DATUM');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.STATUS',          'de', 'LABEL_STATUS');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.EDIT',            'de', 'LABEL_BEWERKEN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.HOLD',            'de', 'LABEL_AANHOUDEN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.RESUME',          'de', 'LABEL_HERSTARTEN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.DELETE',          'de', 'LABEL_VERWIJDEREN');
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.DELETE.CONFIRM',  'de', 'LABEL_BEVESTIGEN');
+
+  -- Form page labels
+  HD_I18N_INSTALL.upsert('SCAFF.MR.FORM.LABEL_AANHOUDEN', 'de', 'Pausieren');
+
+  -- List page labels
+  HD_I18N_INSTALL.upsert('SCAFF.MR.LIST.LABEL_AANHOUDEN', 'de', 'Pausieren');
+
   commit;
 end;
 /

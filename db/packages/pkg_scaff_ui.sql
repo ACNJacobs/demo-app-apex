@@ -28,6 +28,7 @@ as
     p_pick_item in varchar2,
     p_selected  in varchar2 default null
   ) return clob;
+  function get_label_translations return varchar2;
 end PKG_SCAFF_UI;
 /
 
@@ -385,6 +386,48 @@ as
     p('</div>');
     return l_out;
   end get_po_pick_list;
+
+  function get_label_translations return varchar2
+  is
+    l_json clob;
+  begin
+    apex_json.initialize_clob_output;
+    apex_json.open_object;
+
+    -- Form page labels (p11, p21, p31)
+    apex_json.write('P_LBL_CONTACT',        apex_lang.message('SCAFF.MR.FORM.CONTACT'));
+    apex_json.write('P_LBL_WERFLEIDER',     apex_lang.message('SCAFF.MR.FORM.WERFLEIDER'));
+    apex_json.write('P_LBL_GSM',            apex_lang.message('SCAFF.MR.FORM.GSM'));
+    apex_json.write('P_LBL_DELIVERY_DATE',  apex_lang.message('SCAFF.MR.FORM.DELIVERY_DATE'));
+    apex_json.write('P_LBL_BAKKEN',         apex_lang.message('SCAFF.MR.FORM.BAKKEN'));
+    apex_json.write('P_LBL_TRANSPORT',      apex_lang.message('SCAFF.MR.FORM.TRANSPORT'));
+    apex_json.write('P_LBL_LADER',          apex_lang.message('SCAFF.MR.FORM.LADER'));
+    apex_json.write('P_LBL_UUR',            apex_lang.message('SCAFF.MR.FORM.UUR'));
+    apex_json.write('P_LBL_AANHOUDEN',      apex_lang.message('SCAFF.MR.FORM.AANHOUDEN'));
+    apex_json.write('P_LBL_LAASTE',         apex_lang.message('SCAFF.MR.FORM.LAASTE'));
+    apex_json.write('P_LBL_OPMERKING',      apex_lang.message('SCAFF.MR.FORM.OPMERKING'));
+    apex_json.write('P_LBL_OPSLAAN',        apex_lang.message('SCAFF.MR.FORM.BTN.SAVE'));
+    apex_json.write('P_LBL_ANNULEREN',      apex_lang.message('SCAFF.MR.FORM.BTN.CANCEL'));
+    apex_json.write('P_LBL_PREFIX',         apex_lang.message('SCAFF.MR.LIST.PREFIX'));
+    apex_json.write('P_LBL_SEARCH',         apex_lang.message('SCAFF.MR.LIST.SEARCH'));
+
+    -- List page labels (p40, p50)
+    apex_json.write('P_LBL_PO',             apex_lang.message('SCAFF.MR.LIST.PO'));
+    apex_json.write('P_LBL_KLANT',          apex_lang.message('SCAFF.MR.LIST.KLANT'));
+    apex_json.write('P_LBL_STAD',           apex_lang.message('SCAFF.MR.LIST.STAD'));
+    apex_json.write('P_LBL_DATUM',          apex_lang.message('SCAFF.MR.LIST.DATUM'));
+    apex_json.write('P_LBL_STATUS',         apex_lang.message('SCAFF.MR.LIST.STATUS'));
+    apex_json.write('P_LBL_BEWERKEN',       apex_lang.message('SCAFF.MR.LIST.EDIT'));
+    apex_json.write('P_LBL_AANHOUDEN',      apex_lang.message('SCAFF.MR.LIST.HOLD'));
+    apex_json.write('P_LBL_HERSTARTEN',     apex_lang.message('SCAFF.MR.LIST.RESUME'));
+    apex_json.write('P_LBL_VERWIJDEREN',    apex_lang.message('SCAFF.MR.LIST.DELETE'));
+    apex_json.write('P_LBL_BEVESTIGEN',     apex_lang.message('SCAFF.MR.LIST.DELETE.CONFIRM'));
+
+    apex_json.close_object;
+    l_json := apex_json.get_clob_output;
+    apex_json.free_output;
+    return l_json;
+  end get_label_translations;
 
 end PKG_SCAFF_UI;
 /
