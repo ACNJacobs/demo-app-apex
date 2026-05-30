@@ -10,7 +10,7 @@ param(
     [string]$DbHost = "apex_db",
     [string]$Pdb = "FREEPDB1",
     [string]$OrdsContainer = "apex_ords",
-    [string]$LocalDir = (Join-Path $PSScriptRoot "..\apex_app")
+    [string]$LocalDir = "D:\oracle apex\apex_app"
 )
 
 $ErrorActionPreference = "Stop"

@@ -42,6 +42,32 @@ lov hd-users-username (
     }
 )
 
+lov scaff-language (
+    name: SCAFF_LANGUAGE
+    source {
+        location: staticValues
+    }
+
+    entry en (
+        sequence: 2
+        display: English
+        return: en
+    )
+
+    entry fr (
+        sequence: 3
+        display: Francais
+        return: fr
+    )
+
+    entry nl (
+        sequence: 1
+        display: Nederlands
+        return: nl
+    )
+
+)
+
 lov scaff-po-prefix (
     name: SCAFF_PO_PREFIX
     source {
@@ -64,32 +90,6 @@ lov scaff-po-prefix (
         sequence: 3
         display: PO/N
         return: PO/N
-    )
-
-)
-
-lov scaff-language (
-    name: SCAFF_LANGUAGE
-    source {
-        location: staticValues
-    }
-
-    entry nl (
-        sequence: 1
-        display: Nederlands
-        return: nl
-    )
-
-    entry en (
-        sequence: 2
-        display: English
-        return: en
-    )
-
-    entry fr (
-        sequence: 3
-        display: Francais
-        return: fr
     )
 
 )

@@ -37,7 +37,7 @@ as
   function get_mobile_menu return clob
   is
     l_out clob;
-    l_lang varchar2(10) := lower(nvl(v('P1_LANG'), nvl(apex_util.get_preference('FSP_LANGUAGE_PREFERENCE'), apex_util.get_session_lang)));
+    l_lang varchar2(10);
 
     procedure p( p_text in varchar2 ) is
     begin
@@ -45,7 +45,19 @@ as
     end;
   begin
     dbms_lob.createtemporary(l_out, true);
-
+    
+    -- Determine language preference
+    l_lang := lower(nvl(v('P1_LANG'), nvl(apex_util.get_preference('FSP_LANGUAGE_PREFERENCE'), 
+      nvl(apex_util.get_session_lang, 
+        case 
+          when owa_util.get_cgi_env('HTTP_ACCEPT_LANGUAGE') like 'nl%' then 'nl'
+          when owa_util.get_cgi_env('HTTP_ACCEPT_LANGUAGE') like 'fr%' then 'fr'
+          when owa_util.get_cgi_env('HTTP_ACCEPT_LANGUAGE') like 'en%' then 'en'
+          else 'en'
+        end
+      )
+    )));
+    
     if l_lang not in ('nl','en','fr') then
       l_lang := 'en';
     end if;

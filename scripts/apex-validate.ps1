@@ -9,7 +9,7 @@ param(
     [string]$DbHost = "apex_db",
     [string]$Pdb = "FREEPDB1",
     [string]$OrdsContainer = "apex_ords",
-    [string]$LocalDir = (Join-Path $PSScriptRoot "..\apex_app\$Alias")
+    [string]$LocalDir = "D:\oracle apex\apex_app\scaff-app"
 )
 
 $ErrorActionPreference = "Stop"
@@ -31,7 +31,7 @@ $out = $cmd | docker exec -i $OrdsContainer sql -S "$Schema/$Password@${DbHost}:
 $out
 
 if ($out -match "error|invalid|fail" -and $out -notmatch "0 errors") {
-    Write-Host "❌ Validate produced issues. Fix before importing." -ForegroundColor Red
+    Write-Host "Validate produced issues. Fix before importing." -ForegroundColor Red
     exit 2
 }
-Write-Host "✅ Validate OK — safe to import." -ForegroundColor Green
+Write-Host "Validate OK - safe to import." -ForegroundColor Green

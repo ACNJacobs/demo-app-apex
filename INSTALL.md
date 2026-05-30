@@ -147,7 +147,9 @@ Om optimaal gebruik te maken van AI-assistentie in dit project, maken we gebruik
 
 ### Installatiestappen:
 1. Installeer [Visual Studio Code](https://code.visualstudio.com/).
-2. Zoek in de VS Code extensies naar **Oracle SQL Developer Extension for VS Code** en installeer deze.
+2. Installeer de officiële **Oracle SQL Developer Extension for VS Code**. Je kunt dit op twee manieren doen:
+   - **Via VS Code**: Open het 'Extensions' tabblad aan de linkerkant (of druk op `Ctrl+Shift+X`), zoek op "Oracle SQL Developer" en klik op installeren.
+   - **Via de Marketplace**: Download hem direct via deze link: [Visual Studio Marketplace - Oracle SQL Developer](https://marketplace.visualstudio.com/items?itemName=Oracle.sql-developer).
 3. Open het project in VS Code.
 4. Voeg de connecties toe in de SQL Developer extensie, zodat de MCP server deze herkent. Gebruik voor deze applicatie de volgende gegevens:
    - **Naam**: `databeest` (of `apex_dev`)

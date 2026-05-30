@@ -1,7 +1,119 @@
+textMessage SCAFF.LANG.APPLY (
+    message {
+        text: Apply language
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.APPLY (
+    message {
+        text: Appliquer la langue
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.APPLY (
+    message {
+        text: Taal toepassen
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.EN (
+    message {
+        text: English
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.EN (
+    message {
+        text: Anglais
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.EN (
+    message {
+        text: Engels
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.FR (
+    message {
+        text: French
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.FR (
+    message {
+        text: Francais
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.FR (
+    message {
+        text: Frans
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.NL (
+    message {
+        text: Nederlands
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.NL (
+    message {
+        text: Neerlandais
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.NL (
+    message {
+        text: Nederlands
+        language: nl
+    }
+)
+
+textMessage SCAFF.LANG.TITLE (
+    message {
+        text: Language
+        language: en
+    }
+)
+
+textMessage SCAFF.LANG.TITLE (
+    message {
+        text: Langue
+        language: fr
+    }
+)
+
+textMessage SCAFF.LANG.TITLE (
+    message {
+        text: Taal
+        language: nl
+    }
+)
+
 textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
     message {
         text: View my submitted requests
         language: en
+    }
+)
+
+textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
+    message {
+        text: Voir mes demandes soumises
+        language: fr
     }
 )
 
@@ -21,6 +133,13 @@ textMessage SCAFF.MENU.AANVRAGEN.TITLE (
 
 textMessage SCAFF.MENU.AANVRAGEN.TITLE (
     message {
+        text: Mes demandes
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.AANVRAGEN.TITLE (
+    message {
         text: Mijn aanvragen
         language: nl
     }
@@ -30,6 +149,13 @@ textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
     message {
         text: Inspect material or scaffold
         language: en
+    }
+)
+
+textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
+    message {
+        text: Inspecter le materiel ou l'echafaudage
+        language: fr
     }
 )
 
@@ -49,6 +175,13 @@ textMessage SCAFF.MENU.INSPECTIE.TITLE (
 
 textMessage SCAFF.MENU.INSPECTIE.TITLE (
     message {
+        text: Inspection
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.INSPECTIE.TITLE (
+    message {
         text: Inspectie
         language: nl
     }
@@ -58,6 +191,13 @@ textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
     message {
         text: Submit a new material request
         language: en
+    }
+)
+
+textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
+    message {
+        text: Soumettre une nouvelle demande de materiel
+        language: fr
     }
 )
 
@@ -77,6 +217,13 @@ textMessage SCAFF.MENU.MATERIAAL.TITLE (
 
 textMessage SCAFF.MENU.MATERIAAL.TITLE (
     message {
+        text: Demande de materiel
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.MATERIAAL.TITLE (
+    message {
         text: Materiaal aanvraag
         language: nl
     }
@@ -86,6 +233,13 @@ textMessage SCAFF.MENU.RETOUR.SUBTITLE (
     message {
         text: Report material return
         language: en
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.SUBTITLE (
+    message {
+        text: Signaler un retour de materiel
+        language: fr
     }
 )
 
@@ -105,6 +259,13 @@ textMessage SCAFF.MENU.RETOUR.TITLE (
 
 textMessage SCAFF.MENU.RETOUR.TITLE (
     message {
+        text: Demande de retour
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.RETOUR.TITLE (
+    message {
         text: Retour aanvraag
         language: nl
     }
@@ -114,6 +275,13 @@ textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
     message {
         text: Move material between locations
         language: en
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
+    message {
+        text: Deplacer le materiel entre les sites
+        language: fr
     }
 )
 
@@ -133,6 +301,13 @@ textMessage SCAFF.MENU.TRANSFER.TITLE (
 
 textMessage SCAFF.MENU.TRANSFER.TITLE (
     message {
+        text: Demande de transfert
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.TRANSFER.TITLE (
+    message {
         text: Transfer aanvraag
         language: nl
     }
@@ -142,6 +317,13 @@ textMessage SCAFF.MR.FORM.AANHOUDEN (
     message {
         text: Hold
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.AANHOUDEN (
+    message {
+        text: Mettre en attente
+        language: fr
     }
 )
 
@@ -161,6 +343,13 @@ textMessage SCAFF.MR.FORM.AGAIN (
 
 textMessage SCAFF.MR.FORM.AGAIN (
     message {
+        text: Nouvelle demande
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.AGAIN (
+    message {
         text: Nieuwe aanvraag
         language: nl
     }
@@ -170,6 +359,13 @@ textMessage SCAFF.MR.FORM.CANCEL (
     message {
         text: Cancel
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.CANCEL (
+    message {
+        text: Annuler
+        language: fr
     }
 )
 
@@ -190,6 +386,13 @@ textMessage SCAFF.MR.FORM.CONTACT (
 textMessage SCAFF.MR.FORM.CONTACT (
     message {
         text: Contact
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACT (
+    message {
+        text: Contact
         language: nl
     }
 )
@@ -198,6 +401,13 @@ textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
     message {
         text: Contact details
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
+    message {
+        text: Coordonnees
+        language: fr
     }
 )
 
@@ -217,6 +427,13 @@ textMessage SCAFF.MR.FORM.DATE.TOOSOON (
 
 textMessage SCAFF.MR.FORM.DATE.TOOSOON (
     message {
+        text: La date de livraison doit etre au moins a 5 jours ouvrables dans le futur.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATE.TOOSOON (
+    message {
         text: Leverdatum moet minstens 5 werkdagen in de toekomst liggen.
         language: nl
     }
@@ -226,6 +443,13 @@ textMessage SCAFF.MR.FORM.DATE.WEEKEND (
     message {
         text: Delivery date cannot be on a weekend.
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATE.WEEKEND (
+    message {
+        text: La date de livraison ne peut pas tomber le week-end.
+        language: fr
     }
 )
 
@@ -245,6 +469,13 @@ textMessage SCAFF.MR.FORM.DATUM (
 
 textMessage SCAFF.MR.FORM.DATUM (
     message {
+        text: Date
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.DATUM (
+    message {
         text: Datum
         language: nl
     }
@@ -254,6 +485,13 @@ textMessage SCAFF.MR.FORM.GSM (
     message {
         text: Mobile
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.GSM (
+    message {
+        text: Mobile
+        language: fr
     }
 )
 
@@ -273,6 +511,13 @@ textMessage SCAFF.MR.FORM.LADER (
 
 textMessage SCAFF.MR.FORM.LADER (
     message {
+        text: Chargeur
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.LADER (
+    message {
         text: Lader
         language: nl
     }
@@ -282,6 +527,13 @@ textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
     message {
         text: Delivery details
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
+    message {
+        text: Details de livraison
+        language: fr
     }
 )
 
@@ -301,6 +553,13 @@ textMessage SCAFF.MR.FORM.MINE (
 
 textMessage SCAFF.MR.FORM.MINE (
     message {
+        text: Voir mes demandes
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.MINE (
+    message {
         text: Mijn aanvragen
         language: nl
     }
@@ -310,6 +569,13 @@ textMessage SCAFF.MR.FORM.OPMERKING (
     message {
         text: Remark
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.OPMERKING (
+    message {
+        text: Remarque
+        language: fr
     }
 )
 
@@ -329,6 +595,13 @@ textMessage SCAFF.MR.FORM.SAVE (
 
 textMessage SCAFF.MR.FORM.SAVE (
     message {
+        text: Enregistrer
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVE (
+    message {
         text: Opslaan
         language: nl
     }
@@ -338,6 +611,13 @@ textMessage SCAFF.MR.FORM.SAVED (
     message {
         text: Request saved.
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVED (
+    message {
+        text: Demande enregistree.
+        language: fr
     }
 )
 
@@ -357,6 +637,13 @@ textMessage SCAFF.MR.FORM.SAVED.UPDATE (
 
 textMessage SCAFF.MR.FORM.SAVED.UPDATE (
     message {
+        text: Demande mise a jour.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.SAVED.UPDATE (
+    message {
         text: Aanvraag gewijzigd.
         language: nl
     }
@@ -366,6 +653,13 @@ textMessage SCAFF.MR.FORM.UUR (
     message {
         text: Hour
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.UUR (
+    message {
+        text: Heure
+        language: fr
     }
 )
 
@@ -385,6 +679,13 @@ textMessage SCAFF.MR.FORM.VERVOER (
 
 textMessage SCAFF.MR.FORM.VERVOER (
     message {
+        text: Transport
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.VERVOER (
+    message {
         text: Vervoer
         language: nl
     }
@@ -394,6 +695,13 @@ textMessage SCAFF.MR.FORM.WERFLEIDER (
     message {
         text: Site manager
         language: en
+    }
+)
+
+textMessage SCAFF.MR.FORM.WERFLEIDER (
+    message {
+        text: Chef de chantier
+        language: fr
     }
 )
 
@@ -413,6 +721,13 @@ textMessage SCAFF.MR.FORM.WHATNEXT (
 
 textMessage SCAFF.MR.FORM.WHATNEXT (
     message {
+        text: Que voulez-vous faire ensuite ?
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.FORM.WHATNEXT (
+    message {
         text: Wat wilt u nu doen?
         language: nl
     }
@@ -422,6 +737,13 @@ textMessage SCAFF.MR.LIST.DELETE (
     message {
         text: Delete
         language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE (
+    message {
+        text: Supprimer
+        language: fr
     }
 )
 
@@ -441,6 +763,13 @@ textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
+        text: Supprimer cette demande ?
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
+    message {
         text: Deze aanvraag verwijderen?
         language: nl
     }
@@ -450,6 +779,13 @@ textMessage SCAFF.MR.LIST.DELETE.OK (
     message {
         text: Request deleted.
         language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.DELETE.OK (
+    message {
+        text: Demande supprimee.
+        language: fr
     }
 )
 
@@ -469,6 +805,13 @@ textMessage SCAFF.MR.LIST.EDIT (
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
+        text: Modifier
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.EDIT (
+    message {
         text: Wijzig
         language: nl
     }
@@ -478,6 +821,13 @@ textMessage SCAFF.MR.LIST.EMPTY (
     message {
         text: No POs found.
         language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.EMPTY (
+    message {
+        text: Aucun PO trouve.
+        language: fr
     }
 )
 
@@ -497,6 +847,13 @@ textMessage SCAFF.MR.LIST.HEAD (
 
 textMessage SCAFF.MR.LIST.HEAD (
     message {
+        text: Selectionner un PO
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.HEAD (
+    message {
         text: Selecteer PO
         language: nl
     }
@@ -506,6 +863,13 @@ textMessage SCAFF.MR.LIST.HOLD (
     message {
         text: Pause
         language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD (
+    message {
+        text: Pause
+        language: fr
     }
 )
 
@@ -525,6 +889,13 @@ textMessage SCAFF.MR.LIST.HOLD.OK (
 
 textMessage SCAFF.MR.LIST.HOLD.OK (
     message {
+        text: Demande mise en attente.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.HOLD.OK (
+    message {
         text: Aanvraag op hold gezet.
         language: nl
     }
@@ -534,6 +905,13 @@ textMessage SCAFF.MR.LIST.RESUME (
     message {
         text: Resume
         language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME (
+    message {
+        text: Reprendre
+        language: fr
     }
 )
 
@@ -553,6 +931,13 @@ textMessage SCAFF.MR.LIST.RESUME.OK (
 
 textMessage SCAFF.MR.LIST.RESUME.OK (
     message {
+        text: Demande reactivee.
+        language: fr
+    }
+)
+
+textMessage SCAFF.MR.LIST.RESUME.OK (
+    message {
         text: Aanvraag weer actief.
         language: nl
     }
@@ -562,6 +947,13 @@ textMessage SCAFF.MR.LIST.SEARCH (
     message {
         text: Search...
         language: en
+    }
+)
+
+textMessage SCAFF.MR.LIST.SEARCH (
+    message {
+        text: Rechercher...
+        language: fr
     }
 )
 
@@ -581,6 +973,13 @@ textMessage SCAFF.MY.HOLD (
 
 textMessage SCAFF.MY.HOLD (
     message {
+        text: En attente
+        language: fr
+    }
+)
+
+textMessage SCAFF.MY.HOLD (
+    message {
         text: Aangehouden
         language: nl
     }
@@ -590,6 +989,13 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
     message {
         text: Created
         language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
+    message {
+        text: Cree
+        language: fr
     }
 )
 
@@ -610,6 +1016,13 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
 textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
     message {
         text: #
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
+    message {
+        text: #
         language: nl
     }
 )
@@ -618,6 +1031,13 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
     message {
         text: Priority
         language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
+    message {
+        text: Priorite
+        language: fr
     }
 )
 
@@ -637,6 +1057,13 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
     message {
+        text: Statut
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
+    message {
         text: Status
         language: nl
     }
@@ -646,6 +1073,13 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
     message {
         text: Subject
         language: en
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
+    message {
+        text: Sujet
+        language: fr
     }
 )
 
@@ -665,6 +1099,13 @@ textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
 
 textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
     message {
+        text: Aucune demande pour le moment.
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
+    message {
         text: Nog geen aanvragen.
         language: nl
     }
@@ -674,6 +1115,13 @@ textMessage SCAFF.PAGE.BACK (
     message {
         text: Back to menu
         language: en
+    }
+)
+
+textMessage SCAFF.PAGE.BACK (
+    message {
+        text: Retour au menu
+        language: fr
     }
 )
 
@@ -693,6 +1141,13 @@ textMessage SCAFF.PAGE.INPROGRESS.TEXT (
 
 textMessage SCAFF.PAGE.INPROGRESS.TEXT (
     message {
+        text: Cette page est en cours de construction.
+        language: fr
+    }
+)
+
+textMessage SCAFF.PAGE.INPROGRESS.TEXT (
+    message {
         text: Deze pagina is in opbouw.
         language: nl
     }
@@ -702,6 +1157,13 @@ textMessage SCAFF.RR.FORM.LADER.REQ (
     message {
         text: Lader is required.
         language: en
+    }
+)
+
+textMessage SCAFF.RR.FORM.LADER.REQ (
+    message {
+        text: Le chargeur est obligatoire.
+        language: fr
     }
 )
 
@@ -721,6 +1183,13 @@ textMessage SCAFF.RR.FORM.SAVED (
 
 textMessage SCAFF.RR.FORM.SAVED (
     message {
+        text: Demande de retour enregistree.
+        language: fr
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED (
+    message {
         text: Retour aanvraag opgeslagen.
         language: nl
     }
@@ -730,6 +1199,13 @@ textMessage SCAFF.RR.FORM.SAVED.UPDATE (
     message {
         text: Return request updated.
         language: en
+    }
+)
+
+textMessage SCAFF.RR.FORM.SAVED.UPDATE (
+    message {
+        text: Demande de retour mise a jour.
+        language: fr
     }
 )
 
@@ -749,6 +1225,13 @@ textMessage SCAFF.RR.FORM.VERVOER.REQ (
 
 textMessage SCAFF.RR.FORM.VERVOER.REQ (
     message {
+        text: Le transport est obligatoire.
+        language: fr
+    }
+)
+
+textMessage SCAFF.RR.FORM.VERVOER.REQ (
+    message {
         text: Vervoer is verplicht.
         language: nl
     }
@@ -758,6 +1241,13 @@ textMessage SCAFF.TR.FORM.EMAIL.INVALID (
     message {
         text: Please enter a valid e-mail address.
         language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL.INVALID (
+    message {
+        text: Veuillez saisir une adresse e-mail valide.
+        language: fr
     }
 )
 
@@ -777,6 +1267,13 @@ textMessage SCAFF.TR.FORM.EMAIL.REQ (
 
 textMessage SCAFF.TR.FORM.EMAIL.REQ (
     message {
+        text: L'e-mail du partenaire est obligatoire.
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL.REQ (
+    message {
         text: Email tegenpartij is verplicht.
         language: nl
     }
@@ -786,6 +1283,13 @@ textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
     message {
         text: Counterparty e-mail
         language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
+    message {
+        text: E-mail du partenaire
+        language: fr
     }
 )
 
@@ -805,6 +1309,13 @@ textMessage SCAFF.TR.FORM.HEADER (
 
 textMessage SCAFF.TR.FORM.HEADER (
     message {
+        text: TRANSFERT DE MATERIEL
+        language: fr
+    }
+)
+
+textMessage SCAFF.TR.FORM.HEADER (
+    message {
         text: TRANSFER MATERIAAL
         language: nl
     }
@@ -814,6 +1325,13 @@ textMessage SCAFF.TR.FORM.SAVED (
     message {
         text: Transfer request saved.
         language: en
+    }
+)
+
+textMessage SCAFF.TR.FORM.SAVED (
+    message {
+        text: Demande de transfert enregistree.
+        language: fr
     }
 )
 
@@ -833,532 +1351,15 @@ textMessage SCAFF.TR.FORM.SAVED.UPDATE (
 
 textMessage SCAFF.TR.FORM.SAVED.UPDATE (
     message {
-        text: Transfer aanvraag gewijzigd.
-        language: nl
-    }
-)
-
-textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
-    message {
-        text: Voir mes demandes soumises
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.AANVRAGEN.TITLE (
-    message {
-        text: Mes demandes
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
-    message {
-        text: Inspecter le materiel ou l'echafaudage
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.INSPECTIE.TITLE (
-    message {
-        text: Inspection
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
-    message {
-        text: Soumettre une nouvelle demande de materiel
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.MATERIAAL.TITLE (
-    message {
-        text: Demande de materiel
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.RETOUR.SUBTITLE (
-    message {
-        text: Signaler un retour de materiel
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.RETOUR.TITLE (
-    message {
-        text: Demande de retour
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
-    message {
-        text: Deplacer le materiel entre les sites
-        language: fr
-    }
-)
-
-textMessage SCAFF.MENU.TRANSFER.TITLE (
-    message {
-        text: Demande de transfert
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.AANHOUDEN (
-    message {
-        text: Mettre en attente
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.AGAIN (
-    message {
-        text: Nouvelle demande
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.CANCEL (
-    message {
-        text: Annuler
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.CONTACT (
-    message {
-        text: Contact
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
-    message {
-        text: Coordonnees
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.DATE.TOOSOON (
-    message {
-        text: La date de livraison doit etre au moins a 5 jours ouvrables dans le futur.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.DATE.WEEKEND (
-    message {
-        text: La date de livraison ne peut pas tomber le week-end.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.DATUM (
-    message {
-        text: Date
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.GSM (
-    message {
-        text: Mobile
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.LADER (
-    message {
-        text: Chargeur
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
-    message {
-        text: Details de livraison
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.MINE (
-    message {
-        text: Voir mes demandes
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.OPMERKING (
-    message {
-        text: Remarque
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.SAVE (
-    message {
-        text: Enregistrer
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.SAVED (
-    message {
-        text: Demande enregistree.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.SAVED.UPDATE (
-    message {
-        text: Demande mise a jour.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.UUR (
-    message {
-        text: Heure
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.VERVOER (
-    message {
-        text: Transport
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.WERFLEIDER (
-    message {
-        text: Chef de chantier
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.FORM.WHATNEXT (
-    message {
-        text: Que voulez-vous faire ensuite ?
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.DELETE (
-    message {
-        text: Supprimer
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
-    message {
-        text: Supprimer cette demande ?
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.DELETE.OK (
-    message {
-        text: Demande supprimee.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.EDIT (
-    message {
-        text: Modifier
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.EMPTY (
-    message {
-        text: Aucun PO trouve.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.HEAD (
-    message {
-        text: Selectionner un PO
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.HOLD (
-    message {
-        text: Pause
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.HOLD.OK (
-    message {
-        text: Demande mise en attente.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.RESUME (
-    message {
-        text: Reprendre
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.RESUME.OK (
-    message {
-        text: Demande reactivee.
-        language: fr
-    }
-)
-
-textMessage SCAFF.MR.LIST.SEARCH (
-    message {
-        text: Rechercher...
-        language: fr
-    }
-)
-
-textMessage SCAFF.MY.HOLD (
-    message {
-        text: En attente
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
-    message {
-        text: Cree
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
-    message {
-        text: #
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
-    message {
-        text: Priorite
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
-    message {
-        text: Statut
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
-    message {
-        text: Sujet
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
-    message {
-        text: Aucune demande pour le moment.
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.BACK (
-    message {
-        text: Retour au menu
-        language: fr
-    }
-)
-
-textMessage SCAFF.PAGE.INPROGRESS.TEXT (
-    message {
-        text: Cette page est en cours de construction.
-        language: fr
-    }
-)
-
-textMessage SCAFF.RR.FORM.LADER.REQ (
-    message {
-        text: Le chargeur est obligatoire.
-        language: fr
-    }
-)
-
-textMessage SCAFF.RR.FORM.SAVED (
-    message {
-        text: Demande de retour enregistree.
-        language: fr
-    }
-)
-
-textMessage SCAFF.RR.FORM.SAVED.UPDATE (
-    message {
-        text: Demande de retour mise a jour.
-        language: fr
-    }
-)
-
-textMessage SCAFF.RR.FORM.VERVOER.REQ (
-    message {
-        text: Le transport est obligatoire.
-        language: fr
-    }
-)
-
-textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
-    message {
-        text: E-mail du partenaire
-        language: fr
-    }
-)
-
-textMessage SCAFF.TR.FORM.EMAIL.INVALID (
-    message {
-        text: Veuillez saisir une adresse e-mail valide.
-        language: fr
-    }
-)
-
-textMessage SCAFF.TR.FORM.EMAIL.REQ (
-    message {
-        text: L'e-mail du partenaire est obligatoire.
-        language: fr
-    }
-)
-
-textMessage SCAFF.TR.FORM.HEADER (
-    message {
-        text: TRANSFERT DE MATERIEL
-        language: fr
-    }
-)
-
-textMessage SCAFF.TR.FORM.SAVED (
-    message {
-        text: Demande de transfert enregistree.
+        text: Demande de transfert mise a jour.
         language: fr
     }
 )
 
 textMessage SCAFF.TR.FORM.SAVED.UPDATE (
     message {
-        text: Demande de transfert mise a jour.
-        language: fr
-    }
-)
-
-textMessage SCAFF.LANG.TITLE (
-    message {
-        text: Language
-        language: en
-    }
-)
-
-textMessage SCAFF.LANG.TITLE (
-    message {
-        text: Taal
+        text: Transfer aanvraag gewijzigd.
         language: nl
     }
 )
 
-textMessage SCAFF.LANG.TITLE (
-    message {
-        text: Langue
-        language: fr
-    }
-)
-
-textMessage SCAFF.LANG.APPLY (
-    message {
-        text: Apply language
-        language: en
-    }
-)
-
-textMessage SCAFF.LANG.APPLY (
-    message {
-        text: Taal toepassen
-        language: nl
-    }
-)
-
-textMessage SCAFF.LANG.APPLY (
-    message {
-        text: Appliquer la langue
-        language: fr
-    }
-)
-
-textMessage SCAFF.LANG.NL (
-    message {
-        text: Nederlands
-        language: en
-    }
-)
-
-textMessage SCAFF.LANG.NL (
-    message {
-        text: Nederlands
-        language: nl
-    }
-)
-
-textMessage SCAFF.LANG.NL (
-    message {
-        text: Neerlandais
-        language: fr
-    }
-)
-
-textMessage SCAFF.LANG.EN (
-    message {
-        text: English
-        language: en
-    }
-)
-
-textMessage SCAFF.LANG.EN (
-    message {
-        text: Engels
-        language: nl
-    }
-)
-
-textMessage SCAFF.LANG.EN (
-    message {
-        text: Anglais
-        language: fr
-    }
-)
-
-textMessage SCAFF.LANG.FR (
-    message {
-        text: French
-        language: en
-    }
-)
-
-textMessage SCAFF.LANG.FR (
-    message {
-        text: Frans
-        language: nl
-    }
-)
-
-textMessage SCAFF.LANG.FR (
-    message {
-        text: Francais
-        language: fr
-    }
-)
