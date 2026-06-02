@@ -65,6 +65,7 @@ a.scaff-card:focus,
   box-shadow: 0 10px 22px rgba(178, 0, 21, 0.35);
   text-decoration: none !important;
 }
+a.scaff-card--materiaal,
 .scaff-card--materiaal { background: #0066CC !important; background-image: linear-gradient(135deg, #0066CC 0%, #004A99 100%) !important; box-shadow: 0 6px 14px rgba(0, 74, 153, 0.30) !important; }
 a.scaff-card--materiaal:hover,
 a.scaff-card--materiaal:focus,
