@@ -65,13 +65,6 @@ a.scaff-card:focus,
   box-shadow: 0 10px 22px rgba(178, 0, 21, 0.35);
   text-decoration: none !important;
 }
-a.scaff-card--materiaal,
-.scaff-card--materiaal { background: #0066CC !important; background-image: linear-gradient(135deg, #0066CC 0%, #004A99 100%) !important; box-shadow: 0 6px 14px rgba(0, 74, 153, 0.30) !important; }
-a.scaff-card--materiaal:hover,
-a.scaff-card--materiaal:focus,
-.scaff-card--materiaal:hover,
-.scaff-card--materiaal:focus { background: #004A99 !important; background-image: linear-gradient(135deg, #0066CC 0%, #003A7A 100%) !important; box-shadow: 0 10px 22px rgba(0, 74, 153, 0.40) !important; }
-.scaff-card--materiaal .scaff-card__icon .fa { color: #0066CC !important; }
 .scaff-card--retour    { background-image: linear-gradient(135deg, #E2001A 0%, #C8001A 100%) !important; }
 .scaff-card--transfer  { background-image: linear-gradient(135deg, #E2001A 0%, #A6001A 100%) !important; }
 .scaff-card--inspectie { background-image: linear-gradient(135deg, #E2001A 0%, #8C0014 100%) !important; }
