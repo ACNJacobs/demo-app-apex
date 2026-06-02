@@ -2,7 +2,8 @@
 
 Hoe de meertalige SCAFF APP (NL/EN/FR/DE/PL/RU/AR/TR) werkt, **per laag**, met daarna een aparte sectie voor **APEX 24** (waar één onderdeel net iets anders heet).
 
-> Verifieerd: APEX 26.1, app `100`, workspace `APEX_DEV`, schema `APP_DATA`, parsing taal `nl`.
+> **Verifieerd**: APEX 26.1 (live in deze repo, app `100`, workspace `APEX_DEV`, schema `APP_DATA`).
+> **APEX 24-sectie**: alle API-signatures gecheckt tegen de officiële Oracle docs voor 24.1 én 24.2 (links onderaan §10). UI-screenshots zijn niet hertest — beschrijvingen volgen Oracle's *App Builder User's Guide* hoofdstuk 22.
 
 ---
 
@@ -161,34 +162,65 @@ Waarom een **region** + niet direct in `executeWhenPageLoads`? Omdat de region e
 
 ## 8. APEX 24 — wat is er anders?
 
-De **architectuur is identiek** in APEX 24.x. Alleen wat namen en kleine details verschillen. Het patroon (preference + text messages + session_lang + addMessages) werkt 1-op-1.
+De **architectuur is identiek** in APEX 24.1 en 24.2. Alle PL/SQL- en JavaScript-API's die wij gebruiken hebben dezelfde signature, geverifieerd tegen de officiële Oracle docs (zie §10 voor links). Alleen wat namen in de Builder en het ontbreken van APEXlang zijn anders.
 
-| Onderwerp | APEX 26.1 | APEX 24.x |
-|---|---|---|
-| Application setting | `globalization.languageDerivedFrom: appPreference` (APEXlang) | Builder: *Shared Components → Globalization Attributes → Application Language Derived From* = **Application Preference**. In `f100/application/create_application.sql` heet de parameter `p_flow_language_derived_from => '4'` (waarde **4** = preference). |
-| Text Messages dictionary | `apex_application_translations.static_id` | Pre-24.1 heette dit veld in sommige views `name` ipv `static_id`. Voor 24.1+ ook `static_id`. Onze helper gebruikt `apex_lang.create_message/update_message` API → **versie-onafhankelijk**, geen aanpassing nodig. |
-| Preference set | `apex_util.set_preference('FSP_LANGUAGE_PREFERENCE', l_lang)` | Identiek. Bestaat sinds APEX 5. |
-| Session language switch | `apex_util.set_session_lang(l_lang)` | Identiek. |
-| `apex.lang.addMessages` (JS) | Aanwezig | Aanwezig sinds APEX 19.2. |
-| AJAX callback proces | APEXlang `point: ajaxCallback` | Builder: *Process → On Demand* (zelfde mechanisme, andere UI). Aanroep blijft `apex.server.process('SET_LANGUAGE', {x01: lang})`. |
-| Friendly URLs (`/r/...`) | Default aan | In 24.x ook aan. Geen impact op i18n. |
-| APEXlang | Ja, jouw export-import flow | **Niet** voor APEX 24 — APEXlang ondersteunt 26.1+ (en in beperkte mate 23.2). Voor APEX 24 gebruik je in plaats daarvan de klassieke export: `apex_export.get_application(...)` of de Builder export naar één SQL-bestand. |
+| Onderwerp | APEX 26.1 | APEX 24.x | Status |
+|---|---|---|---|
+| Application setting | `globalization.languageDerivedFrom: appPreference` (APEXlang) | Builder: *Shared Components → Globalization Attributes → Application Language Derived From* = **Application Preference**. | UI gecheckt in Oracle docs ch.22 |
+| `apex_util.set_session_lang(p_lang)` | Bestaat | **Identiek** — Oracle docs 24.1 §58.130 / 24.2 §59.134 | Geverifieerd |
+| `apex_lang.create_message(p_application_id, p_name, p_language, p_message_text, p_used_in_javascript)` | Bestaat | **Identiek**, ook 5 parameters. `p_used_in_javascript => true` zet de message in de auto-loaded JS-cache (dan hoef je `addMessages` niet zelf te doen!). | Geverifieerd Oracle docs 24.1 §39.3 |
+| `apex_lang.update_message(p_id, p_message_text)` | Bestaat | **Identiek**, 2 parameters. | Geverifieerd Oracle docs 24.1 §39.14 |
+| `apex.lang.addMessages` / `getMessage` / `formatMessage` (JS) | Bestaat | **Identiek** in 24.1 + 24.2. | Geverifieerd JS API ref |
+| `apex_application_translations` view | Onze helper filtert op kolom `static_id` | **Mogelijk verschillend** — Oracle's eigen 24.1-voorbeeld bij `update_message` filtert op kolom `translatable_message`. **Verifieer vóór gebruik**: `select column_name from all_tab_cols where table_name='APEX_APPLICATION_TRANSLATIONS'`. | Aandacht vereist |
+| AJAX callback proces | APEXlang `point: ajaxCallback` | Builder: maak een **Process** met *Process Point = "Ajax Callback"* (sinds APEX 23). | Identieke runtime |
+| APEXlang | Default flow voor 26.1 in onze repo | **Niet** voor APEX 24 — APEXlang ondersteunt 26.1+. Voor APEX 24 gebruik klassieke export: `apex_export.get_application(...)` of de Builder export (Shared Components → Export). | Ander tooling |
 
 ### Concreet stappenplan op APEX 24 (zonder APEXlang)
 
 1. **Application Preference instellen** (eenmalig):
-   - Builder → Shared Components → Globalization Attributes
+   - Builder → Shared Components → **Globalization Attributes**
    - *Application Language Derived From* = **Application Preference**
    - Save.
 
-2. **Helper-package installeren** — `db/i18n/_install_helper.sql` werkt **ongewijzigd** op 24.x (gebruikt alleen `apex_util.*` + `apex_lang.create_message/update_message` + `apex_application_install` — alles sinds 19.x stabiel).
+2. **Helper-package installeren** — `db/i18n/_install_helper.sql` werkt **bijna ongewijzigd** op 24.x. Eén check vooraf:
 
-3. **Messages laden** — exact dezelfde `messages_*.sql` bestanden zijn herbruikbaar. Pas alleen `c_app_id` en `c_workspace` boven in `_install_helper.sql` aan voor jouw 24-installatie.
+   ```sql
+   select column_name
+     from all_tab_cols
+    where table_name = 'APEX_APPLICATION_TRANSLATIONS'
+      and column_name in ('STATIC_ID','TRANSLATABLE_MESSAGE','NAME')
+    order by column_name;
+   ```
 
-4. **Language-switcher op page 1**:
+   Als `STATIC_ID` ontbreekt en alleen `TRANSLATABLE_MESSAGE` aanwezig is, vervang in `_install_helper.sql` deze regel:
+
+   ```sql
+   -- Origineel (26.1):
+   where application_id = c_app_id and static_id = p_name and language_code = p_lang;
+   -- Aanpassing voor APEX 24 (indien static_id niet bestaat):
+   where application_id = c_app_id and translatable_message = p_name and language_code = p_lang;
+   ```
+
+   Verder ongewijzigd: `apex_lang.create_message` / `update_message` werken hetzelfde.
+
+3. **Tip** — voeg `p_used_in_javascript => true` toe aan `create_message` voor labels die je in JavaScript wilt gebruiken (`apex.lang.getMessage`). APEX laadt die dan automatisch op pagina-load; je hebt dan onze `_scaffMsgData`-region niet nodig:
+
+   ```sql
+   apex_lang.create_message(
+     p_application_id     => c_app_id,
+     p_name               => p_name,
+     p_language           => p_lang,
+     p_message_text       => p_text,
+     p_used_in_javascript => true   -- <-- belangrijk voor JS-gebruik
+   );
+   ```
+
+4. **Messages laden** — exact dezelfde `messages_*.sql` bestanden zijn herbruikbaar. Pas alleen `c_app_id` en `c_workspace` boven in `_install_helper.sql` aan voor jouw 24-installatie.
+
+5. **Language-switcher op page 1**:
    - Item `P1_LANG` (Select List, LOV met taalcodes).
    - Process **Before Header** (PL/SQL): browser-detect + lees preference (zelfde body als boven).
-   - Process **On Demand** (heet hier zo, geen `ajaxCallback`): naam `SET_LANGUAGE`, body identiek aan onze AJAX-callback.
+   - Process **Ajax Callback** (heet in Builder zo): naam `SET_LANGUAGE`, body identiek aan onze AJAX-callback.
    - Dynamic Action **Change** op `P1_LANG`: *Execute JavaScript Code* →
      ```js
      apex.server.process('SET_LANGUAGE', { x01: $v('P1_LANG') }, {
@@ -196,17 +228,17 @@ De **architectuur is identiek** in APEX 24.x. Alleen wat namen en kleine details
      });
      ```
 
-5. **Form-page label refresh**:
-   - Region type **PL/SQL Dynamic Content** (24.x equivalent van `dynamicContent`) → genereert `<script>window._scaffMsgData={...}</script>`.
-   - Page Attributes → *Execute when Page Loads* → identieke JS (`addMessages` + `getMessage` per label).
+6. **Form-page label refresh** — twee opties:
+   - **Optie A (aanbevolen op 24)**: messages aanmaken met `p_used_in_javascript => true`. APEX laadt ze automatisch; gebruik direct `apex.lang.getMessage('SCAFF.X.Y.Z')` zonder helper-region.
+   - **Optie B (als 26.1)**: PL/SQL Dynamic Content region die `<script>window._scaffMsgData={...}</script>` rendert + `executeWhenPageLoads` JS met `apex.lang.addMessages` + label-binding. Werkt ook op 24.
 
-6. **Whitelist** — dezelfde twee plekken (homepage processen + UI package), die concepten zijn versie-onafhankelijk.
+7. **Whitelist** — dezelfde twee plekken (homepage processen + UI package), versie-onafhankelijk.
 
 ### Waar moet je extra opletten op APEX 24
 - **Theme**: Universal Theme 24 heeft licht andere CSS hooks dan UT 26. Onze `scaff-*` BEM-laag is theme-agnostisch en blijft werken.
-- **Translation Repository**: APEX heeft ook een traditionele *Translation Repository* (Seed → Translate → Publish). Wij **gebruiken die niet** voor SCAFF — alle teksten zitten in Text Messages, wat eenvoudiger is en in 24.x net zo goed werkt. Zorg alleen dat je geen mengvorm krijgt.
-- **`apex_lang.update_message` vs `apex_lang.create_message`**: in oudere 24.0 patches gaf `update_message` soms `ORA-20987` als `static_id` ontbrak. Helper vangt dit door eerst te selecteren op `translation_entry_id` — dat hebben alle 24.x versies.
+- **Translation Repository**: APEX heeft daarnaast de traditionele *Seed → Translate → Publish* workflow voor pagina-tekst die niet via Text Messages loopt. Wij **gebruiken die niet** voor SCAFF — alle teksten zitten in Text Messages, simpeler en in 24.x net zo goed werkend. Meng de twee niet.
 - **Karakterset**: zorg dat de DB `AL32UTF8` is (op 24.x meestal default). Anders mojibake bij AR/RU/PL — zelfde issue als bij ons in `docs/teken-encoding-herstel.md`.
+- **`update_message` op subscribed messages**: Oracle 24.1 docs waarschuwen expliciet dat `update_message` faalt op een subscribed text message. Eerst ontkoppelen via Builder.
 
 ---
 
@@ -233,3 +265,17 @@ De **architectuur is identiek** in APEX 24.x. Alleen wat namen en kleine details
 - `db/packages/pkg_scaff_ui.sql` (`get_mobile_menu`) — whitelist (2/2)
 - `apex_app/scaff-app/pages/p000{11,21,31}-*.apx` — `i18n-labels` regions + JS
 - `.github/skills/apex-26-i18n/SKILL.md` — generieke skill (door dit document gespiegeld)
+
+## 11. Officiële Oracle docs (voor de APEX 24-claims)
+
+Geverifieerd op 02-Jun-2026:
+
+- APEX 24.1 — App Builder User's Guide, hoofdstuk 22 *Managing Application Globalization*: <https://docs.oracle.com/en/database/oracle/apex/24.1/htmdb/managing-application-globalization.html>
+- APEX 24.2 — *Managing Application Globalization*: <https://docs.oracle.com/en/database/oracle/apex/24.2/htmdb/managing-application-globalization.html>
+- APEX 24.1 — *Translating Messages*: <https://docs.oracle.com/en/database/oracle/apex/24.1/htmdb/translating-messages.html>
+- APEX 24.1 API — `APEX_UTIL.SET_SESSION_LANG`: <https://docs.oracle.com/en/database/oracle/apex/24.1/aeapi/SET_SESSION_LANG-Procedure.html>
+- APEX 24.2 API — `APEX_UTIL.SET_SESSION_LANG`: <https://docs.oracle.com/en/database/oracle/apex/24.2/aeapi/SET_SESSION_LANG-Procedure.html>
+- APEX 24.1 API — `APEX_LANG.CREATE_MESSAGE` (signature met `p_used_in_javascript`): <https://docs.oracle.com/en/database/oracle/apex/24.1/aeapi/CREATE_MESSAGE-Procedure.html>
+- APEX 24.1 API — `APEX_LANG.UPDATE_MESSAGE`: <https://docs.oracle.com/en/database/oracle/apex/24.1/aeapi/UPDATE_MESSAGE-Procedure.html>
+- APEX 24.1 JS API — `apex.lang` namespace: <https://docs.oracle.com/en/database/oracle/apex/24.1/aexjs/apex.lang.html>
+- APEX 24.2 JS API — `apex.lang` namespace: <https://docs.oracle.com/en/database/oracle/apex/24.2/aexjs/apex.lang.html>
