@@ -13,6 +13,29 @@ page 1 (
         pageAccessProtection: argumentsMustHaveChecksum
         formAutoComplete: false
     }
+    javaScript {
+        executeWhenPageLoads:
+            ```javascript-browser
+            (function() {
+                var translations = {
+                    'nl': { 'Home': 'Home', 'Materiaal aanvraag': 'Materiaal aanvraag', 'Retour aanvraag': 'Retour aanvraag', 'Transfer aanvraag': 'Transfer aanvraag', 'Inspectie': 'Inspectie', 'Mijn aanvragen': 'Mijn aanvragen' },
+                    'en': { 'Home': 'Home', 'Materiaal aanvraag': 'Material request', 'Retour aanvraag': 'Return request', 'Transfer aanvraag': 'Transfer request', 'Inspectie': 'Inspection', 'Mijn aanvragen': 'My requests' },
+                    'fr': { 'Home': 'Accueil', 'Materiaal aanvraag': 'Demande de materiel', 'Retour aanvraag': 'Demande de retour', 'Transfer aanvraag': 'Demande de transfert', 'Inspectie': 'Inspection', 'Mijn aanvragen': 'Mes demandes' },
+                    'de': { 'Home': 'Startseite', 'Materiaal aanvraag': 'Materialanforderung', 'Retour aanvraag': 'Rücksendung', 'Transfer aanvraag': 'Transferanforderung', 'Inspectie': 'Inspektion', 'Mijn aanvragen': 'Meine Anfragen' },
+                    'pl': { 'Home': 'Strona główna', 'Materiaal aanvraag': 'Zamówienie materiału', 'Retour aanvraag': 'Zwrot', 'Transfer aanvraag': 'Przeniesienie', 'Inspectie': 'Inspekcja', 'Mijn aanvragen': 'Moje zgłoszenia' },
+                    'ru': { 'Home': 'Главная', 'Materiaal aanvraag': 'Заявка на материал', 'Retour aanvraag': 'Возврат', 'Transfer aanvraag': 'Перемещение', 'Inspectie': 'Инспекция', 'Mijn aanvragen': 'Мои заявки' },
+                    'ar': { 'Home': 'الصفحة الرئيسية', 'Materiaal aanvraag': 'طلب مواد', 'Retour aanvraag': 'طلب إرجاع', 'Transfer aanvraag': 'طلب نقل', 'Inspectie': 'فحص', 'Mijn aanvragen': 'طلباتي' },
+                    'tr': { 'Home': 'Ana sayfa', 'Materiaal aanvraag': 'Malzeme talebi', 'Retour aanvraag': 'İade talebi', 'Transfer aanvraag': 'Transfer talebi', 'Inspectie': 'Denetim', 'Mijn aanvragen': 'Taleplerim' }
+                };
+                var lang = (document.documentElement.lang || 'nl').toLowerCase().substring(0, 2);
+                var t = translations[lang] || translations['nl'];
+                document.querySelectorAll('.t-TreeNav .a-TreeView-label').forEach(function(el) {
+                    var txt = el.textContent.trim();
+                    if (t[txt]) el.textContent = t[txt];
+                });
+            })();
+            ```
+    }
 
     region scaff-app (
         name: SCAFF APP
