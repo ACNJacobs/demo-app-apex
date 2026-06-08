@@ -1013,6 +1013,62 @@ textMessage SCAFF.MENU.TRANSFER.TITLE (
     }
 )
 
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: الصفحة الرئيسية
+        language: ar
+    }
+)
+
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: Startseite
+        language: de
+    }
+)
+
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: Home
+        language: en
+    }
+)
+
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: Accueil
+        language: fr
+    }
+)
+
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: Home
+        language: nl
+    }
+)
+
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: Strona główna
+        language: pl
+    }
+)
+
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: Главная
+        language: ru
+    }
+)
+
+textMessage SCAFF.MENU.HOME.TITLE (
+    message {
+        text: Ana sayfa
+        language: tr
+    }
+)
+
 textMessage SCAFF.MR.FORM.AANHOUDEN (
     message {
         text: تعليق
