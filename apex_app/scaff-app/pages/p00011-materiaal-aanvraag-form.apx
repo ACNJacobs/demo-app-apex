@@ -277,7 +277,7 @@ page 11 (
     pageItem P11_DATUM (
         type: datePicker
         label {
-            label: Leverdatum
+            label: &APP_TEXT$SCAFF_MR_FORM_DELIVERY_DATE.
             alignment: right
         }
         layout {

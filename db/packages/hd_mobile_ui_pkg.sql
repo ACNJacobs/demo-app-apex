@@ -50,7 +50,7 @@ a.scaff-card,
   background: #E2001A !important;
   background-image: none !important;
   color: #FFFFFF !important;
-  border-radius: 14px;
+  border-radius: 0;
   text-decoration: none !important;
   box-shadow: 0 6px 14px rgba(178, 0, 21, 0.25);
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;

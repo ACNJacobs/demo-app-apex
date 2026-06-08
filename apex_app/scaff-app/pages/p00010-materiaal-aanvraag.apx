@@ -50,7 +50,7 @@ page 10 (
     pageItem P10_PREFIX (
         type: selectList
         label {
-            label: Prefix
+            label: &APP_TEXT$SCAFF_LIST_PREFIX.
             alignment: right
         }
         lov {
@@ -76,7 +76,7 @@ page 10 (
     pageItem P10_SEARCH (
         type: textField
         label {
-            label: Search
+            label: &APP_TEXT$SCAFF_LIST_SEARCH.
             alignment: right
         }
         layout {
@@ -88,7 +88,7 @@ page 10 (
         appearance {
             template: @/optional-floating
             templateOptions: #DEFAULT#
-            valuePlaceholder: Zoek PO, klant of stad...
+            valuePlaceholder: &APP_TEXT$SCAFF_LIST_SEARCH_PLACEHOLDER_LONG.
         }
     )
 

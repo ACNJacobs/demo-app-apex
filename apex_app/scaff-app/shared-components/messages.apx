@@ -1,13 +1,13 @@
 textMessage SCAFF.LANG.APPLY (
     message {
-        text: ���������� ����������
+        text: تطبيق اللغة
         language: ar
     }
 )
 
 textMessage SCAFF.LANG.APPLY (
     message {
-        text: Sprache ��bernehmen
+        text: Sprache übernehmen
         language: de
     }
 )
@@ -35,14 +35,14 @@ textMessage SCAFF.LANG.APPLY (
 
 textMessage SCAFF.LANG.APPLY (
     message {
-        text: Zastosuj j��zyk
+        text: Zastosuj język
         language: pl
     }
 )
 
 textMessage SCAFF.LANG.APPLY (
     message {
-        text: ������������������ ��������
+        text: Применить язык
         language: ru
     }
 )
@@ -56,7 +56,7 @@ textMessage SCAFF.LANG.APPLY (
 
 textMessage SCAFF.LANG.AR (
     message {
-        text: ��������������
+        text: العربية
         language: ar
     }
 )
@@ -77,21 +77,21 @@ textMessage SCAFF.LANG.AR (
 
 textMessage SCAFF.LANG.AR (
     message {
-        text: ����������������
+        text: Арабский
         language: ru
     }
 )
 
 textMessage SCAFF.LANG.AR (
     message {
-        text: Arap��a
+        text: Arapça
         language: tr
     }
 )
 
 textMessage SCAFF.LANG.DE (
     message {
-        text: ������������������
+        text: الألمانية
         language: ar
     }
 )
@@ -112,7 +112,7 @@ textMessage SCAFF.LANG.DE (
 
 textMessage SCAFF.LANG.DE (
     message {
-        text: ����������������
+        text: Немецкий
         language: ru
     }
 )
@@ -126,7 +126,7 @@ textMessage SCAFF.LANG.DE (
 
 textMessage SCAFF.LANG.EN (
     message {
-        text: ��������������������
+        text: الإنجليزية
         language: ar
     }
 )
@@ -168,28 +168,28 @@ textMessage SCAFF.LANG.EN (
 
 textMessage SCAFF.LANG.EN (
     message {
-        text: ��������������������
+        text: Английский
         language: ru
     }
 )
 
 textMessage SCAFF.LANG.EN (
     message {
-        text: ��ngilizce
+        text: İngilizce
         language: tr
     }
 )
 
 textMessage SCAFF.LANG.FR (
     message {
-        text: ����������������
+        text: الفرنسية
         language: ar
     }
 )
 
 textMessage SCAFF.LANG.FR (
     message {
-        text: Franz��sisch
+        text: Französisch
         language: de
     }
 )
@@ -224,28 +224,28 @@ textMessage SCAFF.LANG.FR (
 
 textMessage SCAFF.LANG.FR (
     message {
-        text: ����������������������
+        text: Французский
         language: ru
     }
 )
 
 textMessage SCAFF.LANG.FR (
     message {
-        text: Frans��zca
+        text: Fransızca
         language: tr
     }
 )
 
 textMessage SCAFF.LANG.NL (
     message {
-        text: ������������������
+        text: الهولندية
         language: ar
     }
 )
 
 textMessage SCAFF.LANG.NL (
     message {
-        text: Niederl��ndisch
+        text: Niederländisch
         language: de
     }
 )
@@ -280,21 +280,21 @@ textMessage SCAFF.LANG.NL (
 
 textMessage SCAFF.LANG.NL (
     message {
-        text: ��������������������������
+        text: Нидерландский
         language: ru
     }
 )
 
 textMessage SCAFF.LANG.NL (
     message {
-        text: Felemenk��e
+        text: Felemenkçe
         language: tr
     }
 )
 
 textMessage SCAFF.LANG.PL (
     message {
-        text: ������������������
+        text: البولندية
         language: ar
     }
 )
@@ -315,21 +315,21 @@ textMessage SCAFF.LANG.PL (
 
 textMessage SCAFF.LANG.PL (
     message {
-        text: ����������������
+        text: Польский
         language: ru
     }
 )
 
 textMessage SCAFF.LANG.PL (
     message {
-        text: Leh��e
+        text: Lehçe
         language: tr
     }
 )
 
 textMessage SCAFF.LANG.RU (
     message {
-        text: ��������������
+        text: الروسية
         language: ar
     }
 )
@@ -350,21 +350,21 @@ textMessage SCAFF.LANG.RU (
 
 textMessage SCAFF.LANG.RU (
     message {
-        text: ��������������
+        text: Русский
         language: ru
     }
 )
 
 textMessage SCAFF.LANG.RU (
     message {
-        text: Rus��a
+        text: Rusça
         language: tr
     }
 )
 
 textMessage SCAFF.LANG.TITLE (
     message {
-        text: ����������
+        text: اللغة
         language: ar
     }
 )
@@ -399,14 +399,14 @@ textMessage SCAFF.LANG.TITLE (
 
 textMessage SCAFF.LANG.TITLE (
     message {
-        text: J��zyk
+        text: Język
         language: pl
     }
 )
 
 textMessage SCAFF.LANG.TITLE (
     message {
-        text: ��������
+        text: Язык
         language: ru
     }
 )
@@ -420,14 +420,14 @@ textMessage SCAFF.LANG.TITLE (
 
 textMessage SCAFF.LANG.TR (
     message {
-        text: ��������������
+        text: التركية
         language: ar
     }
 )
 
 textMessage SCAFF.LANG.TR (
     message {
-        text: T��rkisch
+        text: Türkisch
         language: de
     }
 )
@@ -441,21 +441,21 @@ textMessage SCAFF.LANG.TR (
 
 textMessage SCAFF.LANG.TR (
     message {
-        text: ����������������
+        text: Турецкий
         language: ru
     }
 )
 
 textMessage SCAFF.LANG.TR (
     message {
-        text: T��rk��e
+        text: Türkçe
         language: tr
     }
 )
 
 textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
     message {
-        text: ������ �������������� ��������������
+        text: عرض الطلبات المقدمة
         language: ar
     }
 )
@@ -490,28 +490,28 @@ textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
 
 textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
     message {
-        text: Zobacz moje przes��ane zg��oszenia
+        text: Zobacz moje przesłane zgłoszenia
         language: pl
     }
 )
 
 textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
     message {
-        text: �������������������� ������ ������������������������ ������������
+        text: Посмотреть мои отправленные заявки
         language: ru
     }
 )
 
 textMessage SCAFF.MENU.AANVRAGEN.SUBTITLE (
     message {
-        text: G��nderilen taleplerimi g��r��nt��le
+        text: Gönderilen taleplerimi görüntüle
         language: tr
     }
 )
 
 textMessage SCAFF.MENU.AANVRAGEN.TITLE (
     message {
-        text: ������������
+        text: طلباتي
         language: ar
     }
 )
@@ -546,14 +546,14 @@ textMessage SCAFF.MENU.AANVRAGEN.TITLE (
 
 textMessage SCAFF.MENU.AANVRAGEN.TITLE (
     message {
-        text: Moje zg��oszenia
+        text: Moje zgłoszenia
         language: pl
     }
 )
 
 textMessage SCAFF.MENU.AANVRAGEN.TITLE (
     message {
-        text: ������ ������������
+        text: Мои заявки
         language: ru
     }
 )
@@ -567,14 +567,14 @@ textMessage SCAFF.MENU.AANVRAGEN.TITLE (
 
 textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
     message {
-        text: ������ ������������ ���� ����������������
+        text: فحص المواد أو السقالات
         language: ar
     }
 )
 
 textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
     message {
-        text: Material oder Ger��st inspizieren
+        text: Material oder Gerüst inspizieren
         language: de
     }
 )
@@ -602,14 +602,14 @@ textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
 
 textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
     message {
-        text: Skontroluj materia�� lub rusztowanie
+        text: Skontroluj materiał lub rusztowanie
         language: pl
     }
 )
 
 textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
     message {
-        text: ������������������ ���������������� ������ ��������
+        text: Проверить материал или леса
         language: ru
     }
 )
@@ -623,7 +623,7 @@ textMessage SCAFF.MENU.INSPECTIE.SUBTITLE (
 
 textMessage SCAFF.MENU.INSPECTIE.TITLE (
     message {
-        text: ������
+        text: فحص
         language: ar
     }
 )
@@ -665,7 +665,7 @@ textMessage SCAFF.MENU.INSPECTIE.TITLE (
 
 textMessage SCAFF.MENU.INSPECTIE.TITLE (
     message {
-        text: ������������������
+        text: Инспекция
         language: ru
     }
 )
@@ -679,7 +679,7 @@ textMessage SCAFF.MENU.INSPECTIE.TITLE (
 
 textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
     message {
-        text: ���������� ������ �������� ��������
+        text: تقديم طلب مواد جديد
         language: ar
     }
 )
@@ -714,28 +714,28 @@ textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
 
 textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
     message {
-        text: Z������ nowe zam��wienie materia��u
+        text: Złóż nowe zamówienie materiału
         language: pl
     }
 )
 
 textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
     message {
-        text: ������������ ���������� ������������ ���� ����������������
+        text: Подать новую заявку на материал
         language: ru
     }
 )
 
 textMessage SCAFF.MENU.MATERIAAL.SUBTITLE (
     message {
-        text: Yeni malzeme talebi g��nder
+        text: Yeni malzeme talebi gönder
         language: tr
     }
 )
 
 textMessage SCAFF.MENU.MATERIAAL.TITLE (
     message {
-        text: ������ ��������
+        text: طلب مواد
         language: ar
     }
 )
@@ -770,14 +770,14 @@ textMessage SCAFF.MENU.MATERIAAL.TITLE (
 
 textMessage SCAFF.MENU.MATERIAAL.TITLE (
     message {
-        text: Zam��wienie materia��u
+        text: Zamówienie materiału
         language: pl
     }
 )
 
 textMessage SCAFF.MENU.MATERIAAL.TITLE (
     message {
-        text: ������������ ���� ����������������
+        text: Заявка на материал
         language: ru
     }
 )
@@ -791,14 +791,14 @@ textMessage SCAFF.MENU.MATERIAAL.TITLE (
 
 textMessage SCAFF.MENU.RETOUR.SUBTITLE (
     message {
-        text: �������������� ���� ���������� ������������
+        text: الإبلاغ عن إرجاع المواد
         language: ar
     }
 )
 
 textMessage SCAFF.MENU.RETOUR.SUBTITLE (
     message {
-        text: Materialr��cksendung melden
+        text: Materialrücksendung melden
         language: de
     }
 )
@@ -826,14 +826,14 @@ textMessage SCAFF.MENU.RETOUR.SUBTITLE (
 
 textMessage SCAFF.MENU.RETOUR.SUBTITLE (
     message {
-        text: Zg��o�� zwrot materia��u
+        text: Zgłoś zwrot materiału
         language: pl
     }
 )
 
 textMessage SCAFF.MENU.RETOUR.SUBTITLE (
     message {
-        text: ���������������� �� ���������������� ������������������
+        text: Сообщить о возврате материала
         language: ru
     }
 )
@@ -847,14 +847,14 @@ textMessage SCAFF.MENU.RETOUR.SUBTITLE (
 
 textMessage SCAFF.MENU.RETOUR.TITLE (
     message {
-        text: ������ ����������
+        text: طلب إرجاع
         language: ar
     }
 )
 
 textMessage SCAFF.MENU.RETOUR.TITLE (
     message {
-        text: R��cksendung
+        text: Rücksendung
         language: de
     }
 )
@@ -889,21 +889,21 @@ textMessage SCAFF.MENU.RETOUR.TITLE (
 
 textMessage SCAFF.MENU.RETOUR.TITLE (
     message {
-        text: ��������������
+        text: Возврат
         language: ru
     }
 )
 
 textMessage SCAFF.MENU.RETOUR.TITLE (
     message {
-        text: ��ade talebi
+        text: İade talebi
         language: tr
     }
 )
 
 textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
     message {
-        text: ������ ������������ ������ ��������������
+        text: نقل المواد بين المواقع
         language: ar
     }
 )
@@ -938,28 +938,28 @@ textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
 
 textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
     message {
-        text: Przenie�� materia�� mi��dzy lokalizacjami
+        text: Przenieś materiał między lokalizacjami
         language: pl
     }
 )
 
 textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
     message {
-        text: ���������������������� ���������������� ���������� ������������������
+        text: Переместить материал между объектами
         language: ru
     }
 )
 
 textMessage SCAFF.MENU.TRANSFER.SUBTITLE (
     message {
-        text: Malzemeyi konumlar aras��nda ta����
+        text: Malzemeyi konumlar arasında taşı
         language: tr
     }
 )
 
 textMessage SCAFF.MENU.TRANSFER.TITLE (
     message {
-        text: ������ ������
+        text: طلب نقل
         language: ar
     }
 )
@@ -1001,7 +1001,7 @@ textMessage SCAFF.MENU.TRANSFER.TITLE (
 
 textMessage SCAFF.MENU.TRANSFER.TITLE (
     message {
-        text: ����������������������
+        text: Перемещение
         language: ru
     }
 )
@@ -1015,7 +1015,7 @@ textMessage SCAFF.MENU.TRANSFER.TITLE (
 
 textMessage SCAFF.MR.FORM.AANHOUDEN (
     message {
-        text: ����������
+        text: تعليق
         language: ar
     }
 )
@@ -1057,7 +1057,7 @@ textMessage SCAFF.MR.FORM.AANHOUDEN (
 
 textMessage SCAFF.MR.FORM.AANHOUDEN (
     message {
-        text: ��������������������������
+        text: Приостановить
         language: ru
     }
 )
@@ -1071,7 +1071,7 @@ textMessage SCAFF.MR.FORM.AANHOUDEN (
 
 textMessage SCAFF.MR.FORM.AGAIN (
     message {
-        text: ������ ��������
+        text: طلب جديد
         language: ar
     }
 )
@@ -1106,14 +1106,14 @@ textMessage SCAFF.MR.FORM.AGAIN (
 
 textMessage SCAFF.MR.FORM.AGAIN (
     message {
-        text: Nowe zg��oszenie
+        text: Nowe zgłoszenie
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.AGAIN (
     message {
-        text: ���������� ������������
+        text: Новая заявка
         language: ru
     }
 )
@@ -1127,14 +1127,14 @@ textMessage SCAFF.MR.FORM.AGAIN (
 
 textMessage SCAFF.MR.FORM.BAKKEN (
     message {
-        text: # ������������
+        text: # صناديق
         language: ar
     }
 )
 
 textMessage SCAFF.MR.FORM.BAKKEN (
     message {
-        text: # Beh��lter
+        text: # Behälter
         language: de
     }
 )
@@ -1162,14 +1162,14 @@ textMessage SCAFF.MR.FORM.BAKKEN (
 
 textMessage SCAFF.MR.FORM.BAKKEN (
     message {
-        text: # Pojemnik��w
+        text: # Pojemników
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.BAKKEN (
     message {
-        text: # ����������������������
+        text: # Контейнеров
         language: ru
     }
 )
@@ -1183,7 +1183,7 @@ textMessage SCAFF.MR.FORM.BAKKEN (
 
 textMessage SCAFF.MR.FORM.BTN.CANCEL (
     message {
-        text: ����������
+        text: إلغاء
         language: ar
     }
 )
@@ -1225,21 +1225,21 @@ textMessage SCAFF.MR.FORM.BTN.CANCEL (
 
 textMessage SCAFF.MR.FORM.BTN.CANCEL (
     message {
-        text: ������������
+        text: Отмена
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.BTN.CANCEL (
     message {
-        text: ��ptal
+        text: İptal
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.BTN.SAVE (
     message {
-        text: ������
+        text: حفظ
         language: ar
     }
 )
@@ -1281,7 +1281,7 @@ textMessage SCAFF.MR.FORM.BTN.SAVE (
 
 textMessage SCAFF.MR.FORM.BTN.SAVE (
     message {
-        text: ������������������
+        text: Сохранить
         language: ru
     }
 )
@@ -1295,7 +1295,7 @@ textMessage SCAFF.MR.FORM.BTN.SAVE (
 
 textMessage SCAFF.MR.FORM.CANCEL (
     message {
-        text: ����������
+        text: إلغاء
         language: ar
     }
 )
@@ -1337,21 +1337,21 @@ textMessage SCAFF.MR.FORM.CANCEL (
 
 textMessage SCAFF.MR.FORM.CANCEL (
     message {
-        text: ������������
+        text: Отмена
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.CANCEL (
     message {
-        text: ��ptal
+        text: İptal
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.CONTACT (
     message {
-        text: ����������
+        text: اتصال
         language: ar
     }
 )
@@ -1393,21 +1393,21 @@ textMessage SCAFF.MR.FORM.CONTACT (
 
 textMessage SCAFF.MR.FORM.CONTACT (
     message {
-        text: ��������������
+        text: Контакт
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.CONTACT (
     message {
-        text: ��leti��im
+        text: İletişim
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
     message {
-        text: ������������ ��������������
+        text: بيانات الاتصال
         language: ar
     }
 )
@@ -1449,21 +1449,21 @@ textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
 
 textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
     message {
-        text: �������������������� ������������
+        text: Контактные данные
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.CONTACTGEGEVENS (
     message {
-        text: ��leti��im bilgileri
+        text: İletişim bilgileri
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.DATE.TOOSOON (
     message {
-        text: ������ ���� �������� ���������� �������������� ������ 5 �������� ������ ������ ����������.
+        text: يجب أن يكون تاريخ التسليم بعد 5 أيام عمل على الأقل.
         language: ar
     }
 )
@@ -1498,28 +1498,28 @@ textMessage SCAFF.MR.FORM.DATE.TOOSOON (
 
 textMessage SCAFF.MR.FORM.DATE.TOOSOON (
     message {
-        text: Data dostawy musi by�� co najmniej 5 dni roboczych w przysz��o��ci.
+        text: Data dostawy musi być co najmniej 5 dni roboczych w przyszłości.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.DATE.TOOSOON (
     message {
-        text: �������� ���������������� ������������ �������� �������������� ���������� 5 �������������� ��������.
+        text: Дата доставки должна быть минимум через 5 рабочих дней.
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.DATE.TOOSOON (
     message {
-        text: Teslim tarihi en az 5 i�� g��n�� ileride olmal��d��r.
+        text: Teslim tarihi en az 5 iş günü ileride olmalıdır.
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.DATE.WEEKEND (
     message {
-        text: ���� �������� ���� ������ ���������� �������������� ���� �������� ���������� ��������������.
+        text: لا يمكن أن يقع تاريخ التسليم في عطلة نهاية الأسبوع.
         language: ar
     }
 )
@@ -1554,14 +1554,14 @@ textMessage SCAFF.MR.FORM.DATE.WEEKEND (
 
 textMessage SCAFF.MR.FORM.DATE.WEEKEND (
     message {
-        text: Data dostawy nie mo��e przypada�� na weekend.
+        text: Data dostawy nie może przypadać na weekend.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.DATE.WEEKEND (
     message {
-        text: �������� ���������������� ���� ���������� ���������������������� ���� ����������������.
+        text: Дата доставки не может приходиться на выходные.
         language: ru
     }
 )
@@ -1575,7 +1575,7 @@ textMessage SCAFF.MR.FORM.DATE.WEEKEND (
 
 textMessage SCAFF.MR.FORM.DATUM (
     message {
-        text: ��������������
+        text: التاريخ
         language: ar
     }
 )
@@ -1617,7 +1617,7 @@ textMessage SCAFF.MR.FORM.DATUM (
 
 textMessage SCAFF.MR.FORM.DATUM (
     message {
-        text: ��������
+        text: Дата
         language: ru
     }
 )
@@ -1631,7 +1631,7 @@ textMessage SCAFF.MR.FORM.DATUM (
 
 textMessage SCAFF.MR.FORM.DELIVERY_DATE (
     message {
-        text: ���������� ��������������
+        text: تاريخ التسليم
         language: ar
     }
 )
@@ -1673,7 +1673,7 @@ textMessage SCAFF.MR.FORM.DELIVERY_DATE (
 
 textMessage SCAFF.MR.FORM.DELIVERY_DATE (
     message {
-        text: �������� ����������������
+        text: Дата доставки
         language: ru
     }
 )
@@ -1685,9 +1685,401 @@ textMessage SCAFF.MR.FORM.DELIVERY_DATE (
     }
 )
 
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: تاريخ التسليم
+        language: ar
+    }
+)
+
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: Lieferdatum
+        language: de
+    }
+)
+
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: Delivery date
+        language: en
+    }
+)
+
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: Date de livraison
+        language: fr
+    }
+)
+
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: Leverdatum
+        language: nl
+    }
+)
+
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: Data dostawy
+        language: pl
+    }
+)
+
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: Дата доставки
+        language: ru
+    }
+)
+
+textMessage SCAFF_MR_FORM_DELIVERY_DATE (
+    message {
+        text: Teslim tarihi
+        language: tr
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: التاريخ
+        language: ar
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: Datum
+        language: de
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: Date
+        language: en
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: Date
+        language: fr
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: Datum
+        language: nl
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: Data
+        language: pl
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: Дата
+        language: ru
+    }
+)
+
+textMessage SCAFF_FORM_DATE (
+    message {
+        text: Tarih
+        language: tr
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: البادئة
+        language: ar
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: Prefix
+        language: de
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: Prefix
+        language: en
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: Prefixe
+        language: fr
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: Prefix
+        language: nl
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: Prefiks
+        language: pl
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: Префикс
+        language: ru
+    }
+)
+
+textMessage SCAFF_LIST_PREFIX (
+    message {
+        text: On ek
+        language: tr
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: بحث
+        language: ar
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: Suche
+        language: de
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: Search
+        language: en
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: Recherche
+        language: fr
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: Zoeken
+        language: nl
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: Szukaj
+        language: pl
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: Поиск
+        language: ru
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH (
+    message {
+        text: Ara
+        language: tr
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: التالي
+        language: ar
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: Weiter
+        language: de
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: Next
+        language: en
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: Suivant
+        language: fr
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: Volgende
+        language: nl
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: Dalej
+        language: pl
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: Далее
+        language: ru
+    }
+)
+
+textMessage SCAFF_BTN_NEXT (
+    message {
+        text: İleri
+        language: tr
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: ابحث عن PO او عميل او مدينة...
+        language: ar
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: Suche nach PO, Kunde oder Stadt...
+        language: de
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: Search PO, customer or city...
+        language: en
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: Rechercher PO, client ou ville...
+        language: fr
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: Zoek PO, klant of stad...
+        language: nl
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: Szukaj PO, klienta lub miasta...
+        language: pl
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: Искать PO, клиента или город...
+        language: ru
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_LONG (
+    message {
+        text: PO, musteri veya sehir ara...
+        language: tr
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: بحث...
+        language: ar
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: Suchen...
+        language: de
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: Search...
+        language: en
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: Rechercher...
+        language: fr
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: Zoeken...
+        language: nl
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: Szukaj...
+        language: pl
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: Поиск...
+        language: ru
+    }
+)
+
+textMessage SCAFF_LIST_SEARCH_PLACEHOLDER_SHORT (
+    message {
+        text: Ara...
+        language: tr
+    }
+)
+
 textMessage SCAFF.MR.FORM.GSM (
     message {
-        text: ������������
+        text: الجوال
         language: ar
     }
 )
@@ -1729,7 +2121,7 @@ textMessage SCAFF.MR.FORM.GSM (
 
 textMessage SCAFF.MR.FORM.GSM (
     message {
-        text: ������������������
+        text: Мобильный
         language: ru
     }
 )
@@ -1743,14 +2135,14 @@ textMessage SCAFF.MR.FORM.GSM (
 
 textMessage SCAFF.MR.FORM.LAASTE (
     message {
-        text: ������ ������������
+        text: آخر مرتجع؟
         language: ar
     }
 )
 
 textMessage SCAFF.MR.FORM.LAASTE (
     message {
-        text: Letzte R��ckgabe?
+        text: Letzte Rückgabe?
         language: de
     }
 )
@@ -1778,14 +2170,14 @@ textMessage SCAFF.MR.FORM.LAASTE (
 
 textMessage SCAFF.MR.FORM.LAASTE (
     message {
-        text: Ostatni zwr��t?
+        text: Ostatni zwrót?
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.LAASTE (
     message {
-        text: ������������������ ��������������?
+        text: Последний возврат?
         language: ru
     }
 )
@@ -1799,7 +2191,7 @@ textMessage SCAFF.MR.FORM.LAASTE (
 
 textMessage SCAFF.MR.FORM.LABEL_AANHOUDEN (
     message {
-        text: ����������
+        text: تعليق
         language: ar
     }
 )
@@ -1834,7 +2226,7 @@ textMessage SCAFF.MR.FORM.LABEL_AANHOUDEN (
 
 textMessage SCAFF.MR.FORM.LABEL_AANHOUDEN (
     message {
-        text: ��������������������������
+        text: Приостановить
         language: ru
     }
 )
@@ -1848,7 +2240,7 @@ textMessage SCAFF.MR.FORM.LABEL_AANHOUDEN (
 
 textMessage SCAFF.MR.FORM.LADER (
     message {
-        text: ��������������������
+        text: المُحَمِّل
         language: ar
     }
 )
@@ -1883,28 +2275,28 @@ textMessage SCAFF.MR.FORM.LADER (
 
 textMessage SCAFF.MR.FORM.LADER (
     message {
-        text: Za��adowca
+        text: Załadowca
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.LADER (
     message {
-        text: ��������������
+        text: Грузчик
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.LADER (
     message {
-        text: Y��kleyici
+        text: Yükleyici
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
     message {
-        text: ������������ ��������������
+        text: تفاصيل التسليم
         language: ar
     }
 )
@@ -1939,28 +2331,28 @@ textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
 
 textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
     message {
-        text: Szczeg����y dostawy
+        text: Szczegóły dostawy
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
     message {
-        text: ������������ ����������������
+        text: Детали доставки
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.LEVERINGDETAILS (
     message {
-        text: Teslimat detaylar��
+        text: Teslimat detayları
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.MINE (
     message {
-        text: ������ ������������
+        text: عرض طلباتي
         language: ar
     }
 )
@@ -1995,28 +2387,28 @@ textMessage SCAFF.MR.FORM.MINE (
 
 textMessage SCAFF.MR.FORM.MINE (
     message {
-        text: Zobacz moje zg��oszenia
+        text: Zobacz moje zgłoszenia
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.MINE (
     message {
-        text: ������ ������������
+        text: Мои заявки
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.MINE (
     message {
-        text: Taleplerimi g��r
+        text: Taleplerimi gör
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.OPMERKING (
     message {
-        text: ������������
+        text: ملاحظة
         language: ar
     }
 )
@@ -2058,7 +2450,7 @@ textMessage SCAFF.MR.FORM.OPMERKING (
 
 textMessage SCAFF.MR.FORM.OPMERKING (
     message {
-        text: ��������������������
+        text: Примечание
         language: ru
     }
 )
@@ -2072,7 +2464,7 @@ textMessage SCAFF.MR.FORM.OPMERKING (
 
 textMessage SCAFF.MR.FORM.SAVE (
     message {
-        text: ������
+        text: حفظ
         language: ar
     }
 )
@@ -2114,7 +2506,7 @@ textMessage SCAFF.MR.FORM.SAVE (
 
 textMessage SCAFF.MR.FORM.SAVE (
     message {
-        text: ������������������
+        text: Сохранить
         language: ru
     }
 )
@@ -2128,7 +2520,7 @@ textMessage SCAFF.MR.FORM.SAVE (
 
 textMessage SCAFF.MR.FORM.SAVED (
     message {
-        text: ���� ������ ����������.
+        text: تم حفظ الطلب.
         language: ar
     }
 )
@@ -2163,14 +2555,14 @@ textMessage SCAFF.MR.FORM.SAVED (
 
 textMessage SCAFF.MR.FORM.SAVED (
     message {
-        text: Zg��oszenie zapisane.
+        text: Zgłoszenie zapisane.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.SAVED (
     message {
-        text: ������������ ������������������.
+        text: Заявка сохранена.
         language: ru
     }
 )
@@ -2184,7 +2576,7 @@ textMessage SCAFF.MR.FORM.SAVED (
 
 textMessage SCAFF.MR.FORM.SAVED.UPDATE (
     message {
-        text: ���� ���������� ����������.
+        text: تم تحديث الطلب.
         language: ar
     }
 )
@@ -2219,35 +2611,35 @@ textMessage SCAFF.MR.FORM.SAVED.UPDATE (
 
 textMessage SCAFF.MR.FORM.SAVED.UPDATE (
     message {
-        text: Zg��oszenie zaktualizowane.
+        text: Zgłoszenie zaktualizowane.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.SAVED.UPDATE (
     message {
-        text: ������������ ������������������.
+        text: Заявка обновлена.
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.SAVED.UPDATE (
     message {
-        text: Talep g��ncellendi.
+        text: Talep güncellendi.
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.TRANSPORT (
     message {
-        text: ���������� ���� ������������
+        text: النقل تم بالفعل
         language: ar
     }
 )
 
 textMessage SCAFF.MR.FORM.TRANSPORT (
     message {
-        text: Transport bereits durchgef��hrt
+        text: Transport bereits durchgeführt
         language: de
     }
 )
@@ -2261,7 +2653,7 @@ textMessage SCAFF.MR.FORM.TRANSPORT (
 
 textMessage SCAFF.MR.FORM.TRANSPORT (
     message {
-        text: Transport d��j�� effectu��
+        text: Transport déjà effectué
         language: fr
     }
 )
@@ -2275,28 +2667,28 @@ textMessage SCAFF.MR.FORM.TRANSPORT (
 
 textMessage SCAFF.MR.FORM.TRANSPORT (
     message {
-        text: Transport ju�� wykonany
+        text: Transport już wykonany
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.TRANSPORT (
     message {
-        text: ������������������ ������ ����������������
+        text: Транспорт уже выполнен
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.TRANSPORT (
     message {
-        text: Nakliye yap��ld��
+        text: Nakliye yapıldı
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.UUR (
     message {
-        text: ������������
+        text: الساعة
         language: ar
     }
 )
@@ -2338,7 +2730,7 @@ textMessage SCAFF.MR.FORM.UUR (
 
 textMessage SCAFF.MR.FORM.UUR (
     message {
-        text: ����������
+        text: Время
         language: ru
     }
 )
@@ -2352,7 +2744,7 @@ textMessage SCAFF.MR.FORM.UUR (
 
 textMessage SCAFF.MR.FORM.VERVOER (
     message {
-        text: ����������
+        text: النقل
         language: ar
     }
 )
@@ -2394,21 +2786,21 @@ textMessage SCAFF.MR.FORM.VERVOER (
 
 textMessage SCAFF.MR.FORM.VERVOER (
     message {
-        text: ������������������
+        text: Транспорт
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.VERVOER (
     message {
-        text: Ta����ma
+        text: Taşıma
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.WERFLEIDER (
     message {
-        text: �������� ������������
+        text: مدير الموقع
         language: ar
     }
 )
@@ -2450,28 +2842,28 @@ textMessage SCAFF.MR.FORM.WERFLEIDER (
 
 textMessage SCAFF.MR.FORM.WERFLEIDER (
     message {
-        text: ������������
+        text: Прораб
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.WERFLEIDER (
     message {
-        text: ��antiye ��efi
+        text: Şantiye şefi
         language: tr
     }
 )
 
 textMessage SCAFF.MR.FORM.WHATNEXT (
     message {
-        text: �������� �������� ���� �������� ������ ��������
+        text: ماذا تريد أن تفعل بعد ذلك؟
         language: ar
     }
 )
 
 textMessage SCAFF.MR.FORM.WHATNEXT (
     message {
-        text: Was m��chten Sie als N��chstes tun?
+        text: Was möchten Sie als Nächstes tun?
         language: de
     }
 )
@@ -2499,35 +2891,35 @@ textMessage SCAFF.MR.FORM.WHATNEXT (
 
 textMessage SCAFF.MR.FORM.WHATNEXT (
     message {
-        text: Co chcesz teraz zrobi��?
+        text: Co chcesz teraz zrobić?
         language: pl
     }
 )
 
 textMessage SCAFF.MR.FORM.WHATNEXT (
     message {
-        text: ������ ���� ������������ �������������� ������������?
+        text: Что вы хотите сделать дальше?
         language: ru
     }
 )
 
 textMessage SCAFF.MR.FORM.WHATNEXT (
     message {
-        text: ��imdi ne yapmak istersiniz?
+        text: Şimdi ne yapmak istersiniz?
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.DATUM (
     message {
-        text: LABEL_DATUM
+        text: التاريخ
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.DATUM (
     message {
-        text: LABEL_DATUM
+        text: Datum
         language: de
     }
 )
@@ -2541,49 +2933,49 @@ textMessage SCAFF.MR.LIST.DATUM (
 
 textMessage SCAFF.MR.LIST.DATUM (
     message {
-        text: LABEL_DATUM
+        text: Date
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.DATUM (
     message {
-        text: LABEL_DATUM
+        text: Datum
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.DATUM (
     message {
-        text: LABEL_DATUM
+        text: Data
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.DATUM (
     message {
-        text: LABEL_DATUM
+        text: Дата
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.DATUM (
     message {
-        text: LABEL_DATUM
+        text: Tarih
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE (
     message {
-        text: LABEL_VERWIJDEREN
+        text: حذف
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE (
     message {
-        text: LABEL_VERWIJDEREN
+        text: Löschen
         language: de
     }
 )
@@ -2597,49 +2989,49 @@ textMessage SCAFF.MR.LIST.DELETE (
 
 textMessage SCAFF.MR.LIST.DELETE (
     message {
-        text: LABEL_VERWIJDEREN
+        text: Supprimer
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE (
     message {
-        text: LABEL_VERWIJDEREN
+        text: Verwijderen
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE (
     message {
-        text: LABEL_VERWIJDEREN
+        text: Usuń
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE (
     message {
-        text: LABEL_VERWIJDEREN
+        text: Удалить
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE (
     message {
-        text: LABEL_VERWIJDEREN
+        text: Sil
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
-        text: LABEL_BEVESTIGEN
+        text: تأكيد الحذف؟
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
-        text: LABEL_BEVESTIGEN
+        text: Löschen bestätigen?
         language: de
     }
 )
@@ -2653,49 +3045,49 @@ textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
-        text: LABEL_BEVESTIGEN
+        text: Confirmer la suppression?
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
-        text: LABEL_BEVESTIGEN
+        text: Verwijderen bevestigen?
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
-        text: LABEL_BEVESTIGEN
+        text: Potwierdzić usunięcie?
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
-        text: LABEL_BEVESTIGEN
+        text: Подтвердить удаление?
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.CONFIRM (
     message {
-        text: LABEL_BEVESTIGEN
+        text: Silmeyi onayla?
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.OK (
     message {
-        text: ���� ������ ����������.
+        text: تم حذف الطلب.
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.OK (
     message {
-        text: Anfrage gel��scht.
+        text: Anfrage gelöscht.
         language: de
     }
 )
@@ -2723,14 +3115,14 @@ textMessage SCAFF.MR.LIST.DELETE.OK (
 
 textMessage SCAFF.MR.LIST.DELETE.OK (
     message {
-        text: Zg��oszenie usuni��te.
+        text: Zgłoszenie usunięte.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.DELETE.OK (
     message {
-        text: ������������ ��������������.
+        text: Заявка удалена.
         language: ru
     }
 )
@@ -2744,14 +3136,14 @@ textMessage SCAFF.MR.LIST.DELETE.OK (
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
-        text: LABEL_BEWERKEN
+        text: تحرير
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
-        text: LABEL_BEWERKEN
+        text: Bearbeiten
         language: de
     }
 )
@@ -2765,42 +3157,42 @@ textMessage SCAFF.MR.LIST.EDIT (
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
-        text: LABEL_BEWERKEN
+        text: Modifier
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
-        text: LABEL_BEWERKEN
+        text: Bewerken
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
-        text: LABEL_BEWERKEN
+        text: Edytuj
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
-        text: LABEL_BEWERKEN
+        text: Изменить
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.EDIT (
     message {
-        text: LABEL_BEWERKEN
+        text: Düzenle
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.EMPTY (
     message {
-        text: ���� �������� ���������� ��������.
+        text: لا توجد أوامر شراء.
         language: ar
     }
 )
@@ -2835,35 +3227,35 @@ textMessage SCAFF.MR.LIST.EMPTY (
 
 textMessage SCAFF.MR.LIST.EMPTY (
     message {
-        text: Brak zam��wie�� PO.
+        text: Brak zamówień PO.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.EMPTY (
     message {
-        text: PO ���� ��������������.
+        text: PO не найдены.
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.EMPTY (
     message {
-        text: PO bulunamad��.
+        text: PO bulunamadı.
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.HEAD (
     message {
-        text: �������� ������ ������������
+        text: اختر أمر الشراء
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.HEAD (
     message {
-        text: PO ausw��hlen
+        text: PO auswählen
         language: de
     }
 )
@@ -2898,28 +3290,28 @@ textMessage SCAFF.MR.LIST.HEAD (
 
 textMessage SCAFF.MR.LIST.HEAD (
     message {
-        text: ���������������� PO
+        text: Выберите PO
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.HEAD (
     message {
-        text: PO se��in
+        text: PO seçin
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD (
     message {
-        text: LABEL_AANHOUDEN
+        text: تعليق
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD (
     message {
-        text: LABEL_AANHOUDEN
+        text: Pausieren
         language: de
     }
 )
@@ -2933,42 +3325,42 @@ textMessage SCAFF.MR.LIST.HOLD (
 
 textMessage SCAFF.MR.LIST.HOLD (
     message {
-        text: LABEL_AANHOUDEN
+        text: Suspendre
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD (
     message {
-        text: LABEL_AANHOUDEN
+        text: Aanhouden
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD (
     message {
-        text: LABEL_AANHOUDEN
+        text: Wstrzymaj
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD (
     message {
-        text: LABEL_AANHOUDEN
+        text: Приостановить
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD (
     message {
-        text: LABEL_AANHOUDEN
+        text: Beklet
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD.OK (
     message {
-        text: ���� ���������� ����������.
+        text: تم تعليق الطلب.
         language: ar
     }
 )
@@ -3003,14 +3395,14 @@ textMessage SCAFF.MR.LIST.HOLD.OK (
 
 textMessage SCAFF.MR.LIST.HOLD.OK (
     message {
-        text: Zg��oszenie wstrzymane.
+        text: Zgłoszenie wstrzymane.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.HOLD.OK (
     message {
-        text: ������������ ����������������������������.
+        text: Заявка приостановлена.
         language: ru
     }
 )
@@ -3024,14 +3416,14 @@ textMessage SCAFF.MR.LIST.HOLD.OK (
 
 textMessage SCAFF.MR.LIST.KLANT (
     message {
-        text: LABEL_KLANT
+        text: العميل
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.KLANT (
     message {
-        text: LABEL_KLANT
+        text: Kunde
         language: de
     }
 )
@@ -3045,42 +3437,42 @@ textMessage SCAFF.MR.LIST.KLANT (
 
 textMessage SCAFF.MR.LIST.KLANT (
     message {
-        text: LABEL_KLANT
+        text: Client
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.KLANT (
     message {
-        text: LABEL_KLANT
+        text: Klant
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.KLANT (
     message {
-        text: LABEL_KLANT
+        text: Klient
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.KLANT (
     message {
-        text: LABEL_KLANT
+        text: Клиент
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.KLANT (
     message {
-        text: LABEL_KLANT
+        text: Müşteri
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.LABEL_AANHOUDEN (
     message {
-        text: ����������
+        text: تعليق
         language: ar
     }
 )
@@ -3115,7 +3507,7 @@ textMessage SCAFF.MR.LIST.LABEL_AANHOUDEN (
 
 textMessage SCAFF.MR.LIST.LABEL_AANHOUDEN (
     message {
-        text: ��������������������������
+        text: Приостановить
         language: ru
     }
 )
@@ -3129,14 +3521,14 @@ textMessage SCAFF.MR.LIST.LABEL_AANHOUDEN (
 
 textMessage SCAFF.MR.LIST.PO (
     message {
-        text: LABEL_PO
+        text: PO
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.PO (
     message {
-        text: LABEL_PO
+        text: PO
         language: de
     }
 )
@@ -3150,49 +3542,49 @@ textMessage SCAFF.MR.LIST.PO (
 
 textMessage SCAFF.MR.LIST.PO (
     message {
-        text: LABEL_PO
+        text: PO
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.PO (
     message {
-        text: LABEL_PO
+        text: PO
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.PO (
     message {
-        text: LABEL_PO
+        text: PO
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.PO (
     message {
-        text: LABEL_PO
+        text: PO
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.PO (
     message {
-        text: LABEL_PO
+        text: PO
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.PREFIX (
     message {
-        text: LABEL_PREFIX
+        text: البادئة
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.PREFIX (
     message {
-        text: LABEL_PREFIX
+        text: Präfix
         language: de
     }
 )
@@ -3206,49 +3598,49 @@ textMessage SCAFF.MR.LIST.PREFIX (
 
 textMessage SCAFF.MR.LIST.PREFIX (
     message {
-        text: LABEL_PREFIX
+        text: Préfixe
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.PREFIX (
     message {
-        text: LABEL_PREFIX
+        text: Prefix
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.PREFIX (
     message {
-        text: LABEL_PREFIX
+        text: Prefiks
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.PREFIX (
     message {
-        text: LABEL_PREFIX
+        text: Префикс
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.PREFIX (
     message {
-        text: LABEL_PREFIX
+        text: Ön ek
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME (
     message {
-        text: LABEL_HERSTARTEN
+        text: استئناف
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME (
     message {
-        text: LABEL_HERSTARTEN
+        text: Fortsetzen
         language: de
     }
 )
@@ -3262,42 +3654,42 @@ textMessage SCAFF.MR.LIST.RESUME (
 
 textMessage SCAFF.MR.LIST.RESUME (
     message {
-        text: LABEL_HERSTARTEN
+        text: Reprendre
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME (
     message {
-        text: LABEL_HERSTARTEN
+        text: Hervatten
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME (
     message {
-        text: LABEL_HERSTARTEN
+        text: Wznów
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME (
     message {
-        text: LABEL_HERSTARTEN
+        text: Возобновить
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME (
     message {
-        text: LABEL_HERSTARTEN
+        text: Devam et
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME.OK (
     message {
-        text: ���� �������������� ����������.
+        text: تم استئناف الطلب.
         language: ar
     }
 )
@@ -3332,14 +3724,14 @@ textMessage SCAFF.MR.LIST.RESUME.OK (
 
 textMessage SCAFF.MR.LIST.RESUME.OK (
     message {
-        text: Zg��oszenie wznowione.
+        text: Zgłoszenie wznowione.
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.RESUME.OK (
     message {
-        text: ������������ ������������������������.
+        text: Заявка возобновлена.
         language: ru
     }
 )
@@ -3353,14 +3745,14 @@ textMessage SCAFF.MR.LIST.RESUME.OK (
 
 textMessage SCAFF.MR.LIST.SEARCH (
     message {
-        text: LABEL_SEARCH
+        text: بحث
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.SEARCH (
     message {
-        text: LABEL_SEARCH
+        text: Suche
         language: de
     }
 )
@@ -3374,49 +3766,49 @@ textMessage SCAFF.MR.LIST.SEARCH (
 
 textMessage SCAFF.MR.LIST.SEARCH (
     message {
-        text: LABEL_SEARCH
+        text: Recherche
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.SEARCH (
     message {
-        text: LABEL_SEARCH
+        text: Zoeken
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.SEARCH (
     message {
-        text: LABEL_SEARCH
+        text: Szukaj
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.SEARCH (
     message {
-        text: LABEL_SEARCH
+        text: Поиск
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.SEARCH (
     message {
-        text: LABEL_SEARCH
+        text: Ara
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.STAD (
     message {
-        text: LABEL_STAD
+        text: المدينة
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.STAD (
     message {
-        text: LABEL_STAD
+        text: Stadt
         language: de
     }
 )
@@ -3430,49 +3822,49 @@ textMessage SCAFF.MR.LIST.STAD (
 
 textMessage SCAFF.MR.LIST.STAD (
     message {
-        text: LABEL_STAD
+        text: Ville
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.STAD (
     message {
-        text: LABEL_STAD
+        text: Stad
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.STAD (
     message {
-        text: LABEL_STAD
+        text: Miasto
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.STAD (
     message {
-        text: LABEL_STAD
+        text: Город
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.STAD (
     message {
-        text: LABEL_STAD
+        text: Şehir
         language: tr
     }
 )
 
 textMessage SCAFF.MR.LIST.STATUS (
     message {
-        text: LABEL_STATUS
+        text: الحالة
         language: ar
     }
 )
 
 textMessage SCAFF.MR.LIST.STATUS (
     message {
-        text: LABEL_STATUS
+        text: Status
         language: de
     }
 )
@@ -3486,42 +3878,42 @@ textMessage SCAFF.MR.LIST.STATUS (
 
 textMessage SCAFF.MR.LIST.STATUS (
     message {
-        text: LABEL_STATUS
+        text: Statut
         language: fr
     }
 )
 
 textMessage SCAFF.MR.LIST.STATUS (
     message {
-        text: LABEL_STATUS
+        text: Status
         language: nl
     }
 )
 
 textMessage SCAFF.MR.LIST.STATUS (
     message {
-        text: LABEL_STATUS
+        text: Status
         language: pl
     }
 )
 
 textMessage SCAFF.MR.LIST.STATUS (
     message {
-        text: LABEL_STATUS
+        text: Статус
         language: ru
     }
 )
 
 textMessage SCAFF.MR.LIST.STATUS (
     message {
-        text: LABEL_STATUS
+        text: Durum
         language: tr
     }
 )
 
 textMessage SCAFF.MY.HOLD (
     message {
-        text: ��������
+        text: معلق
         language: ar
     }
 )
@@ -3563,7 +3955,7 @@ textMessage SCAFF.MY.HOLD (
 
 textMessage SCAFF.MY.HOLD (
     message {
-        text: ����������������������������
+        text: Приостановлено
         language: ru
     }
 )
@@ -3577,7 +3969,7 @@ textMessage SCAFF.MY.HOLD (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
     message {
-        text: ���������� ��������������
+        text: تاريخ الإنشاء
         language: ar
     }
 )
@@ -3619,14 +4011,14 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
     message {
-        text: ��������������
+        text: Создано
         language: ru
     }
 )
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.CREATED (
     message {
-        text: Olu��turuldu
+        text: Oluşturuldu
         language: tr
     }
 )
@@ -3689,14 +4081,14 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.ID (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
     message {
-        text: ����������������
+        text: الأولوية
         language: ar
     }
 )
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
     message {
-        text: Priorit��t
+        text: Priorität
         language: de
     }
 )
@@ -3731,21 +4123,21 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
     message {
-        text: ������������������
+        text: Приоритет
         language: ru
     }
 )
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.PRIORITY (
     message {
-        text: ��ncelik
+        text: Öncelik
         language: tr
     }
 )
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
     message {
-        text: ������������
+        text: الحالة
         language: ar
     }
 )
@@ -3787,7 +4179,7 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
     message {
-        text: ������������
+        text: Статус
         language: ru
     }
 )
@@ -3801,7 +4193,7 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.STATUS (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
     message {
-        text: ��������������
+        text: الموضوع
         language: ar
     }
 )
@@ -3843,7 +4235,7 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
 
 textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
     message {
-        text: ��������
+        text: Тема
         language: ru
     }
 )
@@ -3857,7 +4249,7 @@ textMessage SCAFF.PAGE.AANVRAGEN.COL.TITLE (
 
 textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
     message {
-        text: ���� �������� ���������� ������.
+        text: لا توجد طلبات بعد.
         language: ar
     }
 )
@@ -3892,35 +4284,35 @@ textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
 
 textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
     message {
-        text: Brak zg��osze��.
+        text: Brak zgłoszeń.
         language: pl
     }
 )
 
 textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
     message {
-        text: ������������ �������� ������.
+        text: Заявок пока нет.
         language: ru
     }
 )
 
 textMessage SCAFF.PAGE.AANVRAGEN.EMPTY (
     message {
-        text: Hen��z talep yok.
+        text: Henüz talep yok.
         language: tr
     }
 )
 
 textMessage SCAFF.PAGE.BACK (
     message {
-        text: ������������ ������ ��������������
+        text: العودة إلى القائمة
         language: ar
     }
 )
 
 textMessage SCAFF.PAGE.BACK (
     message {
-        text: Zur��ck zum Men��
+        text: Zurück zum Menü
         language: de
     }
 )
@@ -3948,28 +4340,28 @@ textMessage SCAFF.PAGE.BACK (
 
 textMessage SCAFF.PAGE.BACK (
     message {
-        text: Powr��t do menu
+        text: Powrót do menu
         language: pl
     }
 )
 
 textMessage SCAFF.PAGE.BACK (
     message {
-        text: ���������� �� ��������
+        text: Назад в меню
         language: ru
     }
 )
 
 textMessage SCAFF.PAGE.BACK (
     message {
-        text: Men��ye d��n
+        text: Menüye dön
         language: tr
     }
 )
 
 textMessage SCAFF.PAGE.INPROGRESS.TEXT (
     message {
-        text: ������ ������������ ������ ��������������.
+        text: هذه الصفحة قيد الإنشاء.
         language: ar
     }
 )
@@ -4011,21 +4403,21 @@ textMessage SCAFF.PAGE.INPROGRESS.TEXT (
 
 textMessage SCAFF.PAGE.INPROGRESS.TEXT (
     message {
-        text: ������ ���������������� �� ��������������������.
+        text: Эта страница в разработке.
         language: ru
     }
 )
 
 textMessage SCAFF.PAGE.INPROGRESS.TEXT (
     message {
-        text: Bu sayfa yap��m a��amas��nda.
+        text: Bu sayfa yapım aşamasında.
         language: tr
     }
 )
 
 textMessage SCAFF.RR.FORM.LADER.REQ (
     message {
-        text: �������������������� ����������.
+        text: المُحَمِّل مطلوب.
         language: ar
     }
 )
@@ -4060,35 +4452,35 @@ textMessage SCAFF.RR.FORM.LADER.REQ (
 
 textMessage SCAFF.RR.FORM.LADER.REQ (
     message {
-        text: Za��adowca jest wymagany.
+        text: Załadowca jest wymagany.
         language: pl
     }
 )
 
 textMessage SCAFF.RR.FORM.LADER.REQ (
     message {
-        text: �������������� ��������������������.
+        text: Грузчик обязателен.
         language: ru
     }
 )
 
 textMessage SCAFF.RR.FORM.LADER.REQ (
     message {
-        text: Y��kleyici zorunludur.
+        text: Yükleyici zorunludur.
         language: tr
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED (
     message {
-        text: ���� ������ ������ ��������������.
+        text: تم حفظ طلب الإرجاع.
         language: ar
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED (
     message {
-        text: R��cksendung gespeichert.
+        text: Rücksendung gespeichert.
         language: de
     }
 )
@@ -4116,35 +4508,35 @@ textMessage SCAFF.RR.FORM.SAVED (
 
 textMessage SCAFF.RR.FORM.SAVED (
     message {
-        text: Zg��oszenie zwrotu zapisane.
+        text: Zgłoszenie zwrotu zapisane.
         language: pl
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED (
     message {
-        text: ������������ ���� �������������� ������������������.
+        text: Заявка на возврат сохранена.
         language: ru
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED (
     message {
-        text: ��ade talebi kaydedildi.
+        text: İade talebi kaydedildi.
         language: tr
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED.UPDATE (
     message {
-        text: ���� ���������� ������ ��������������.
+        text: تم تحديث طلب الإرجاع.
         language: ar
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED.UPDATE (
     message {
-        text: R��cksendung aktualisiert.
+        text: Rücksendung aktualisiert.
         language: de
     }
 )
@@ -4172,28 +4564,28 @@ textMessage SCAFF.RR.FORM.SAVED.UPDATE (
 
 textMessage SCAFF.RR.FORM.SAVED.UPDATE (
     message {
-        text: Zg��oszenie zwrotu zaktualizowane.
+        text: Zgłoszenie zwrotu zaktualizowane.
         language: pl
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED.UPDATE (
     message {
-        text: ������������ ���� �������������� ������������������.
+        text: Заявка на возврат обновлена.
         language: ru
     }
 )
 
 textMessage SCAFF.RR.FORM.SAVED.UPDATE (
     message {
-        text: ��ade talebi g��ncellendi.
+        text: İade talebi güncellendi.
         language: tr
     }
 )
 
 textMessage SCAFF.RR.FORM.VERVOER.REQ (
     message {
-        text: ���������� ����������.
+        text: النقل مطلوب.
         language: ar
     }
 )
@@ -4235,28 +4627,28 @@ textMessage SCAFF.RR.FORM.VERVOER.REQ (
 
 textMessage SCAFF.RR.FORM.VERVOER.REQ (
     message {
-        text: ������������������ ��������������������.
+        text: Транспорт обязателен.
         language: ru
     }
 )
 
 textMessage SCAFF.RR.FORM.VERVOER.REQ (
     message {
-        text: Ta����ma zorunludur.
+        text: Taşıma zorunludur.
         language: tr
     }
 )
 
 textMessage SCAFF.TR.FORM.EMAIL.INVALID (
     message {
-        text: �������� ���������� �������� ���������������� ��������.
+        text: يرجى إدخال بريد إلكتروني صالح.
         language: ar
     }
 )
 
 textMessage SCAFF.TR.FORM.EMAIL.INVALID (
     message {
-        text: Bitte geben Sie eine g��ltige E-Mail-Adresse ein.
+        text: Bitte geben Sie eine gültige E-Mail-Adresse ein.
         language: de
     }
 )
@@ -4284,28 +4676,28 @@ textMessage SCAFF.TR.FORM.EMAIL.INVALID (
 
 textMessage SCAFF.TR.FORM.EMAIL.INVALID (
     message {
-        text: Wprowad�� prawid��owy adres e-mail.
+        text: Wprowadź prawidłowy adres e-mail.
         language: pl
     }
 )
 
 textMessage SCAFF.TR.FORM.EMAIL.INVALID (
     message {
-        text: �������������� �������������������� e-mail.
+        text: Введите корректный e-mail.
         language: ru
     }
 )
 
 textMessage SCAFF.TR.FORM.EMAIL.INVALID (
     message {
-        text: Ge��erli bir e-posta girin.
+        text: Geçerli bir e-posta girin.
         language: tr
     }
 )
 
 textMessage SCAFF.TR.FORM.EMAIL.REQ (
     message {
-        text: ������������ �������������������� ������������ ����������.
+        text: البريد الإلكتروني للشريك مطلوب.
         language: ar
     }
 )
@@ -4347,7 +4739,7 @@ textMessage SCAFF.TR.FORM.EMAIL.REQ (
 
 textMessage SCAFF.TR.FORM.EMAIL.REQ (
     message {
-        text: E-mail ���������������� ��������������������.
+        text: E-mail партнёра обязателен.
         language: ru
     }
 )
@@ -4361,7 +4753,7 @@ textMessage SCAFF.TR.FORM.EMAIL.REQ (
 
 textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
     message {
-        text: ������������ �������������������� ������������
+        text: البريد الإلكتروني للشريك
         language: ar
     }
 )
@@ -4403,7 +4795,7 @@ textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
 
 textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
     message {
-        text: E-mail ����������������
+        text: E-mail партнёра
         language: ru
     }
 )
@@ -4417,7 +4809,7 @@ textMessage SCAFF.TR.FORM.EMAIL_PARTNER (
 
 textMessage SCAFF.TR.FORM.HEADER (
     message {
-        text: ������ ������������
+        text: نقل المواد
         language: ar
     }
 )
@@ -4452,28 +4844,28 @@ textMessage SCAFF.TR.FORM.HEADER (
 
 textMessage SCAFF.TR.FORM.HEADER (
     message {
-        text: PRZENIESIENIE MATERIA��U
+        text: PRZENIESIENIE MATERIAŁU
         language: pl
     }
 )
 
 textMessage SCAFF.TR.FORM.HEADER (
     message {
-        text: ���������������������� ������������������
+        text: ПЕРЕМЕЩЕНИЕ МАТЕРИАЛА
         language: ru
     }
 )
 
 textMessage SCAFF.TR.FORM.HEADER (
     message {
-        text: MALZEME TRANSFER��
+        text: MALZEME TRANSFERİ
         language: tr
     }
 )
 
 textMessage SCAFF.TR.FORM.SAVED (
     message {
-        text: ���� ������ ������ ����������.
+        text: تم حفظ طلب النقل.
         language: ar
     }
 )
@@ -4508,14 +4900,14 @@ textMessage SCAFF.TR.FORM.SAVED (
 
 textMessage SCAFF.TR.FORM.SAVED (
     message {
-        text: Zg��oszenie przeniesienia zapisane.
+        text: Zgłoszenie przeniesienia zapisane.
         language: pl
     }
 )
 
 textMessage SCAFF.TR.FORM.SAVED (
     message {
-        text: ������������ ���� ���������������������� ������������������.
+        text: Заявка на перемещение сохранена.
         language: ru
     }
 )
@@ -4529,7 +4921,7 @@ textMessage SCAFF.TR.FORM.SAVED (
 
 textMessage SCAFF.TR.FORM.SAVED.UPDATE (
     message {
-        text: ���� ���������� ������ ����������.
+        text: تم تحديث طلب النقل.
         language: ar
     }
 )
@@ -4564,21 +4956,21 @@ textMessage SCAFF.TR.FORM.SAVED.UPDATE (
 
 textMessage SCAFF.TR.FORM.SAVED.UPDATE (
     message {
-        text: Zg��oszenie przeniesienia zaktualizowane.
+        text: Zgłoszenie przeniesienia zaktualizowane.
         language: pl
     }
 )
 
 textMessage SCAFF.TR.FORM.SAVED.UPDATE (
     message {
-        text: ������������ ���� ���������������������� ������������������.
+        text: Заявка на перемещение обновлена.
         language: ru
     }
 )
 
 textMessage SCAFF.TR.FORM.SAVED.UPDATE (
     message {
-        text: Transfer talebi g��ncellendi.
+        text: Transfer talebi güncellendi.
         language: tr
     }
 )

@@ -92,15 +92,15 @@
 .app-SCAFF-APP .t-IRR-region,
 .app-SCAFF-APP .t-Report,
 .app-SCAFF-APP .t-ContentBlock {
-  border: 1px solid var(--abx-line);
+  border: 1px solid rgba(226, 0, 26, .28);
   border-radius: 14px;
-  background: var(--abx-surface);
+  background: #FFF4F6;
   box-shadow: 0 8px 22px rgba(15, 23, 42, .06);
 }
 
 .app-SCAFF-APP .t-Region-header {
-  border-bottom: 1px solid var(--abx-line);
-  background: linear-gradient(90deg, #F9FAFC 0%, #F2F5FA 100%);
+  border-bottom: 1px solid rgba(226, 0, 26, .25);
+  background: linear-gradient(90deg, #FFF4F6 0%, #FCE6E9 100%);
 }
 
 .app-SCAFF-APP .t-Region-title,
@@ -139,7 +139,7 @@
 }
 
 .app-SCAFF-APP .t-Button {
-  border-radius: 999px;
+  border-radius: 0px;
 }
 
 .app-SCAFF-APP .t-Button--hot,
@@ -179,7 +179,18 @@
 
 /* Keep existing scaff component styles, but align tone with the app shell */
 .app-SCAFF-APP .scaff-section__head {
+  background: linear-gradient(90deg, #E2001A 0%, #B30015 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(179, 0, 21, .45) !important;
+  box-shadow: 0 10px 24px rgba(226, 0, 26, .28) !important;
   border-radius: 12px;
+}
+
+.app-SCAFF-APP .scaff-list__head {
+  background: linear-gradient(90deg, #E2001A 0%, #B30015 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(179, 0, 21, .45) !important;
+  box-shadow: 0 10px 24px rgba(226, 0, 26, .28) !important;
 }
 
 /* App-wide list scrolling: keep filters/header visible and scroll the list body */

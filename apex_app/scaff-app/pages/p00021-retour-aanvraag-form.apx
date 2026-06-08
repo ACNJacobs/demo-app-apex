@@ -326,7 +326,7 @@ page 21 (
     pageItem P21_DATUM (
         type: datePicker
         label {
-            label: Datum
+            label: &APP_TEXT$SCAFF_FORM_DATE.
             alignment: right
         }
         layout {
