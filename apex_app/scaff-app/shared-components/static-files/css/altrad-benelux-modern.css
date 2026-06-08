@@ -48,32 +48,34 @@
 
 .app-SCAFF-APP .t-Header-logo-link {
   position: relative;
-  padding-right: 126px;
+  padding-left: 42px;
 }
 
-.app-SCAFF-APP .t-Header-logo-link::after {
-  content: "ALTRAD BENELUX";
+.app-SCAFF-APP .t-Header-logo-link::before {
+  content: "\f015";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "Font APEX";
+  font-weight: 900;
   position: absolute;
-  right: 10px;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-size: .64rem;
-  font-weight: 700;
-  letter-spacing: .07em;
+  font-size: 1rem;
   color: #FFFFFF;
   background: rgba(226, 0, 26, .88);
   border: 1px solid rgba(255, 255, 255, .35);
-  border-radius: 999px;
-  padding: 3px 9px;
-  line-height: 1.15;
+  border-radius: 6px;
+  padding: 5px 8px;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 @media (max-width: 640px) {
   .app-SCAFF-APP .t-Header-logo-link {
-    padding-right: 10px;
+    padding-left: 10px;
   }
 
-  .app-SCAFF-APP .t-Header-logo-link::after {
+  .app-SCAFF-APP .t-Header-logo-link::before {
     display: none;
   }
 }
