@@ -10,7 +10,7 @@
 create or replace package HD_I18N_INSTALL
 authid current_user
 as
-  c_workspace constant varchar2(30) := 'APEX_DEV';
+  c_workspace constant varchar2(30) := 'SECURE_AI_HUB';
   c_app_id    constant number       := 100;
 
   procedure set_context;

@@ -1,15 +1,23 @@
 # Altrad SCAFF APP — Copilot Instructions
 
+> ⚠️ **ENVIRONMENT-SPECIFIC FILE — DO NOT COMMIT**
+>
+> This file contains connection details, container names, and local paths that differ per machine.
+> **After cloning this repo, review and adapt this file to your local environment.**
+> This file is listed in `.gitignore` to prevent accidental commits of local overrides.
+> If you change the project structure or connection details, update this file locally only.
+
 Project-wide rules. These apply to **every** Copilot Chat in this workspace.
 
 ## Project at a Glance
 
 - **App**: SCAFF APP (id `100`, alias `SCAFF-APP`) — mobile-first APEX app for material/return/transfer requests.
-- **APEX**: `26.1` (workspace `APEX_DEV` id `5800403880636291`, parsing schema `APP_DATA`).
-- **DB**: Oracle 23ai Free in Docker container `apex_db`, PDB `FREEPDB1`, host port `2521` → container `1521`. Charset `AL32UTF8`.
-- **ORDS / SQLcl 26.1.2**: container `apex_ords`, base URL `http://localhost:8080/ords/`.
+- **APEX**: `26.1` (workspace `SECURE_AI_HUB` id `4396054143779997`, parsing schema `SAH`).
+- **DB**: MaxApex_Live — Oracle 23ai Free, `secureaihub.maxapex.net:1521/XEPDB1`, schema `SAH` (parsing schema for APEX). Charset `AL32UTF8`.
 - **Branding**: Altrad — primary `#E2001A`, dark `#B30015`, soft `#FCE6E9`.
 - **Languages**: NL (primary) + EN, via APEX text messages (`apex_lang.message`).
+
+
 
 ## Source of Truth (Versioned)
 
@@ -55,29 +63,30 @@ Wrappers: `scripts/apex-export.ps1`, `scripts/apex-import.ps1`, `scripts/apex-va
 
 ## Database Access — PREFER MCP
 
-The Oracle SQL Developer VS Code extension exposes a working **SQLcl MCP server** (verified 28-MAY-2026). Use it as the default for ad-hoc queries; fall back to `docker exec sqlplus` only for SYS rescue or scripted multi-statement installs.
+The Oracle SQL Developer VS Code extension exposes a working **SQLcl MCP server**. Use it as the default for ad-hoc queries.
 
-Saved MCP connections (case-sensitive):
+### Active MCP connection (this environment)
 
-| Name | User | Target |
-|---|---|---|
-| `databeest` | APP_DATA | localhost:2521/freepdb1 |
-| `apex_dev` | APP_DATA | localhost:2521/FREEPDB1 |
-| `apex_sys` | system | localhost:2521/FREEPDB1 |
+| Name | User | Target | Status |
+|---|---|---|---|
+| `MaxApex_Live` | SAH | `secureaihub.maxapex.net:1521/XEPDB1` | ✅ **Primary** |
 
-MCP tools available: `connections_list`, `connect`, `disconnect`, `sql_run`, `sqlcl_run`, `schema_information`, `request_status`, `skills_sync`. All statements are audited to `APP_DATA.DBTOOLS$MCP_LOG`.
+### Other saved connections (only if available)
 
-### Fallback recipes (only when MCP cannot be used)
+| Name | User | Target | Note |
+|---|---|---|---|
+| `databeest` | APP_DATA | localhost:2521/freepdb1 | Only if local Docker is running |
+| `apex_dev` | APP_DATA | localhost:2521/FREEPDB1 | Only if local Docker is running |
+| `apex_sys` | system | localhost:2521/FREEPDB1 | Only if local Docker is running |
 
+MCP tools available: `connections_list`, `connect`, `disconnect`, `sql_run`, `sqlcl_run`, `schema_information`.
+
+### Fallback recipes
+
+If MCP is unavailable, use locally installed SQLcl or sqlplus:
 ```powershell
-# As APP_DATA (app schema)
-docker exec -i apex_db sqlplus -L -S "APP_DATA/Welkom_APEX_2026!@localhost:1521/FREEPDB1"
-
-# As SYS (emergency only)
-docker exec -i apex_db sqlplus -L -S "SYS/Welkom_APEX_2026!@localhost:1521/FREEPDB1 as sysdba"
-
-# SQLcl 26.1.2 (for apex export/import/validate)
-docker exec -i apex_ords sql -S APP_DATA/Welkom_APEX_2026!@apex_db:1521/FREEPDB1
+# Connect to MaxApex_Live
+sql -S SAH/<password>@secureaihub.maxapex.net:1521/XEPDB1
 ```
 
 ## What Copilot Should Do by Default
@@ -87,3 +96,42 @@ docker exec -i apex_ords sql -S APP_DATA/Welkom_APEX_2026!@apex_db:1521/FREEPDB1
 - When asked to create a new page → use `apex generate` or copy an existing `.apx` as template.
 - Always offer to `git commit` after a successful import.
 - See `.github/skills/` for detailed playbooks and `.github/agents/apex-vibe.agent.md` for the orchestrator.
+
+## Skills — Usage & Maintenance
+
+### How to use skills
+The `.github/skills/` directory contains domain-specific playbooks for Oracle APEX 26.1. **Always consult the relevant skill first** before improvising a solution.
+
+| User asks for... | Use skill |
+|---|---|
+| Change button color / style / template | `apex-26-buttons` |
+| Create or modify an Interactive Grid | `apex-26-interactive-grids` |
+| Add a computation, validation, or formula | `apex-26-calculations` |
+| Create a PL/SQL package, procedure, or view | `apex-26-plsql-packages` |
+| Add or edit mobile card menus / dashboard tiles | `apex-26-mobile-cards` |
+| Add or change translations (NL/EN) | `apex-26-i18n` |
+| Export / edit / validate / import workflow | `apex-26-workflow` |
+| Test the app / smoke test | `apex-26-testing` |
+| Debug runtime issues | `apex-debugging-systematic` |
+| Safe destructive operations checklist | `apex-destructive-ops-safe` |
+| REST API integrations | `apex-rest-integrations-secure` |
+| SQLcl MCP usage | `apex-mcp-sqlcl` |
+| Bootstrap a brand-new APEX app | `apex-26-bootstrap-new-app` |
+| Generic patterns, gotchas, parser quirks | `apex-26-patterns` |
+| SCAFF APP specifics (id 100, alias scaff-app) | `scaff-overlay` |
+
+### How to maintain skills
+When working on a task, if you learn a new pattern, gotcha, or best practice that is not yet covered in the relevant skill:
+
+1. **Update the skill** — append the new knowledge to the appropriate `.github/skills/<skill-name>/SKILL.md` file.
+2. **Keep it concise** — bullet points, short examples, no prose.
+3. **Version-specific** — always mention "Oracle APEX 26.1" in the context so future searches are accurate.
+4. **Cross-reference** — if a pattern touches multiple skills (e.g. "button styling in IG toolbar"), add a short note in both skills pointing to each other.
+5. **Do NOT commit skills lightly** — skills are shared across environments; only commit when the pattern is verified and reusable.
+
+### When a skill does not exist
+If the user's request does not match any existing skill:
+1. Search the internet for "Oracle APEX 26.1 <topic>" to find current best practices.
+2. Create a new skill file `.github/skills/apex-26-<topic>/SKILL.md` with the findings.
+3. Add the new skill to the table above in this file.
+4. Add a cross-reference in `apex-26-patterns` if it is a generic pattern.

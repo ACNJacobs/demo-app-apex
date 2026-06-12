@@ -7,6 +7,23 @@ description: Battle-tested APEXlang patterns, gotchas, and parser quirks for Ora
 
 The hard-won lessons. Read this BEFORE editing `.apx` or writing PL/SQL HTML helpers — it saves an export/import round-trip.
 
+## Related Skills (more specific topics)
+
+| Topic | Skill |
+|---|---|
+| Button colors, templates, styling | `apex-26-buttons` |
+| Interactive Grids (IG) | `apex-26-interactive-grids` |
+| Computations, validations, formulas | `apex-26-calculations` |
+| PL/SQL packages, procedures, views | `apex-26-plsql-packages` |
+| Mobile card menus / dashboards | `apex-26-mobile-cards` |
+| Translations (NL/EN/i18n) | `apex-26-i18n` |
+| Export/edit/validate/import workflow | `apex-26-workflow` |
+| Testing / smoke tests | `apex-26-testing` |
+| Debugging runtime issues | `apex-debugging-systematic` |
+| Safe destructive operations | `apex-destructive-ops-safe` |
+| REST integrations | `apex-rest-integrations-secure` |
+| SQLcl MCP usage | `apex-mcp-sqlcl` |
+
 ## 1. `&APP_ID.` substitution does NOT happen in `dynamicContent` CLOB
 
 APEX substitutes `&APP_ID.`, `&APP_SESSION.`, `&DEBUG.` in static region source and item defaults, but **not** in a CLOB returned from `plsqlFunctionBody`. Symptom: anchor `href="f?p=&APP_ID.:50:::&DEBUG.:::"` renders literally; user clicks → blue "Application not found".

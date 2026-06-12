@@ -1,3 +1,6 @@
+# Environment-specific Copilot instructions (local overrides only)
+.github/copilot-instructions.md
+
 # Oracle APEX install distribution (huge, downloaded separately)
 apex/
 apex-latest.zip
