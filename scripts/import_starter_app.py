@@ -60,9 +60,12 @@ begin
     exception when others then null;
     end;
 
-    -- Create app
+    -- Explicitly set flow context after remove_flow
+    wwv_flow.g_flow_id := {app_id};
+
+    -- Create app with explicit ID
     wwv_imp_workspace.create_flow(
-        p_id=>wwv_flow.g_flow_id,
+        p_id=>{app_id},
         p_owner=>'SAH',
         p_name=>'{app_name}',
         p_alias=>'{app_alias}',
@@ -96,13 +99,81 @@ begin
         p_login_url=>'f?p={app_id}:LOGIN:0::NO',
         p_theme_style_by_user_pref=>false,
         p_built_with_love=>false,
-        p_global_page_id=>0
+        p_global_page_id=>0,
+        p_navigation_list_id=>wwv_flow_imp.id({nid(98)}),
+        p_navigation_list_position=>'SIDE',
+        p_navigation_list_template_id=>2469215554099805162,
+        p_nav_list_template_options=>'#DEFAULT#:t-TreeNav--styleA:js-navCollapsed--hidden',
+        p_nav_bar_type=>'LIST',
+        p_nav_bar_list_id=>wwv_flow_imp.id({nid(96)}),
+        p_nav_bar_list_template_id=>2849019392706229583,
+        p_nav_bar_template_options=>'#DEFAULT#',
+        p_authentication_id=>wwv_flow_imp.id({nid(99)})
+    );
+
+    -- Create theme
+    wwv_flow_imp_shared.create_theme(
+        p_id=>wwv_flow_imp.id({nid(92)}),
+        p_theme_id=>42,
+        p_static_id=>'universal-theme',
+        p_theme_name=>'Universal Theme',
+        p_theme_internal_name=>'UNIVERSAL_THEME',
+        p_version_identifier=>'26.1',
+        p_navigation_type=>'L',
+        p_nav_bar_type=>'LIST',
+        p_is_locked=>false,
+        p_current_theme_style_id=>wwv_flow_imp.id({nid(91)}),
+        p_default_page_template=>4073832297226169690,
+        p_default_dialog_template=>2101883943284197310,
+        p_error_template=>2102634289808461002,
+        p_printer_friendly_template=>4073832297226169690,
+        p_login_template=>2102634289808461002,
+        p_default_button_template=>4073839297780169708,
+        p_default_region_template=>4073835273271169698,
+        p_default_chart_template=>4073835273271169698,
+        p_default_form_template=>4073835273271169698,
+        p_default_reportr_template=>4073835273271169698,
+        p_default_wizard_template=>4073835273271169698,
+        p_default_menur_template=>2532939663579242476,
+        p_default_listr_template=>4073835273271169698,
+        p_default_irr_template=>2102002977963900996,
+        p_default_report_template=>2540130677583398057,
+        p_default_label_template=>1610598304472262251,
+        p_default_menu_template=>4073839682315169711,
+        p_default_list_template=>4073837480889169704,
+        p_default_top_nav_list_temp=>2528231041045349458,
+        p_default_side_nav_list_temp=>2469215554099805162,
+        p_default_nav_list_position=>'SIDE',
+        p_default_dialogbtnr_template=>2127905476394690047,
+        p_default_dialogr_template=>4502917002193490937,
+        p_default_option_label=>1610598304472262251,
+        p_default_required_label=>1610598484065263269,
+        p_default_navbar_list_template=>2849019392706229583,
+        p_file_prefix=>'#APEX_FILES#themes/theme_42/26.1/',
+        p_files_version=>2461200152211,
+        p_icon_library=>'FONTAPEX',
+        p_javascript_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
+            '#APEX_FILES#libraries/apex/#MIN_DIRECTORY#widget.stickyWidget#MIN#.js?v=#APEX_VERSION#',
+            '#THEME_FILES#js/theme42#MIN#.js?v=#APEX_VERSION#')),
+        p_css_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
+            '#THEME_FILES#css/Core#MIN#.css?v=#APEX_VERSION#'))
+    );
+
+    -- Create theme style
+    wwv_flow_imp_shared.create_theme_style(
+        p_id=>wwv_flow_imp.id({nid(91)}),
+        p_theme_id=>42,
+        p_name=>'Vita',
+        p_static_id=>'VITA',
+        p_is_current=>true,
+        p_is_public=>true,
+        p_css_file_urls=>'#THEME_FILES#css/Core#MIN#.css?v=#APEX_VERSION#'
     );
 
     -- Create authentication scheme
     wwv_flow_imp_shared.create_authentication(
         p_id=>wwv_flow_imp.id({nid(99)}),
-        p_flow_id=>wwv_flow.g_flow_id,
+        p_flow_id=>{app_id},
         p_name=>'Oracle APEX Accounts',
         p_static_id=>'oracle-apex-accounts',
         p_scheme_type=>'NATIVE_APEX_ACCOUNTS',
@@ -111,10 +182,56 @@ begin
         p_ras_mode=>0
     );
 
-    -- Update app to use the authentication scheme
-    wwv_flow_imp.set_flow_authentication(
-        p_flow_id=>wwv_flow.g_flow_id,
-        p_authentication=>'Oracle APEX Accounts'
+    -- Create navigation lists
+    wwv_flow_imp_shared.create_list(
+        p_id=>wwv_flow_imp.id({nid(98)}),
+        p_name=>'Navigation Menu',
+        p_static_id=>'navigation-menu'
+    );
+    wwv_flow_imp_shared.create_list_item(
+        p_id=>wwv_flow_imp.id({nid(97)}),
+        p_list_item_display_sequence=>10,
+        p_list_item_link_text=>'Home',
+        p_static_id=>'home',
+        p_list_item_link_target=>'f?p={app_id}:1:&SESSION.::&DEBUG.',
+        p_list_item_icon=>'fa-home',
+        p_list_item_current_type=>'TARGET_PAGE'
+    );
+    wwv_flow_imp_shared.create_list(
+        p_id=>wwv_flow_imp.id({nid(96)}),
+        p_name=>'Navigation Bar',
+        p_static_id=>'navigation-bar'
+    );
+    wwv_flow_imp_shared.create_list_item(
+        p_id=>wwv_flow_imp.id({nid(95)}),
+        p_list_item_display_sequence=>10,
+        p_list_item_link_text=>'&APP_USER.',
+        p_static_id=>'app-user',
+        p_list_item_link_target=>'#',
+        p_list_item_icon=>'fa-user',
+        p_list_text_02=>'has-username',
+        p_list_item_current_type=>'TARGET_PAGE'
+    );
+    wwv_flow_imp_shared.create_list_item(
+        p_id=>wwv_flow_imp.id({nid(94)}),
+        p_list_item_display_sequence=>20,
+        p_list_item_link_text=>'---',
+        p_static_id=>'separator',
+        p_list_item_link_target=>'separator',
+        p_list_item_disp_cond_type=>'USER_IS_NOT_PUBLIC_USER',
+        p_parent_list_item_id=>wwv_flow_imp.id({nid(95)}),
+        p_list_item_current_type=>'TARGET_PAGE'
+    );
+    wwv_flow_imp_shared.create_list_item(
+        p_id=>wwv_flow_imp.id({nid(93)}),
+        p_list_item_display_sequence=>30,
+        p_list_item_link_text=>'Sign Out',
+        p_static_id=>'sign-out',
+        p_list_item_link_target=>'&LOGOUT_URL.',
+        p_list_item_icon=>'fa-sign-out',
+        p_list_item_disp_cond_type=>'USER_IS_NOT_PUBLIC_USER',
+        p_parent_list_item_id=>wwv_flow_imp.id({nid(95)}),
+        p_list_item_current_type=>'TARGET_PAGE'
     );
 
     -- Global page
@@ -134,6 +251,7 @@ begin
         p_alias=>'HOME',
         p_step_title=>'{app_name}',
         p_autocomplete_on_off=>'OFF',
+        p_step_template=>4073832297226169690,
         p_page_template_options=>'#DEFAULT#',
         p_protection_level=>'C'
     );
@@ -158,6 +276,7 @@ begin
         p_warn_on_unsaved_changes=>'N',
         p_first_item=>'AUTO_FIRST_ITEM',
         p_autocomplete_on_off=>'OFF',
+        p_step_template=>2102634289808461002,
         p_page_template_options=>'#DEFAULT#',
         p_page_is_public_y_n=>'Y'
     );
