@@ -99,6 +99,24 @@ begin
         p_global_page_id=>0
     );
 
+    -- Create authentication scheme
+    wwv_flow_imp_shared.create_authentication(
+        p_id=>wwv_flow_imp.id({nid(99)}),
+        p_flow_id=>wwv_flow.g_flow_id,
+        p_name=>'Oracle APEX Accounts',
+        p_static_id=>'oracle-apex-accounts',
+        p_scheme_type=>'NATIVE_APEX_ACCOUNTS',
+        p_invalid_session_type=>'LOGIN',
+        p_use_secure_cookie_yn=>'N',
+        p_ras_mode=>0
+    );
+
+    -- Update app to use the authentication scheme
+    wwv_flow_imp.set_flow_authentication(
+        p_flow_id=>wwv_flow.g_flow_id,
+        p_authentication=>'Oracle APEX Accounts'
+    );
+
     -- Global page
     wwv_flow_imp_page.create_page(
         p_id=>0,
